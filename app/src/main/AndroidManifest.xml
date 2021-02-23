@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenPass">
         <activity
-            android:name=".ui.ItemListActivity"
+            android:name=".ui.list.ItemListActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.GreenPass.NoActionBar">
             <intent-filter>
@@ -22,11 +22,11 @@
         <activity
             android:name=".ui.detail.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ui.ItemListActivity"
+            android:parentActivityName=".ui.list.ItemListActivity"
             android:theme="@style/Theme.GreenPass.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.thepyprogrammer.greenpass.ui.ItemListActivity" />
+                android:value="com.thepyprogrammer.greenpass.ui.list.ItemListActivity" />
         </activity>
     </application>
 
