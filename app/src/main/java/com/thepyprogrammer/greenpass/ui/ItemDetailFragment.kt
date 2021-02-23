@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass
+package com.thepyprogrammer.greenpass.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.dummy.DummyContent
 
 /**

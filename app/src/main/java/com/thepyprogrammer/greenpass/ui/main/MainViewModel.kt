@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.main
+package com.thepyprogrammer.greenpass.ui.main
 
 import androidx.lifecycle.ViewModel
 
