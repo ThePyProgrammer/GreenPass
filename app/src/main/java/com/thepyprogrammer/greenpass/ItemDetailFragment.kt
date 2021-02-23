@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.thepyprogrammer.greenpass.dummy.DummyContent
+import com.thepyprogrammer.greenpass.model.dummy.DummyContent
 
 /**
  * A fragment representing a single Item detail screen.

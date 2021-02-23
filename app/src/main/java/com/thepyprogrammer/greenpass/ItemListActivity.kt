@@ -13,7 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import com.thepyprogrammer.greenpass.dummy.DummyContent
+import com.thepyprogrammer.greenpass.model.dummy.DummyContent
 
 /**
  * An activity representing a list of Pings. This activity
