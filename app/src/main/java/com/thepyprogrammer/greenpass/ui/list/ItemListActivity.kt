@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui
+package com.thepyprogrammer.greenpass.ui.list
 
 import android.content.Intent
 import android.os.Bundle
