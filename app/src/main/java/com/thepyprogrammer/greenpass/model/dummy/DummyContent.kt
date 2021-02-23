@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.dummy
+package com.thepyprogrammer.greenpass.model.dummy
 
 import java.util.ArrayList
 import java.util.HashMap
