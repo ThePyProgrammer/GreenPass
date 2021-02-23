@@ -15,6 +15,8 @@ import android.widget.TextView
 import com.thepyprogrammer.greenpass.R
 
 import com.thepyprogrammer.greenpass.model.dummy.DummyContent
+import com.thepyprogrammer.greenpass.ui.detail.ItemDetailActivity
+import com.thepyprogrammer.greenpass.ui.detail.ItemDetailFragment
 
 /**
  * An activity representing a list of Pings. This activity
