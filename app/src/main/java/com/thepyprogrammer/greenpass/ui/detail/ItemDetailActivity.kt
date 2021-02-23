@@ -7,7 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import com.thepyprogrammer.greenpass.R
-import com.thepyprogrammer.greenpass.ui.ItemListActivity
+import com.thepyprogrammer.greenpass.ui.list.ItemListActivity
 
 /**
  * An activity representing a single Item detail screen. This
