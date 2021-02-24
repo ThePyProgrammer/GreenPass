@@ -9,7 +9,8 @@
     <LinearLayout
         android:background="@color/blue_600"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:orientation="vertical"
@@ -51,15 +52,30 @@
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
+        </RelativeLayout>
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ti_password"
                 android:layout_marginTop="@dimen/button_margin"
-                android:drawableRight="@drawable/ic_arrow_forward"
-                android:paddingLeft="@dimen/button_padding"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:paddingStart="@dimen/button_padding"
+                android:text="Login" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ti_password"
+                android:layout_marginTop="@dimen/button_margin"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:paddingStart="@dimen/button_padding"
                 android:text="Login" />
 
             <TextView
@@ -68,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btn_login"
                 android:layout_marginTop="@dimen/button_margin"
-                android:text="Not Registered ? Register Now !"
+                android:text="Not Registered? Register Now!"
                 android:textAlignment="center" />
 
             <TextView
@@ -77,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_register"
                 android:layout_marginTop="@dimen/button_margin"
-                android:text="Forgot Password ?"
+                android:text="Forgot Password?"
                 android:textAlignment="center" />
 
             <ProgressBar
@@ -89,7 +105,5 @@
                 android:layout_marginTop="@dimen/button_margin"
                 android:layout_marginBottom="@dimen/button_margin"
                 android:visibility="gone"/>
-
-        </RelativeLayout>
     </LinearLayout>
 </ScrollView>
