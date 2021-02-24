@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.ui.slideshow
+package com.thepyprogrammer.greenpass.ui.slideshow
 
 import android.os.Bundle
 import android.view.LayoutInflater
