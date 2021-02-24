@@ -1,23 +1,23 @@
 package com.thepyprogrammer.greenpass.ui
 
-import android.hardware.Sensor
-import android.hardware.SensorListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
+
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
@@ -28,6 +28,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+        val sd = ShakeDetector(this)
+        sd.start(sensorManager)
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
