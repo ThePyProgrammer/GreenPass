@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.loginRegister.login.data.model
+package com.thepyprogrammer.greenpass.model.loginRegister.login
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

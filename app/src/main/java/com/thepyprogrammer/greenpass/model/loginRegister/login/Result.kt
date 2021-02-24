@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.loginRegister.login.data
+package com.thepyprogrammer.greenpass.model.loginRegister.login
 
 /**
  * A generic class that holds a value with its loading status.

@@ -1,6 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.loginRegister.login.data
-
-import com.thepyprogrammer.greenpass.ui.loginRegister.login.data.model.LoggedInUser
+package com.thepyprogrammer.greenpass.model.loginRegister.login
 
 /**
  * Class that requests authentication and user information from the remote data source and
