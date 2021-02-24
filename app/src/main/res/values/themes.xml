@@ -36,4 +36,10 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:editTextColor">@color/white</item>
     </style>
+
+    <style name="Theme.GreenPass.Profile" parent="Theme.GreenPass">
+        <item name="android:windowBackground">@color/blue_800</item>
+        <item name="colorButtonNormal">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
 </resources>
