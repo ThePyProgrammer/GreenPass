@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.loginRegister.login.ui.login
+package com.thepyprogrammer.greenpass.ui.loginRegister.login
 
 /**
  * Authentication result : success (user details) or error message.

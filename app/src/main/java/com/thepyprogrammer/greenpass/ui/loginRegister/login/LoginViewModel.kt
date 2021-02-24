@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.loginRegister.login.ui.login
+package com.thepyprogrammer.greenpass.ui.loginRegister.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
