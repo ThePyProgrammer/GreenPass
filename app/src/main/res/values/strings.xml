@@ -12,4 +12,9 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="emailHint">Email</string>
+    <string name="passwordHint">Password</string>
+    <string name="loginTitle">Login</string>
+    <string name="createPageButton">Create An Account</string>
+    <string name="forgotPasswordButton">Forgot Password</string>
 </resources>
