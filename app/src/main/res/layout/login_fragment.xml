@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_600"
     android:fillViewport="true">
 
     <LinearLayout
@@ -24,7 +23,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_email"
-                    android:hint="Email"
+                    android:hint="@string/emailHint"
                     android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -41,7 +40,7 @@
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/passwordHint"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -53,7 +52,7 @@
                 android:layout_marginTop="@dimen/button_margin"
                 android:drawableEnd="@drawable/ic_arrow_forward"
                 android:paddingStart="@dimen/button_padding"
-                android:text="Login" />
+                android:text="@string/loginTitle" />
 
             <View
                 android:layout_width="match_parent"
@@ -61,21 +60,19 @@
                 android:layout_marginTop="@dimen/button_margin"
                 android:background="@android:color/darker_gray"/>
 
-            <Button
-                android:id="@+id/btn_register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/button_margin"
-                android:paddingStart="@dimen/button_padding"
-                android:text="Create An Account" />
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/button_margin"
+            android:text="@string/createPageButton" />
 
         <Button
             android:id="@+id/btn_forgot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/button_margin"
-            android:paddingStart="@dimen/button_padding"
-            android:text="Forgot Password" />
+            android:text="@string/forgotPasswordButton" />
 
             <ProgressBar
                 android:id="@+id/progress"
