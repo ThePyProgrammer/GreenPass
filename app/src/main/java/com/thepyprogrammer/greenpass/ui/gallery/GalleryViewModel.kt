@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.ui.gallery
+package com.thepyprogrammer.greenpass.ui.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
