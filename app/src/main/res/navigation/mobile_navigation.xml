@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.thepyprogrammer.greenpass.ui.ui.slideshow.SlideshowFragment"
+        android:name="com.thepyprogrammer.greenpass.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
