@@ -4,6 +4,7 @@ import android.hardware.Sensor
 import android.hardware.SensorListener
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -15,9 +16,10 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -55,5 +57,9 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun hearShake() {
+        Toast.makeText(this, "Don't shake me, bro!", Toast.LENGTH_SHORT).show();
     }
 }
