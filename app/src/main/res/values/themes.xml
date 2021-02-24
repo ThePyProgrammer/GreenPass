@@ -42,4 +42,8 @@
         <item name="colorButtonNormal">@color/white</item>
         <item name="android:textColorPrimary">@color/white</item>
     </style>
+
+    <style name="Theme.GreenPass.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/black</item>
+    </style>
 </resources>
