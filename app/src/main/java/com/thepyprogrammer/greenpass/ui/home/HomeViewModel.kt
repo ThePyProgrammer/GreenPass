@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.ui.home
+package com.thepyprogrammer.greenpass.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

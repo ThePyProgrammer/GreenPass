@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.ui.home
+package com.thepyprogrammer.greenpass.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
