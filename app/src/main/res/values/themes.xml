@@ -31,7 +31,7 @@
         <item name="colorControlNormal">@android:color/white</item>
         <item name="colorControlHighlight">@android:color/white</item>
         <item name="colorControlActivated">@android:color/white</item>
-        <item name="colorButtonNormal">@color/white</item>
+        <item name="colorButtonNormal">@color/orange</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:editTextColor">@color/white</item>
