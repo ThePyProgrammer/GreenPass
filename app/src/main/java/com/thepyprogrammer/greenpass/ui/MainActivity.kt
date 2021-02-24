@@ -1,5 +1,7 @@
 package com.thepyprogrammer.greenpass.ui
 
+import android.hardware.Sensor
+import android.hardware.SensorListener
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.floatingactionbutton.FloatingActionButton
