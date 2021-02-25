@@ -13,7 +13,7 @@ class BLEController private constructor(ctx: Context) {
     private var scanner: BluetoothLeScanner? = null
     private var device: BluetoothDevice? = null
     private var bluetoothGatt: BluetoothGatt? = null
-    private val bluetoothManager: BluetoothManager
+    private val bluetoothManager: BluetoothManager = ctx.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
     private var btGattChar: BluetoothGattCharacteristic? = null
     private val listeners: ArrayList<BLEControllerListener> = ArrayList<BLEControllerListener>()
     private val devices = HashMap<String, BluetoothDevice>()
@@ -28,7 +28,7 @@ class BLEController private constructor(ctx: Context) {
     fun init() {
         devices.clear()
         scanner = bluetoothManager.adapter.bluetoothLeScanner
-        scanner.startScan(bleCallback)
+        scanner?.startScan(bleCallback)
     }
 
     private val bleCallback: ScanCallback = object : ScanCallback() {
@@ -139,7 +139,4 @@ class BLEController private constructor(ctx: Context) {
         }
     }
 
-    init {
-        bluetoothManager = ctx.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
-    }
 }
