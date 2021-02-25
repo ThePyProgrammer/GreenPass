@@ -47,4 +47,7 @@
     <string name="title_activity_login_register">LoginRegisterActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_pass">Entry Pass</string>
+    <string name="menu_settings">Settings</string>
 </resources>
