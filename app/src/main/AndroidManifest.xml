@@ -10,6 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenPass">
         <activity
+            android:name=".ui.loginRegister.LoginRegisterActivity"
+            android:label="@string/title_activity_login_register"
+            android:theme="@style/Theme.GreenPass.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.GreenPass.DarkActionBar">
