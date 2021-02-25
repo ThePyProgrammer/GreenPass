@@ -12,7 +12,7 @@
         <activity
             android:name=".ui.loginRegister.LoginRegisterActivity"
             android:label="@string/title_activity_login_register"
-            android:theme="@style/Theme.GreenPass.NoActionBar">
+            android:theme="@style/Theme.GreenPass.LoginRegister">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
