@@ -7,7 +7,7 @@ import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import com.thepyprogrammer.greenpass.R
-import com.thepyprogrammer.greenpass.ui.loginRegister.ui.main.SectionsPagerAdapter
+import com.thepyprogrammer.greenpass.ui.loginRegister.main.SectionsPagerAdapter
 
 class LoginRegisterActivity : AppCompatActivity() {
 
