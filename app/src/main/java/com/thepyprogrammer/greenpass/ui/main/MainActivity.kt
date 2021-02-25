@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui
+package com.thepyprogrammer.greenpass.ui.main
 
 import android.hardware.SensorManager
 import android.os.Bundle
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
