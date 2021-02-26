@@ -1,7 +1,7 @@
 package com.thepyprogrammer.greenpass.ui.main.profile
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.thepyprogrammer.greenpass.R
 
 class ImageDetailsActivity : AppCompatActivity() {
@@ -10,9 +10,4 @@ class ImageDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_image_details)
     }
 
-    override fun onStart() {
-        super.onStart()
-
-
-    }
 }
