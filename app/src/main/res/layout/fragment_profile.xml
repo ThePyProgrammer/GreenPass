@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,11 +13,13 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
+        <ImageButton
             android:layout_width="226dp"
             android:layout_height="226dp"
             android:background="@drawable/ic_person"
-            android:contentDescription="@string/imageDesc" />
+            android:contentDescription="@string/imageDesc"
+            android:layout_marginBottom="50dp"
+            android:id="@+id/profileImageButton"/>
 
         <TextView android:text="@string/namePlaceholder"
             android:layout_width="match_parent"
