@@ -1,12 +1,15 @@
 package com.thepyprogrammer.greenpass.ui.main.profile
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import com.thepyprogrammer.greenpass.R
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
 
@@ -25,6 +28,11 @@ class ProfileFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         // TODO: Use the ViewModel
+
+        profileImageButton.setOnClickListener { view ->
+            val intent = Intent(context, ImageDetailsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }
