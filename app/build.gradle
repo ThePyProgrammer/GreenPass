@@ -45,15 +45,13 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
     implementation 'com.google.firebase:firebase-auth-ktx:20.0.2'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:22.1.0'
     implementation 'com.firebaseui:firebase-ui-firestore:6.3.0'
     implementation 'com.squareup:seismic:1.0.2'
     implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 
 
     testImplementation 'junit:junit:4.13.2'
