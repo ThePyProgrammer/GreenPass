@@ -1,13 +1,12 @@
 package com.thepyprogrammer.greenpass.ui.main.profile
 
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.thepyprogrammer.greenpass.R
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -19,8 +18,10 @@ class ProfileFragment : Fragment() {
 
     private lateinit var viewModel: ProfileViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
