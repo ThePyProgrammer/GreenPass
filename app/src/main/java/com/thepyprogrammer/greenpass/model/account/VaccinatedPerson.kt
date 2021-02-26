@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.model.loginRegister
+package com.thepyprogrammer.greenpass.model.account
 
 import java.time.LocalDate
 
