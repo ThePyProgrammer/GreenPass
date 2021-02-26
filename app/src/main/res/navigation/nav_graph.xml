@@ -8,15 +8,23 @@
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.thepyprogrammer.greenpass.ui.main.settings.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="Settings" >
+        <action
+            android:id="@+id/action_nav_settings_to_nav_pass"
+            app:destination="@id/nav_pass" />
+    </fragment>
     <fragment
         android:id="@+id/nav_pass"
         android:name="com.thepyprogrammer.greenpass.ui.main.pass.PassFragment"
-        android:label="fragment_pass"
+        android:label="Green Pass"
         tools:layout="@layout/fragment_pass" />
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.thepyprogrammer.greenpass.ui.main.profile.ProfileFragment"
-        android:label="profile_fragment"
-        tools:layout="@layout/fragment_profile" />
+        android:label="Your Profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_nav_profile_to_nav_pass"
+            app:destination="@id/nav_pass" />
+    </fragment>
 </navigation>
