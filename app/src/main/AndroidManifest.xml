@@ -10,13 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenPass">
         <activity
-            android:name=".ui.loginRegister.LoginRegisterActivity"
-            android:label="@string/title_activity_login_register"
-            android:theme="@style/Theme.GreenPass.LoginRegister">
-        </activity>
-
-
-        <activity
             android:name=".ui.main.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.GreenPass.DarkActionBar">
