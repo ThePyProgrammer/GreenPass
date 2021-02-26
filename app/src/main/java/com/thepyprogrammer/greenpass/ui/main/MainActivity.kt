@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     }
 
     override fun hearShake() {
-
+        val navController = findNavController(R.id.nav_host_fragment)
+        navController.navigate(R.id.nav_pass)
     }
 }
