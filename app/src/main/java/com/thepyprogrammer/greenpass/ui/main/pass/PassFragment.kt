@@ -25,7 +25,11 @@ class PassFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_pass, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_pass, container, false)
+
+        
+
+        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
