@@ -46,6 +46,7 @@ class PassFragment : Fragment() {
         super.onPause()
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
+
     companion object {
         /**
          * Whether or not the system UI should be auto-hidden after
