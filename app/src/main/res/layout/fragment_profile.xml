@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="226dp"
             android:layout_height="226dp"
-            android:background="@drawable/ic_person"
+            android:background="@drawable/ic_person_black"
             android:contentDescription="@string/imageDesc" />
 
         <TextView android:text="@string/namePlaceholder"
