@@ -17,6 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:keepScreenOn="true"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="20dp"
+        app:contentPadding="10dp"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,6 +36,7 @@
                 android:text="@string/namePlaceholder"
                 android:textSize="50sp"
                 android:gravity="center"
+                android:textColor="?attr/fullscreenTextColor"
                 android:textStyle="bold"
                 />
             <TextView
@@ -43,7 +48,7 @@
                 app:layout_constraintBottom_toTopOf="@id/date"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/autogenText"
-                android:textSize="40sp"
+                android:textSize="35sp"
                 android:gravity="center"
                 />
             <TextView
@@ -54,8 +59,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text=""
+                android:text="@string/placeholderDate"
                 android:textSize="60sp"
+                android:textColor="?attr/fullscreenTextColor"
                 android:gravity="center"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
