@@ -9,4 +9,10 @@ class ImageDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_details)
     }
+
+    override fun onStart() {
+        super.onStart()
+
+
+    }
 }
