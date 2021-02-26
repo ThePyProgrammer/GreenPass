@@ -27,7 +27,7 @@ class PassFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_pass, container, false)
 
-        
+
 
         return rootView
     }
