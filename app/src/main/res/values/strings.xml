@@ -50,8 +50,9 @@
     <string name="menu_profile">Profile</string>
     <string name="menu_pass">Entry Pass</string>
     <string name="menu_settings">Settings</string>
-    <string name="namePlaceholder"><![CDATA[<b>name</b>]]></string>
+    <string name="namePlaceholder">name</string>
     <string name="imageDesc">Your Profile Picture!</string>
     <string name="icPlaceholder">IC</string>
     <string name="emailPlaceholder">email</string>
+    <string name="autogenText">was vaccinated on</string>
 </resources>
