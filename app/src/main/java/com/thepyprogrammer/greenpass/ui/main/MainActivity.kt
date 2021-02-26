@@ -64,6 +64,6 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     }
 
     override fun hearShake() {
-        Toast.makeText(this, "Don't shake me, bro!", Toast.LENGTH_SHORT).show();
+
     }
 }
