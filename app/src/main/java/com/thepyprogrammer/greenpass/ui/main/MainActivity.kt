@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val binding = .inflate(layoutInflater)
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
