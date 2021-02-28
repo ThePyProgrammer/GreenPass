@@ -12,7 +12,6 @@
         <activity android:name=".ui.main.profile.ImageDetailsActivity"></activity>
         <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/title_activity_main"
             android:theme="@style/Theme.GreenPass.DarkActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
