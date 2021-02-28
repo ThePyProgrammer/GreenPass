@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     tools:context=".ui.splash.SplashActivity"
+    android:theme="@style/ThemeOverlay.GreenPass.FullscreenContainer"
     android:background="#fff">
 
 
