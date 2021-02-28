@@ -23,13 +23,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
-import kotlinx.android.synthetic.main.app_bar_main.*
 
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    lateinit var navController: NavController;
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,8 +61,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         bottomNavigation.menu.getItem(1).isEnabled = false
         bottomNavigation.background = null
         // bottomNavigation.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener{_, destination, _ ->
-            when(destination.id) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
                 R.id.nav_profile, R.id.nav_settings -> {
                     showBottom(bottomAppBar)
                     fab.visibility = View.VISIBLE
@@ -102,16 +101,15 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     }
 
 
-
     override fun onOptionsItemSelected(item: MenuItem) =
-        when(item.itemId) {
-            R.id.action_settings -> {
-                val navController = findNavController(R.id.nav_host_fragment)
-                navController.navigate(R.id.nav_settings)
-                true
+            when (item.itemId) {
+                R.id.action_settings -> {
+                    val navController = findNavController(R.id.nav_host_fragment)
+                    navController.navigate(R.id.nav_settings)
+                    true
+                }
+                else -> false
             }
-            else -> false
-        }
 
     fun hideBottom(view: BottomAppBar) {
         view.clearAnimation()
