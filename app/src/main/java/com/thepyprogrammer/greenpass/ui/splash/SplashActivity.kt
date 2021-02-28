@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         val backgroundImage: ImageView = findViewById(R.id.SplashScreenImage)
-        val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.side_slide)
+        val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.fade)
         backgroundImage.startAnimation(slideAnimation)
 
         Handler().postDelayed({
