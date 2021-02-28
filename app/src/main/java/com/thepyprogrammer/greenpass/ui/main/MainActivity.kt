@@ -27,6 +27,8 @@ import com.thepyprogrammer.greenpass.R
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
+    public var shakeToOpen = true
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var navController: NavController
 
@@ -126,7 +128,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     }
 
     override fun hearShake() {
-        val navController = findNavController(R.id.nav_host_fragment)
-        navController.navigate(R.id.nav_pass)
+        if(shakeToOpen) {
+            val navController = findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.nav_pass)
+        }
     }
 }
