@@ -14,8 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-
-import com.thepyprogrammer.greenpass.ui.accountManagement.R
+import com.thepyprogrammer.greenpass.R
 
 class LoginActivity : AppCompatActivity() {
 
