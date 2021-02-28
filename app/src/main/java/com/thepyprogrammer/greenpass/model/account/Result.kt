@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.accountManagement.data
+package com.thepyprogrammer.greenpass.model.account
 
 /**
  * A generic class that holds a value with its loading status.

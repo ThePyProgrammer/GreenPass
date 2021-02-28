@@ -1,6 +1,5 @@
-package com.thepyprogrammer.greenpass.ui.accountManagement.data
+package com.thepyprogrammer.greenpass.model.account
 
-import com.thepyprogrammer.greenpass.ui.accountManagement.data.model.LoggedInUser
 import java.io.IOException
 import java.util.*
 

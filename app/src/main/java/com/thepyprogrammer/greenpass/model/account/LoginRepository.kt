@@ -1,6 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.accountManagement.data
-
-import com.thepyprogrammer.greenpass.ui.accountManagement.data.model.LoggedInUser
+package com.thepyprogrammer.greenpass.model.account
 
 /**
  * Class that requests authentication and user information from the remote data source and
