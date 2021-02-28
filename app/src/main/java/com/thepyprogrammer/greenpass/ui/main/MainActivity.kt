@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -23,6 +24,7 @@ import com.thepyprogrammer.greenpass.R
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    lateinit var navController: NavController;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +42,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
                 .setAction("Action", null).show()
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        // val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         val navView: NavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -52,7 +54,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        bottomNavigation.setupWithNavController(navController)
+        // bottomNavigation.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
