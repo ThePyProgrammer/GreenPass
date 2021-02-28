@@ -30,6 +30,7 @@ class ProfileFragment : Fragment() {
         val bottomNavigation: BottomNavigationView = root.findViewById(R.id.bottom_navigation)
         val navController = findNavController(this)
         bottomNavigation.setupWithNavController(navController)
+        bottomNavigation.menu.getItem(2).isEnabled = false
         return root
     }
 
