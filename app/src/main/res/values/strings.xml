@@ -57,4 +57,5 @@
     <string name="autogenText">was vaccinated on</string>
     <string name="dateOfVaccinationText">Date of Vaccination:</string>
     <string name="datePlaceholder">date</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>
