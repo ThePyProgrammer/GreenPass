@@ -1,10 +1,15 @@
 package com.thepyprogrammer.greenpass.ui.intro
 
-import androidx.appcompat.app.AppCompatActivity
+import agency.tango.materialintroscreen.MaterialIntroActivity
 import android.os.Bundle
+import androidx.annotation.Nullable
 
-class IntroActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+
+class IntroActivity : MaterialIntroActivity() {
+    override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
+
+
 }
