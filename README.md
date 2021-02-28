@@ -1,7 +1,7 @@
 # GreenPass
 **Done by Edden Chew Keyn-Hantz and Prannaya Gupta**
 <p align="center">
-  <img src="./img/logo.png" alt="Green Pass">
+  <img src="./img/logo.jpg" alt="Green Pass">
 </p>
 
 Part of Assignment 2 in the CS4131 Module at NUS High School
