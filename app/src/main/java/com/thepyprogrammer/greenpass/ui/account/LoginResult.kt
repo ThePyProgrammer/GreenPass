@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.login
+package com.thepyprogrammer.greenpass.ui.account
 
 /**
  * Authentication result : success (user details) or error message.

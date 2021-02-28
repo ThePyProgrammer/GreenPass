@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.login
+package com.thepyprogrammer.greenpass.ui.account
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

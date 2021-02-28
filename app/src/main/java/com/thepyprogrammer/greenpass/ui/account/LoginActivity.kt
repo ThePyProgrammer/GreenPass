@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.login
+package com.thepyprogrammer.greenpass.ui.account
 
 import android.app.Activity
 import androidx.lifecycle.Observer

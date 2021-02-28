@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.login
+package com.thepyprogrammer.greenpass.ui.account
 
 /**
  * Data validation state of the login form.
