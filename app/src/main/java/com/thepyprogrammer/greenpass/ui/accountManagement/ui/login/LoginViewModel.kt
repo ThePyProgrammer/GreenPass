@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import com.thepyprogrammer.greenpass.ui.accountManagement.data.LoginRepository
-import com.thepyprogrammer.greenpass.ui.accountManagement.data.Result
+import com.thepyprogrammer.greenpass.model.account.LoginRepository
+import com.thepyprogrammer.greenpass.model.account.Result
 
 import com.thepyprogrammer.greenpass.ui.accountManagement.R
 
