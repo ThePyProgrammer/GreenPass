@@ -39,13 +39,13 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
 
-        val toolbar: Toolbar = binding.toolbar
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        val fab: FloatingActionButton = binding.fab
-        val bottomAppBar: BottomAppBar = binding.bottomAppBar
-        val bottomNavigation: BottomNavigationView = binding.bottomNavigation
-
+        val fab: FloatingActionButton = findViewById(R.id.fab)
+        val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        
         setSupportActionBar(toolbar)
 
         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
