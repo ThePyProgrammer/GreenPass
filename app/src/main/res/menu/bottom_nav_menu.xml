@@ -6,10 +6,11 @@
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_person"
             android:title="@string/menu_profile" />
+
         <item
-            android:id="@+id/nav_pass"
-            android:icon="@drawable/ic_card"
-            android:title="@string/menu_pass" />
+            android:id="@+id/placeholder"
+            android:title="" />
+
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
