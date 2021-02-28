@@ -23,6 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
@@ -36,18 +37,21 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val binding = .inflate(layoutInflater)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = binding.toolbar
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.navView
+        val fab: FloatingActionButton = binding.fab
+        val bottomAppBar: BottomAppBar = binding.bottomAppBar
+        val bottomNavigation: BottomNavigationView = binding.bottomNavigation
+
         setSupportActionBar(toolbar)
 
         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         val sd = ShakeDetector(this)
         sd.start(sensorManager)
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        // val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        val navView: NavigationView = findViewById(R.id.nav_view)
         navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -59,13 +63,11 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.setupWithNavController(navController)
         bottomNavigation.menu.getItem(1).isEnabled = false
         bottomNavigation.background = null
-        // bottomNavigation.setupWithNavController(navController)
+
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.nav_profile, R.id.nav_settings -> {
