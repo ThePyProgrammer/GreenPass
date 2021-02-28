@@ -58,7 +58,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.GreenPass.SplashScreen" parent="Theme.GreenPass.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen_background</item>
+    </style>
+
+    <style name="Theme.GreenPass.Intro" parent="Theme.Intro">
     </style>
 </resources>
