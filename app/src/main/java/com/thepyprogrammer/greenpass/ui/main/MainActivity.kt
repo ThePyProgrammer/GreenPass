@@ -4,6 +4,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
@@ -61,20 +63,20 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             when(destination.id) {
                 R.id.nav_profile, R.id.nav_settings -> {
                     showBottom(bottomAppBar)
-                    fab.show()
+                    fab.visibility = View.VISIBLE
                 }
                 else -> {
                     hideBottom(bottomAppBar)
-                    fab.hide()
+                    fab.visibility = View.INVISIBLE
                 }
             }
         }
 
         fab.setOnClickListener { view ->
+            view.visibility = View.INVISIBLE
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_pass)
             hideBottom(bottomAppBar)
-            fab.hide()
         }
     }
 
