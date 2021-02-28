@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         menuInflater.inflate(R.menu.main, menu)
 
         var item: MenuItem = menu.findItem(R.id.action_settings)
-        var builder = SpannableStringBuilder("* Share")
+        var builder = SpannableStringBuilder("* Settings")
         // replace "*" with icon
         builder.setSpan(
                 ImageSpan(this, R.drawable.ic_settings),
