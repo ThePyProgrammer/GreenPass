@@ -21,9 +21,9 @@ class PassFragment : Fragment() {
     // private var fullscreenContentControls: View? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_pass, container, false)
 
