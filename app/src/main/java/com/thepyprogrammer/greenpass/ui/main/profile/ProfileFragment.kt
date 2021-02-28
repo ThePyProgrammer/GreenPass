@@ -27,10 +27,6 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
-        val bottomNavigation: BottomNavigationView = root.findViewById(R.id.bottom_navigation)
-        val navController = findNavController(this)
-        bottomNavigation.setupWithNavController(navController)
-        bottomNavigation.menu.getItem(2).isEnabled = false
         return root
     }
 
