@@ -1,13 +1,12 @@
 package com.thepyprogrammer.greenpass.ui.account
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
+import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.account.LoginRepository
 import com.thepyprogrammer.greenpass.model.account.Result
-
-import com.thepyprogrammer.greenpass.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -22,7 +21,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         val result = loginRepository.login(username, password)
 
         if (result is Result.Success) {
-            _loginResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
+            _loginResult.value =
+                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
         }
