@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.overflow_menu, menu)
 
         val item: MenuItem = menu.findItem(R.id.action_settings)
         val builder = SpannableStringBuilder("* Settings")
