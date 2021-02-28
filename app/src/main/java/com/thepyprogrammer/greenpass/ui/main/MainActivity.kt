@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // bottomNavigation.setupWithNavController(navController)
         bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.nav_profile -> {
+                R.id.nav_profile, R.id.nav_settings -> {
                     showBottomNavigationView(bottomNavigation)
                     true
                 }
