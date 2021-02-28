@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         val fab: FloatingActionButton = findViewById(R.id.fab)
         val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        
+
         setSupportActionBar(toolbar)
 
         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
