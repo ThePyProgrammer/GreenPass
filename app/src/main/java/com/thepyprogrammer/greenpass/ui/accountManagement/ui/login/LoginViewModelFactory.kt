@@ -2,8 +2,8 @@ package com.thepyprogrammer.greenpass.ui.accountManagement.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.thepyprogrammer.greenpass.ui.accountManagement.data.LoginDataSource
-import com.thepyprogrammer.greenpass.ui.accountManagement.data.LoginRepository
+import com.thepyprogrammer.greenpass.model.account.LoginDataSource
+import com.thepyprogrammer.greenpass.model.account.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
