@@ -53,7 +53,7 @@ dependencies {
     implementation 'com.squareup:seismic:1.0.2'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
-
+    implementation 'agency.tango.android:material-intro-screen:0.0.5'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
