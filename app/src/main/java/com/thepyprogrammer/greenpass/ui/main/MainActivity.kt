@@ -13,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         navView.setupWithNavController(navController)
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
-
+        val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.setupWithNavController(navController)
         bottomNavigation.menu.getItem(1).isEnabled = false
@@ -59,11 +60,11 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         navController.addOnDestinationChangedListener{_, destination, _ ->
             when(destination.id) {
                 R.id.nav_profile, R.id.nav_settings -> {
-                    showBottomNavigationView(bottomNavigation)
+                    showBottom(bottomAppBar)
                     fab.show()
                 }
                 else -> {
-                    hideBottomNavigationView(bottomNavigation)
+                    hideBottom(bottomAppBar)
                     fab.hide()
                 }
             }
@@ -100,7 +101,17 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         view.animate().translationY(view.height.toFloat()).duration = 300
     }
 
+    fun hideBottom(view: BottomAppBar) {
+        view.clearAnimation()
+        view.animate().translationY(view.height.toFloat()).duration = 300
+    }
+
     fun showBottomNavigationView(view: BottomNavigationView) {
+        view.clearAnimation()
+        view.animate().translationY(0f).duration = 300
+    }
+
+    fun showBottom(view: BottomAppBar) {
         view.clearAnimation()
         view.animate().translationY(0f).duration = 300
     }
