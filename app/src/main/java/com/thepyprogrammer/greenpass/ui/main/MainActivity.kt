@@ -109,12 +109,12 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             else -> false
         }
 
-    fun hideBottom(view: BottomAppBar) {
+    private fun hideBottom(view: BottomAppBar) {
         view.clearAnimation()
         view.animate().translationY(view.height.toFloat()).duration = 300
     }
 
-    fun showBottom(view: BottomAppBar) {
+    private fun showBottom(view: BottomAppBar) {
         view.clearAnimation()
         view.animate().translationY(0f).duration = 300
     }
