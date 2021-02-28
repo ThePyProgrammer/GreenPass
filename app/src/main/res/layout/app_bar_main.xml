@@ -41,10 +41,8 @@
             android:background="?android:attr/windowBackground"
             android:layout_alignParentBottom="true"
             app:elevation="4dp"
-            android:fitsSystemWindows="true"
             app:itemIconTint="@drawable/bottom_nav_color"
             app:itemTextColor="@drawable/bottom_nav_color"
-            app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
