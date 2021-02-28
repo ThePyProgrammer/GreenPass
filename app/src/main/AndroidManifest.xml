@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenPass">
-        <activity android:name=".ui.splash.SplashActivity"></activity>
+        <activity android:name=".ui.splash.SplashActivity"
+            android:theme="@style/SplashScreen" />
         <activity
             android:name=".ui.intro.IntroActivity"
             android:label="@string/title_activity_intro"
