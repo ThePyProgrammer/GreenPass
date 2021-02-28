@@ -3,6 +3,7 @@ package com.thepyprogrammer.greenpass.ui.main
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -56,6 +57,19 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
+
+
+
+    override fun onOptionsItemSelected(item: MenuItem) =
+        when(item.itemId) {
+            R.id.action_settings -> {
+                val navController = findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_settings)
+                true
+            }
+            else -> false
+        }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
