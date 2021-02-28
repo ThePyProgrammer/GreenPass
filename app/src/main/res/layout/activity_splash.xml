@@ -13,7 +13,7 @@
 
 
     <ImageView
-        android:id="@+id/i"
+        android:id="@+id/SplashScreenImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
