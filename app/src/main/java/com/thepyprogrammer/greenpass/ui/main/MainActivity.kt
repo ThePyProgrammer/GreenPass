@@ -75,10 +75,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         }
 
         fab.setOnClickListener { view ->
-            view.visibility = View.INVISIBLE
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_pass)
-            hideBottom(bottomAppBar)
         }
     }
 
