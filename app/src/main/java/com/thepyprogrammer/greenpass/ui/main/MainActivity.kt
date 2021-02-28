@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         fab.setOnClickListener { view ->
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_pass)
-            hideBottomNavigationView(bottomNavigation)
+            hideBottom(bottomAppBar)
             fab.hide()
         }
     }
@@ -96,19 +96,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             else -> false
         }
 
-    fun hideBottomNavigationView(view: BottomNavigationView) {
-        view.clearAnimation()
-        view.animate().translationY(view.height.toFloat()).duration = 300
-    }
-
     fun hideBottom(view: BottomAppBar) {
         view.clearAnimation()
         view.animate().translationY(view.height.toFloat()).duration = 300
-    }
-
-    fun showBottomNavigationView(view: BottomNavigationView) {
-        view.clearAnimation()
-        view.animate().translationY(0f).duration = 300
     }
 
     fun showBottom(view: BottomAppBar) {
