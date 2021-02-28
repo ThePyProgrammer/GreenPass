@@ -28,7 +28,7 @@ import com.thepyprogrammer.greenpass.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
-    public var shakeToOpen = true
+    var shakeToOpen = true
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var navController: NavController
@@ -37,11 +37,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-
         val toolbar: Toolbar = findViewById(R.id.toolbar)
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        val navView: NavigationView = findViewById(R.id.nav_view)
         val fab: FloatingActionButton = findViewById(R.id.fab)
         val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
