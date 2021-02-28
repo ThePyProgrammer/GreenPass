@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.accountManagement.ui.login
+package com.thepyprogrammer.greenpass.ui.login
 
 /**
  * User details post authentication that is exposed to the UI
