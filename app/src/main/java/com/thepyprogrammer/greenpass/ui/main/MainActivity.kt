@@ -47,9 +47,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-                setOf(
-                        R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
-                ), drawerLayout
+            setOf(
+                R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
+            ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -88,10 +88,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         val builder = SpannableStringBuilder("* Settings")
         // replace "*" with icon
         builder.setSpan(
-                ImageSpan(this, R.drawable.ic_settings),
-                0,
-                1,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            ImageSpan(this, R.drawable.ic_settings),
+            0,
+            1,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         item.title = builder
 
@@ -100,14 +100,14 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
 
     override fun onOptionsItemSelected(item: MenuItem) =
-            when (item.itemId) {
-                R.id.action_settings -> {
-                    val navController = findNavController(R.id.nav_host_fragment)
-                    navController.navigate(R.id.nav_settings)
-                    true
-                }
-                else -> false
+        when (item.itemId) {
+            R.id.action_settings -> {
+                val navController = findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_settings)
+                true
             }
+            else -> false
+        }
 
     fun hideBottom(view: BottomAppBar) {
         view.clearAnimation()
