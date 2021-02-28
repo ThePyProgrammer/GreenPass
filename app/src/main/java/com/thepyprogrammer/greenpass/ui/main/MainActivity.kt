@@ -16,7 +16,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
 
@@ -36,11 +35,6 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         val sd = ShakeDetector(this)
         sd.start(sensorManager)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            val navController = findNavController(R.id.nav_host_fragment)
-            navController.navigate(R.id.nav_pass)
-        }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         // val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -48,13 +42,37 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
-            ), drawerLayout
+                setOf(
+                        R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
+                ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigation.setupWithNavController(navController)
+        bottomNavigation.menu.getItem(1).isEnabled = false
         // bottomNavigation.setupWithNavController(navController)
+        bottomNavigation.setOnNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.nav_profile -> {
+                    showBottomNavigationView(bottomNavigation)
+                    true
+                }
+                else -> {
+                    hideBottomNavigationView(bottomNavigation)
+                    true
+                }
+            }
+        }
+
+        val fab: FloatingActionButton = findViewById(R.id.fab)
+        fab.setOnClickListener { view ->
+            val navController = findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.nav_pass)
+            hideBottomNavigationView(bottomNavigation)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -74,6 +92,16 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             }
             else -> false
         }
+
+    fun hideBottomNavigationView(view: BottomNavigationView) {
+        view.clearAnimation()
+        view.animate().translationY(view.height.toFloat()).duration = 300
+    }
+
+    fun showBottomNavigationView(view: BottomNavigationView) {
+        view.clearAnimation()
+        view.animate().translationY(0f).duration = 300
+    }
 
 
     override fun onSupportNavigateUp(): Boolean {
