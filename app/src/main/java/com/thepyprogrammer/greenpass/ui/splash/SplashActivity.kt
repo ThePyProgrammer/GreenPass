@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
@@ -13,6 +15,10 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        val backgroundImage: ImageView = findViewById(R.id.SplashScreenImage)
+        val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.side_slide)
+        backgroundImage.startAnimation(slideAnimation)
+
         Handler().postDelayed({
             val home = Intent(applicationContext, MainActivity::class.java)
             startActivity(home)
