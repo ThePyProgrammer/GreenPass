@@ -8,11 +8,12 @@ import com.thepyprogrammer.greenpass.R
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
         val shakePreference: SwitchPreference? = findPreference("shake")
         shakePreference?.setOnPreferenceChangeListener { preference: Preference, any: Any ->
-            
+
             true
         }
     }
