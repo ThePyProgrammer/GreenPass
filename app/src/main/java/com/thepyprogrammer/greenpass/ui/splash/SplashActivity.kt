@@ -16,10 +16,9 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_splash)
-        val binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_splash)
 
-        val backgroundImage: ImageView = binding.splashScreenImage
+        val backgroundImage: ImageView = findViewById(R.id.splash_screen_image)
         val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.fade)
         backgroundImage.startAnimation(slideAnimation)
 
