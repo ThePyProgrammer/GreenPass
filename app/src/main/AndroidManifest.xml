@@ -9,25 +9,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenPass">
+
         <activity android:name=".ui.splash.SplashActivity"
-            android:theme="@style/SplashScreen" />
-        <activity
-            android:name=".ui.intro.IntroActivity"
-            android:label="@string/title_activity_intro"
-            android:theme="@style/Theme.Intro" />
-        <activity
-            android:name=".ui.account.LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity android:name=".ui.main.profile.ImageDetailsActivity" />
-        <activity
-            android:name=".ui.main.MainActivity"
-            android:theme="@style/Theme.GreenPass.DarkActionBar">
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.intro.IntroActivity"
+            android:label="@string/title_activity_intro"
+            android:theme="@style/Theme.Intro" />
+
+        <activity
+            android:name=".ui.account.LoginActivity"
+            android:label="@string/title_activity_login" />
+
+        <activity android:name=".ui.main.profile.ImageDetailsActivity" />
+
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:theme="@style/Theme.GreenPass.DarkActionBar" />
     </application>
 
 </manifest>
