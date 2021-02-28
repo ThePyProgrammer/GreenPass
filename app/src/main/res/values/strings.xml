@@ -56,4 +56,6 @@
     <string name="emailPlaceholder">email</string>
     <string name="autogenText">was vaccinated on</string>
     <string name="placeholderDate">date</string>
+    <string name="date_of_vaccination_text">Date of Vaccination:</string>
+    <string name="datePlaceholder">date</string>
 </resources>
