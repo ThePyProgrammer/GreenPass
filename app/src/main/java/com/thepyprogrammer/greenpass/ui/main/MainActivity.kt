@@ -49,27 +49,31 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        val fab: FloatingActionButton = findViewById(R.id.fab)
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.setupWithNavController(navController)
         bottomNavigation.menu.getItem(1).isEnabled = false
+        bottomNavigation.background = null
         // bottomNavigation.setupWithNavController(navController)
         navController.addOnDestinationChangedListener{_, destination, _ ->
             when(destination.id) {
                 R.id.nav_profile, R.id.nav_settings -> {
                     showBottomNavigationView(bottomNavigation)
+                    fab.show()
                 }
                 else -> {
                     hideBottomNavigationView(bottomNavigation)
+                    fab.hide()
                 }
             }
         }
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_pass)
             hideBottomNavigationView(bottomNavigation)
+            fab.hide()
         }
     }
 
