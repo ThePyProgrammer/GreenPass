@@ -11,7 +11,7 @@
         android:theme="@style/Theme.GreenPass">
 
         <activity android:name=".ui.splash.SplashActivity"
-            android:theme="@style/SplashScreen">
+            android:theme="@style/Theme.GreenPass.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
