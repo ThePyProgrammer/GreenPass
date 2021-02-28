@@ -2,6 +2,9 @@ package com.thepyprogrammer.greenpass.ui.main
 
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -83,6 +86,18 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+
+        var item: MenuItem = menu.findItem(R.id.action_settings)
+        var builder = SpannableStringBuilder("* Share")
+        // replace "*" with icon
+        builder.setSpan(
+                ImageSpan(this, R.drawable.ic_settings),
+                0,
+                1,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        item.title = builder
+
         return true
     }
 
