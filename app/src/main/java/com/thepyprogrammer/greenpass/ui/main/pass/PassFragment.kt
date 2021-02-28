@@ -25,11 +25,7 @@ class PassFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_pass, container, false)
-
-
-
-        return rootView
+        return inflater.inflate(R.layout.fragment_pass, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,6 +54,6 @@ class PassFragment : Fragment() {
          * If [AUTO_HIDE] is set, the number of milliseconds to wait after
          * user interaction before hiding the system UI.
          */
-        private const val AUTO_HIDE_DELAY_MILLIS = 3000
+        private const val AUTO_HIDE_DELAY_MILLIS = 0
     }
 }
