@@ -9,7 +9,7 @@
     android:layout_gravity="center"
     tools:context=".ui.splash.SplashActivity"
     android:theme="@style/ThemeOverlay.GreenPass.FullscreenContainer"
-    android:background="#fff">
+    android:background="@drawable/splash_background">
 
 
     <ImageView
