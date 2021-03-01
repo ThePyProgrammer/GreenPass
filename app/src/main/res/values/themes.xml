@@ -7,6 +7,7 @@
         <item name="colorPrimaryVariant">@color/blue_800</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorAccent">@color/orange</item>
+        <item name="colorOnSurface">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/orange</item>
         <item name="colorSecondaryVariant">@color/orange_500</item>
@@ -56,6 +57,11 @@
     <style name="Theme.GreenPass.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.GreenPass.Splash" parent="Theme.GreenPass.NoActionBar">
+        <!-- <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item> -->
     </style>
 
     <style name="Theme.GreenPass.Intro" parent="Theme.Intro">
