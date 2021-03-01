@@ -10,8 +10,7 @@
     tools:context=".ui.splash.SplashActivity"
     android:theme="@style/ThemeOverlay.GreenPass.FullscreenContainer"
     android:background="@drawable/splash_background">
-
-
+    
     <ImageView
         android:id="@+id/splash_screen_image"
         android:layout_width="match_parent"
