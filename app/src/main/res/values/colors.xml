@@ -765,6 +765,8 @@
 
     <color name="custom_slide_background">#3F51B5</color>
     <color name="custom_slide_buttons">#1A237E</color>
+    <color name="splash_top">#012839</color>
+    <color name="splash_bottom">#02222F</color>
 
     <!--Splash Screen-->
     <item name="splash_background" type="color">@color/blue_700</item>
