@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -62,7 +63,15 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'agency.tango.android:material-intro-screen:0.0.5'
-    implementation 'androidx.wear:wear:1.1.0'
+
+    //viewpager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+//indicator
+    implementation 'me.relex:circleindicator:2.1.4'
+//lottie
+    implementation "com.airbnb.android:lottie:3.4.1"
+//datastore
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha02"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
