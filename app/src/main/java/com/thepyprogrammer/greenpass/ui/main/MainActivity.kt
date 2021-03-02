@@ -11,19 +11,26 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.squareup.seismic.ShakeDetector
+
 import com.thepyprogrammer.greenpass.R
-import com.thepyprogrammer.greenpass.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
@@ -43,6 +50,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         val fab: FloatingActionButton = findViewById(R.id.fab)
         val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
 
         setSupportActionBar(toolbar)
 
@@ -65,6 +73,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         bottomNavigation.menu.getItem(1).isEnabled = false
         bottomNavigation.background = null
 
+        viewPager.setAdapter(PageAdapter(this))
+
+
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -83,6 +94,22 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_pass)
         }
+    }
+
+
+    inner class PageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+        override fun createFragment(position: Int): Fragment {
+            when(position) {
+                0 -> navController.navigate(R.id.nav_profile)
+                1 -> navController.navigate(R.id.nav_pass)
+                2 -> navController.navigate(R.id.nav_settings)
+            }
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+            return navHostFragment?.childFragmentManager?.fragments?.get(0)!!
+
+        }
+
+        override fun getItemCount(): Int = 3
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
