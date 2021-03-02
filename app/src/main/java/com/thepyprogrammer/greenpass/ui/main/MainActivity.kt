@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         val fab: FloatingActionButton = findViewById(R.id.fab)
         val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
 
         setSupportActionBar(toolbar)
 
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         bottomNavigation.menu.getItem(1).isEnabled = false
         bottomNavigation.background = null
 
-        viewPager.setAdapter(PageAdapter(this))
+        // viewPager.setAdapter(PageAdapter(this))
 
 
 
@@ -97,20 +96,20 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     }
 
 
-    inner class PageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-        override fun createFragment(position: Int): Fragment {
-            when(position) {
-                0 -> navController.navigate(R.id.nav_profile)
-                1 -> navController.navigate(R.id.nav_pass)
-                2 -> navController.navigate(R.id.nav_settings)
-            }
-            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-            return navHostFragment?.childFragmentManager?.fragments?.get(0)!!
-
-        }
-
-        override fun getItemCount(): Int = 3
-    }
+//    inner class PageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+//        override fun createFragment(position: Int): Fragment {
+//            when(position) {
+//                0 -> navController.navigate(R.id.nav_profile)
+//                1 -> navController.navigate(R.id.nav_pass)
+//                2 -> navController.navigate(R.id.nav_settings)
+//            }
+//            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+//            return navHostFragment?.childFragmentManager?.fragments?.get(0)!!
+//
+//        }
+//
+//        override fun getItemCount(): Int = 3
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
