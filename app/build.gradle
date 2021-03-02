@@ -64,7 +64,7 @@ dependencies {
     implementation 'agency.tango.android:material-intro-screen:0.0.5'
 
     // Glide image library
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
