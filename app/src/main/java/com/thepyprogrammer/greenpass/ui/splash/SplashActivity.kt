@@ -8,8 +8,6 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.thepyprogrammer.greenpass.R
-import com.thepyprogrammer.greenpass.databinding.ActivityMainBinding
-import com.thepyprogrammer.greenpass.databinding.ActivitySplashBinding
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
