@@ -8,28 +8,21 @@ import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.squareup.seismic.ShakeDetector
-
 import com.thepyprogrammer.greenpass.R
 
 
@@ -68,12 +61,19 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+
+        val navHeader = navView.getHeaderView(0)
+        val profileImageView: ImageView = navHeader.findViewById(R.id.imageView);
+
+
+
+
+
         bottomNavigation.setupWithNavController(navController)
         bottomNavigation.menu.getItem(1).isEnabled = false
         bottomNavigation.background = null
 
         // viewPager.setAdapter(PageAdapter(this))
-
 
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -157,7 +157,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     }
 
     override fun hearShake() {
-        if(shakeToOpen) {
+        if (shakeToOpen) {
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_pass)
         }
