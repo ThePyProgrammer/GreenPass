@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
+import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
 
 /**
@@ -26,6 +27,13 @@ class PassFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_pass, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.slide_right)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
