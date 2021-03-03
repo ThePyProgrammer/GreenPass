@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.ui.main.profile.image.ImageDetailsActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
