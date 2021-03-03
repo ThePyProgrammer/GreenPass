@@ -175,8 +175,10 @@ class ImagePickerActivity : AppCompatActivity() {
             setResultCancelled()
             return
         }
-        val resultUri: Uri = UCrop.getOutput(data)
-        setResultOk(resultUri)
+        val resultUri: Uri? = UCrop.getOutput(data)
+        if (resultUri != null) {
+            setResultOk(resultUri)
+        }
     }
 
     private fun setResultOk(imagePath: Uri) {
