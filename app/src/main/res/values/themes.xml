@@ -50,8 +50,9 @@
     </style>
 
     <style name="ThemeOverlay.GreenPass.FullscreenContainer" parent="">
-        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
-        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+        <item name="fullscreenBackgroundColor">@color/light_grey</item>
+        <item name="fullscreenTextColor">@color/black</item>
+        <item name="colorSecondaryVariant">@color/grey_50_percent</item>
     </style>
 
     <style name="Theme.GreenPass.NoActionBar">

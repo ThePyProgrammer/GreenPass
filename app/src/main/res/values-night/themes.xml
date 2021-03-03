@@ -26,7 +26,8 @@
     </style>
 
     <style name="ThemeOverlay.GreenPass.FullscreenContainer" parent="">
-        <item name="fullscreenBackgroundColor">@color/light_blue_900</item>
-        <item name="fullscreenTextColor">@color/light_blue_A400</item>
+        <item name="fullscreenBackgroundColor">@color/dark_grey</item>
+        <item name="fullscreenTextColor">@color/white</item>
+        <item name="colorSecondaryVariant">@color/grey_80_percent</item>
     </style>
 </resources>

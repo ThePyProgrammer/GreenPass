@@ -26,12 +26,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/autogen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/autogen"
+                app:layout_constraintBottom_toTopOf="@id/name"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/autogenText"
+                android:textSize="35sp"
+                android:gravity="center"
+                android:textStyle="italic"
+                android:textColor="?attr/colorSecondaryVariant"
+                />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/autogen"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/autogen2"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/namePlaceholder"
                 android:textSize="50sp"
@@ -40,22 +54,24 @@
                 android:textStyle="bold"
                 />
             <TextView
-                android:id="@+id/autogen"
+                android:id="@+id/autogen2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/date"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="@string/autogenText"
+                android:text="@string/autogenText2"
                 android:textSize="35sp"
                 android:gravity="center"
+                android:textStyle="italic"
+                android:textColor="?attr/colorSecondaryVariant"
                 />
             <TextView
                 android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/autogen"
+                app:layout_constraintTop_toBottomOf="@id/autogen2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +79,7 @@
                 android:textSize="60sp"
                 android:textColor="?attr/fullscreenTextColor"
                 android:gravity="center"
+                android:textStyle="bold"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
