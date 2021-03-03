@@ -1,10 +1,7 @@
 package com.thepyprogrammer.greenpass.model.misc
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapShader
-import android.graphics.Canvas
-import android.graphics.Paint
+import android.graphics.*
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 
@@ -42,9 +39,9 @@ class CircleTransform(context: Context?) :
             }
             val canvas = Canvas(result!!)
             val paint = Paint()
-            
+
             paint.shader =
-                BitmapShader(squared, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP)
+                BitmapShader(squared, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
             paint.isAntiAlias = true
             val r = size / 2f
             canvas.drawCircle(r, r, r, paint)
