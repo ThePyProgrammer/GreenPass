@@ -54,7 +54,8 @@
     <string name="imageDesc">Your Profile Picture!</string>
     <string name="icPlaceholder">IC</string>
     <string name="emailPlaceholder">email</string>
-    <string name="autogenText">was vaccinated on</string>
+    <string name="autogenText">This certifies that</string>
+    <string name="autogenText2">was vaccinated on</string>
     <string name="dateOfVaccinationText">Date of Vaccination:</string>
     <string name="datePlaceholder">date</string>
     <string name="title_activity_login">LoginActivity</string>
