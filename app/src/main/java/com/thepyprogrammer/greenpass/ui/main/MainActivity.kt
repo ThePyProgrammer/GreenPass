@@ -1,5 +1,6 @@
 package com.thepyprogrammer.greenpass.ui.main
 
+import android.content.res.Configuration
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.text.SpannableStringBuilder
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var navController: NavController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,12 +120,15 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         val item: MenuItem = menu.findItem(R.id.action_settings)
         val builder = SpannableStringBuilder("* Settings")
         // replace "*" with icon
+
         builder.setSpan(
-            ImageSpan(this, R.drawable.ic_settings),
-            0,
-            1,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                ImageSpan(this, R.drawable.ic_settings),
+                0,
+                1,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
+
+
         item.title = builder
 
         return true
