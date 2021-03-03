@@ -5,10 +5,18 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
 
 class SettingsFragment : PreferenceFragmentCompat() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.slide_right)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
+    }
 
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
