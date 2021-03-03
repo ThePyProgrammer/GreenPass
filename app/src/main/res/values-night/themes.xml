@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.GreenPass" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/dark_blue_mixed</item>
-        <item name="colorPrimaryVariant">@color/blue_600</item>
+        <item name="colorPrimary">@color/dark_blue_20_percent</item>
+        <item name="colorPrimaryVariant">@color/dark_blue_10_percent</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <!-- Secondary brand color. -->
@@ -19,6 +19,8 @@
 
         <item name="android:windowBackground">@color/dark_grey</item>
         <item name="android:colorBackground">@color/dark_grey</item>
+
+        <item name="android:textColor">@android:color/white</item>
 
 
     </style>
