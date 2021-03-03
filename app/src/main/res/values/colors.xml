@@ -750,7 +750,8 @@
     <color name="black_overlay">#66000000</color>
     <color name="dark_grey">#FF212121</color>
     <color name="dark_grey_lighter">#FF313131</color>
-    <color name="dark_blue_mixed">#FF0F2B34</color>
+    <color name="dark_blue_20_percent">#FF0F2B34</color>
+    <color name="dark_blue_10_percent">#FF101E23</color>
 
 
 
