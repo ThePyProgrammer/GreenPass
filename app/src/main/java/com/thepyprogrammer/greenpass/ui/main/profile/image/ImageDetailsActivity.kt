@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.main.profile
+package com.thepyprogrammer.greenpass.ui.main.profile.image
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
