@@ -1,7 +1,6 @@
 package com.thepyprogrammer.greenpass.ui.main
 
 import android.hardware.SensorManager
-import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -9,25 +8,24 @@ import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
 
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
@@ -59,19 +57,19 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
-            ), drawerLayout
+                setOf(
+                        R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
+                ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
         val actionBarDrawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-            toolbar,
-            R.string.openDrawer,
-            R.string.closeDrawer
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.openDrawer,
+                R.string.closeDrawer
         ) {
 
         }
@@ -138,10 +136,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // replace "*" with icon
 
         builder.setSpan(
-            ImageSpan(this, R.drawable.ic_settings),
-            0,
-            1,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                ImageSpan(this, R.drawable.ic_settings),
+                0,
+                1,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
 
@@ -178,9 +176,12 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     }
 
     override fun hearShake() {
-        if (shakeToOpen) {
+        val navHostFragment: Fragment? = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        val fragment = (navHostFragment?.childFragmentManager?.fragments?.get(0))!!
+        if (shakeToOpen and (fragment !is PassFragment)) {
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_pass)
+
         }
     }
 }
