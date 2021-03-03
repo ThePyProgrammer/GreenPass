@@ -76,6 +76,10 @@ dependencies {
 //datastore
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha02"
 
+    implementation "com.karumi:dexter:5.0.0"
+
+    implementation 'com.github.yalantis:ucrop:2.2.6-native'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
