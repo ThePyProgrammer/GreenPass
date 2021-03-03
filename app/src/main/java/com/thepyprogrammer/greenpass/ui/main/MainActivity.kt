@@ -1,7 +1,7 @@
 package com.thepyprogrammer.greenpass.ui.main
 
-import android.content.res.Configuration
 import android.hardware.SensorManager
+import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,6 +20,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -67,8 +70,29 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         val navHeader = navView.getHeaderView(0)
         val profileImageView: ImageView = navHeader.findViewById(R.id.imageView);
 
+        Glide.with(this).
+            loadFromMediaStore(Uri.parse("android.resource://com.thepyprogrammer.greenpass/drawable/person"))
+            .crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(profileImageView)
 
+        val actionBarDrawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.openDrawer,
+            R.string.closeDrawer
+        ) {
 
+        }
+
+        //Setting the actionbarToggle to drawer layout
+
+        //Setting the actionbarToggle to drawer layout
+        drawerLayout.setDrawerListener(actionBarDrawerToggle)
+
+        //calling sync state is necessary or else your hamburger icon wont show up
+
+        //calling sync state is necessary or else your hamburger icon wont show up
+        actionBarDrawerToggle.syncState()
 
 
         bottomNavigation.setupWithNavController(navController)
@@ -122,10 +146,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // replace "*" with icon
 
         builder.setSpan(
-                ImageSpan(this, R.drawable.ic_settings),
-                0,
-                1,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            ImageSpan(this, R.drawable.ic_settings),
+            0,
+            1,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
 
