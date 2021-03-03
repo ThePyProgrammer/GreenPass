@@ -68,11 +68,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
 
         val navHeader = navView.getHeaderView(0)
-        val profileImageView: ImageView = navHeader.findViewById(R.id.imageView);
-
-        Glide.with(this).
-            loadFromMediaStore(Uri.parse("android.resource://com.thepyprogrammer.greenpass/drawable/person"))
-            .crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(profileImageView)
+        val profileImageView: ImageView = navHeader.findViewById(R.id.imageView)
 
         val actionBarDrawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle(
             this,
