@@ -66,10 +66,6 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-
-        val navHeader = navView.getHeaderView(0)
-        val profileImageView: ImageView = navHeader.findViewById(R.id.imageView)
-
         val actionBarDrawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle(
             this,
             drawerLayout,
