@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.account.ui.main
+package com.thepyprogrammer.greenpass.ui.account.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
