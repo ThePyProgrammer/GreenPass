@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.account.ui.main
+package com.thepyprogrammer.greenpass.ui.account
 
 import android.content.Context
 import androidx.fragment.app.Fragment
