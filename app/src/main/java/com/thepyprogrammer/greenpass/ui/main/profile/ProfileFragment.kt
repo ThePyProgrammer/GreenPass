@@ -40,7 +40,7 @@ class ProfileFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         // TODO: Use the ViewModel
 
-        profileImageButton.setOnClickListener { view ->
+        imageView.setOnClickListener { view ->
             val intent = Intent(context, ImageDetailsActivity::class.java)
             startActivity(intent)
         }
