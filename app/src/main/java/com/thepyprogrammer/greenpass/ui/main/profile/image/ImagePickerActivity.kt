@@ -155,9 +155,9 @@ class ImagePickerActivity : AppCompatActivity() {
         options.setCompressionQuality(IMAGE_COMPRESSION)
 
         // applying UI theme
-        options.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+        /*options.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
         options.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-        options.setActiveControlsWidgetColor(ContextCompat.getColor(this, R.color.colorPrimary))
+        options.setActiveControlsWidgetColor(ContextCompat.getColor(this, R.color.colorPrimary))*/
         if (lockAspectRatio) options.withAspectRatio(
             ASPECT_RATIO_X.toFloat(),
             ASPECT_RATIO_Y.toFloat()
