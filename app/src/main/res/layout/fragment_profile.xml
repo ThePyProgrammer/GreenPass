@@ -24,12 +24,23 @@
                 android:layout_width="226dp"
                 android:layout_height="226dp"
                 android:layout_margin="20dp"
-                android:background="@drawable/face"
                 android:contentDescription="@string/imageDesc"
                 app:layout_constraintBottom_toTopOf="@id/name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="@dimen/toolbar_profile_width"
+                    android:layout_height="@dimen/toolbar_profile_width"
+                    android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+                    android:src="@drawable/face"
+                    app:civ_border_color="@android:color/white"
+                    app:civ_border_width="2dp" />
+
+            </ImageButton>
 
             <TextView
                 android:id="@+id/name"
