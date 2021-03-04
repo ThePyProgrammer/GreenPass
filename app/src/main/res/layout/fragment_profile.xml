@@ -24,7 +24,7 @@
                 android:layout_width="226dp"
                 android:layout_height="226dp"
                 android:layout_margin="20dp"
-                android:background="@drawable/ic_person"
+                android:background="@drawable/face"
                 android:contentDescription="@string/imageDesc"
                 app:layout_constraintBottom_toTopOf="@id/name"
                 app:layout_constraintEnd_toEndOf="parent"
