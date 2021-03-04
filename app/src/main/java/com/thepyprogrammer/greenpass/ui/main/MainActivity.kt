@@ -74,22 +74,13 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         }
 
-        //Setting the actionbarToggle to drawer layout
-
-        //Setting the actionbarToggle to drawer layout
         drawerLayout.setDrawerListener(actionBarDrawerToggle)
-
-        //calling sync state is necessary or else your hamburger icon wont show up
-
-        //calling sync state is necessary or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState()
 
 
         bottomNavigation.setupWithNavController(navController)
         bottomNavigation.menu.getItem(1).isEnabled = false
         bottomNavigation.background = null
-
-        // viewPager.setAdapter(PageAdapter(this))
 
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -110,22 +101,6 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             navController.navigate(R.id.nav_pass)
         }
     }
-
-
-//    inner class PageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-//        override fun createFragment(position: Int): Fragment {
-//            when(position) {
-//                0 -> navController.navigate(R.id.nav_profile)
-//                1 -> navController.navigate(R.id.nav_pass)
-//                2 -> navController.navigate(R.id.nav_settings)
-//            }
-//            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-//            return navHostFragment?.childFragmentManager?.fragments?.get(0)!!
-//
-//        }
-//
-//        override fun getItemCount(): Int = 3
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
