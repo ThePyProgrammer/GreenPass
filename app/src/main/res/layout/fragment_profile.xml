@@ -19,7 +19,6 @@
             android:orientation="vertical"
             tools:context=".MainActivity">
 
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageView"
                     android:layout_width="226dp"
