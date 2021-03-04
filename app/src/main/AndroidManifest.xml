@@ -34,6 +34,7 @@
             android:label="@string/title_activity_intro"
             android:theme="@style/Theme.GreenPass.Intro" />
         <activity android:name=".ui.main.profile.image.ImageDetailsActivity" />
+        <activity android:name=".ui.main.profile.image.ImagePickerActivity" />
         <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/Theme.GreenPass.DarkActionBar" />

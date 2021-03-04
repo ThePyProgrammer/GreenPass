@@ -2,11 +2,15 @@ package com.thepyprogrammer.greenpass.ui.main.profile.image
 
 import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.annotation.Nullable
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -19,7 +23,11 @@ import java.io.IOException
 
 
 class ImageDetailsActivity : AppCompatActivity() {
-    var REQUEST_IMAGE = 6969
+    var REQUEST_IMAGE = 2169
+    var CAMERA_PERMISSION_CODE = 6969
+    var READ_EXTERNAL_STORAGE_PERMISSION_CODE = 4206
+    var WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 4209
+    var INTERNET_PERMISSION_CODE = 666
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +35,7 @@ class ImageDetailsActivity : AppCompatActivity() {
     }
 
     // my button click function
-    fun onProfileImageClick() {
+    fun onProfileImageClick(view:View) {
         Dexter.withActivity(this)
             .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : MultiplePermissionsListener {
@@ -36,6 +44,22 @@ class ImageDetailsActivity : AppCompatActivity() {
                         showImagePickerOptions()
                     } else {
                         // TODO - handle permission denied case
+                        checkPermission(
+                            Manifest.permission.CAMERA,
+                            CAMERA_PERMISSION_CODE
+                        )
+                        checkPermission(
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            READ_EXTERNAL_STORAGE_PERMISSION_CODE
+                        )
+                        checkPermission(
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            WRITE_EXTERNAL_STORAGE_PERMISSION_CODE
+                        )
+                        checkPermission(
+                            Manifest.permission.INTERNET,
+                            INTERNET_PERMISSION_CODE
+                        )
                     }
                 }
 
@@ -46,6 +70,49 @@ class ImageDetailsActivity : AppCompatActivity() {
                     token.continuePermissionRequest()
                 }
             }).check()
+    }
+
+    fun checkPermission(permission: String, requestCode: Int) {
+
+        // Checking if permission is not granted
+        if (ContextCompat.checkSelfPermission(
+                this,
+                permission
+            )
+            == PackageManager.PERMISSION_DENIED
+        ) {
+            ActivityCompat
+                .requestPermissions(
+                    this, arrayOf(permission),
+                    requestCode
+                )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super
+            .onRequestPermissionsResult(
+                requestCode,
+                permissions,
+                grantResults
+            )
+        // Checking whether user granted the permission or not.
+        if (grantResults.size > 0
+            && grantResults[0] == PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        } else {
+            Toast.makeText(
+                this,
+                "To select an icon, these permissions are required.",
+                Toast.LENGTH_SHORT
+            )
+                .show()
+        }
     }
 
     private fun showImagePickerOptions() {
