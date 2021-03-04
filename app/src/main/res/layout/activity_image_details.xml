@@ -8,13 +8,18 @@
     android:background="@color/black">
 
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imageDetailsImageView"
-        android:layout_width="415dp"
-        android:layout_height="415dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:onClick="onProfileImageClick"
+
+        android:scaleType="fitCenter"
+
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1f"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        android:background="@drawable/edden_face" />
 </androidx.constraintlayout.widget.ConstraintLayout>
