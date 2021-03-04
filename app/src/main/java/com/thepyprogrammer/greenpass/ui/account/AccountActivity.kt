@@ -6,6 +6,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
+import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.account.ui.main.SectionsPagerAdapter
 
 class AccountActivity : AppCompatActivity() {
