@@ -16,8 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenPass"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".ui.splash.SplashActivity"
+        <activity
+            android:name=".ui.login.AccountActivity"
+            android:label="@string/title_activity_account"
+            android:theme="@style/Theme.GreenPass.NoActionBar"></activity>
+        <activity
+            android:name=".ui.splash.SplashActivity"
             android:theme="@style/Theme.GreenPass.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,24 +29,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.intro.IntroActivity"
             android:label="@string/title_activity_intro"
             android:theme="@style/Theme.GreenPass.Intro" />
-
         <activity android:name=".ui.main.profile.image.ImageDetailsActivity" />
-
         <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/Theme.GreenPass.DarkActionBar" />
-
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
-        <!-- cache directory file provider paths -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- cache directory file provider paths -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
