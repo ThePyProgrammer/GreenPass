@@ -1,6 +1,7 @@
 package com.thepyprogrammer.greenpass.ui.main
 
 import android.hardware.SensorManager
+import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -26,14 +27,26 @@ import com.google.android.material.navigation.NavigationView
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
+import de.hdodenhof.circleimageview.CircleImageView
+import java.io.File
+import java.lang.StringBuilder
+import java.util.*
 
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     var shakeToOpen = true
+    var imageView: CircleImageView? = null
+    var imageInfoFile: File? = null;
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var navController: NavController
+
+    override fun onStart() {
+        super.onStart()
+        loadImage()
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +59,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         val fab: FloatingActionButton = findViewById(R.id.fab)
         val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+
+        imageInfoFile = File(getFilesDir(), "profileImageURI.txt")
 
         setSupportActionBar(toolbar)
 
@@ -76,6 +91,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
+
+        val navHeader = navView.getHeaderView(0)
+        imageView = navHeader.findViewById(R.id.imageView)
 
 
         bottomNavigation.setupWithNavController(navController)
@@ -158,5 +176,31 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             navController.navigate(R.id.nav_pass)
 
         }
+    }
+
+    fun readData(): String {
+        if (!imageInfoFile!!.exists()){
+            return "";
+        }
+        val scanner = Scanner(imageInfoFile)
+        val string = StringBuilder(scanner.nextLine())
+
+        while (scanner.hasNextLine())
+            string.append("\n"+scanner.nextLine())
+
+
+        scanner.close()
+        return string.toString()
+    }
+
+    fun loadImage(){
+        var string: String  = readData();
+        if (!string.isEmpty()){
+            imageView!!.setImageURI(Uri.parse(readData()))
+        }
+        else{
+            imageView!!.setImageResource(R.drawable.edden_face)
+        }
+
     }
 }
