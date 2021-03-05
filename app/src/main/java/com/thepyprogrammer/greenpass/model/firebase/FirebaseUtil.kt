@@ -29,8 +29,6 @@ object FirebaseUtil {
     private val sUseEmulators: Boolean = BuildConfig.DEBUG
     private var FIRESTORE: FirebaseFirestore? = null
 
-    // Connect to the Cloud Firestore emulator when appropriate. The host '10.0.2.2' is a
-    // special IP address to let the Android emulator connect to 'localhost'.
     val firestore: FirebaseFirestore?
         get() {
             if (FIRESTORE == null) {
