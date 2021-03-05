@@ -155,6 +155,7 @@ class ImagePickerActivity : AppCompatActivity() {
         options.setCompressionQuality(IMAGE_COMPRESSION)
 
         // applying UI theme
+        //todo fix the color
         /*options.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
         options.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary))
         options.setActiveControlsWidgetColor(ContextCompat.getColor(this, R.color.colorPrimary))*/
