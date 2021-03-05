@@ -24,6 +24,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.PrintWriter
+import java.lang.StringBuilder
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -200,9 +201,9 @@ class ImageDetailsActivity : AppCompatActivity() {
     }
 
     fun writeData(s: String){
-        var output: PrintWriter = PrintWriter(imageInfoFile)
-        output!!.println(s)
-        output!!.close()
+        val output: PrintWriter = PrintWriter(imageInfoFile)
+        output.println(s)
+        output.close()
         println(s)
     }
 
@@ -210,17 +211,15 @@ class ImageDetailsActivity : AppCompatActivity() {
         if (!imageInfoFile!!.exists()){
             return "";
         }
-        var scanner: Scanner = Scanner(imageInfoFile)
-        var string:String = ""
+        val scanner = Scanner(imageInfoFile)
+        val string = StringBuilder(scanner.nextLine())
 
-        string += scanner.nextLine()
-        while (scanner.hasNextLine()){
-            string += "\n"
-            string += scanner.nextLine()
-        }
+        while (scanner.hasNextLine())
+            string.append("\n"+scanner.nextLine())
+
 
         scanner.close()
-        return string
+        return string.toString()
     }
 
     fun loadImage(){
