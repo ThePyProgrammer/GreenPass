@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -19,7 +20,12 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.main.profile.image.ImagePickerActivity.Companion.showImagePickerOptions
 import com.thepyprogrammer.greenpass.ui.main.profile.image.ImagePickerActivity.PickerOptionListener
+import java.io.File
+import java.io.FileNotFoundException
 import java.io.IOException
+import java.io.PrintWriter
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ImageDetailsActivity : AppCompatActivity() {
@@ -28,14 +34,23 @@ class ImageDetailsActivity : AppCompatActivity() {
     var READ_EXTERNAL_STORAGE_PERMISSION_CODE = 4206
     var WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 4209
     var INTERNET_PERMISSION_CODE = 666
+    var imageButton: ImageButton? = null
+    var imageInfoFile: File? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_details)
+        imageButton = findViewById(R.id.imageDetailsImageView)
+        imageInfoFile = File(getFilesDir(), "profileImageURI.txt")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        loadImage()
     }
 
     // my button click function
-    fun onProfileImageClick(view:View) {
+    fun onProfileImageClick(view: View) {
         Dexter.withActivity(this)
             .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : MultiplePermissionsListener {
@@ -169,13 +184,54 @@ class ImageDetailsActivity : AppCompatActivity() {
                     // You can update this bitmap to your server
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
 
+
+                    //save uri to internal storage
+                    writeData(uri.toString())
+
                     // loading profile image from local cache
+                    loadImage()
+
                     //todo fix this one loadProfile(uri.toString())
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
             }
         }
+    }
+
+    fun writeData(s: String){
+        var output: PrintWriter = PrintWriter(imageInfoFile)
+        output!!.println(s)
+        output!!.close()
+        println(s)
+    }
+
+    fun readData(): String {
+        if (!imageInfoFile!!.exists()){
+            return "";
+        }
+        var scanner: Scanner = Scanner(imageInfoFile)
+        var string:String = ""
+
+        string += scanner.nextLine()
+        while (scanner.hasNextLine()){
+            string += "\n"
+            string += scanner.nextLine()
+        }
+
+        scanner.close()
+        return string
+    }
+
+    fun loadImage(){
+        var string: String  = readData();
+        if (!string.isEmpty()){
+            imageButton!!.setImageURI(Uri.parse(readData()))
+        }
+        else{
+            imageButton!!.setImageResource(R.drawable.edden_face)
+        }
+
     }
 
 }
