@@ -156,9 +156,9 @@ class ImagePickerActivity : AppCompatActivity() {
 
         // applying UI theme
         //todo fix the color
-        /*options.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-        options.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-        options.setActiveControlsWidgetColor(ContextCompat.getColor(this, R.color.colorPrimary))*/
+        options.setToolbarColor(ContextCompat.getColor(this, R.color.white_10_percent))
+        options.setStatusBarColor(ContextCompat.getColor(this, R.color.white_10_percent))
+        options.setActiveControlsWidgetColor(ContextCompat.getColor(this, R.color.white_10_percent))
         if (lockAspectRatio) options.withAspectRatio(
             ASPECT_RATIO_X.toFloat(),
             ASPECT_RATIO_Y.toFloat()
