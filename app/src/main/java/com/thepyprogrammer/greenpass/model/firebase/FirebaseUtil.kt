@@ -31,15 +31,8 @@ object FirebaseUtil {
 
     val firestore: FirebaseFirestore?
         get() {
-            if (FIRESTORE == null) {
-                FIRESTORE = FirebaseFirestore.getInstance()
+            if (FIRESTORE == null) FIRESTORE = FirebaseFirestore.getInstance()
 
-                // Connect to the Cloud Firestore emulator when appropriate. The host '10.0.2.2' is a
-                // special IP address to let the Android emulator connect to 'localhost'.
-                if (sUseEmulators) {
-                    FIRESTORE!!.useEmulator("10.0.2.2", 8080)
-                }
-            }
             return FIRESTORE
         }
 
