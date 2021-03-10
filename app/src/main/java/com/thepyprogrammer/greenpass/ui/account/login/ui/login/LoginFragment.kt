@@ -16,7 +16,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 
-import com.thepyprogrammer.greenpass.ui.account.login.R
+import com.thepyprogrammer.greenpass.R
 
 class LoginFragment : Fragment() {
 
@@ -35,7 +35,7 @@ class LoginFragment : Fragment() {
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
-        val usernameEditText = view.findViewById<EditText>(R.id.username)
+        val usernameEditText = view.findViewById<EditText>(R.id.email)
         val passwordEditText = view.findViewById<EditText>(R.id.password)
         val loginButton = view.findViewById<Button>(R.id.login)
         val loadingProgressBar = view.findViewById<ProgressBar>(R.id.loading)
