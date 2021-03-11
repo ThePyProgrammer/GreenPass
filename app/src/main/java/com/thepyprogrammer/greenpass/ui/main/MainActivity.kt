@@ -33,7 +33,6 @@ import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
 import de.hdodenhof.circleimageview.CircleImageView
 import java.io.File
-import java.lang.StringBuilder
 import java.util.*
 
 
@@ -85,19 +84,19 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-                setOf(
-                        R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
-                ), drawerLayout
+            setOf(
+                R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
+            ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
         val actionBarDrawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.openDrawer,
-                R.string.closeDrawer
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.openDrawer,
+            R.string.closeDrawer
         ) {
 
         }
@@ -142,10 +141,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // replace "*" with icon
 
         builder.setSpan(
-                ImageSpan(this, R.drawable.ic_settings),
-                0,
-                1,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            ImageSpan(this, R.drawable.ic_settings),
+            0,
+            1,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
 
@@ -182,7 +181,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     }
 
     override fun hearShake() {
-        val navHostFragment: Fragment? = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        val navHostFragment: Fragment? =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         val fragment = (navHostFragment?.childFragmentManager?.fragments?.get(0))!!
         if (shakeToOpen and (fragment !is PassFragment)) {
             val navController = findNavController(R.id.nav_host_fragment)
@@ -192,26 +192,25 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     }
 
     private fun readData(): String {
-        if (!imageInfoFile!!.exists()){
+        if (!imageInfoFile!!.exists()) {
             return ""
         }
         val scanner = Scanner(imageInfoFile)
         val string = StringBuilder(scanner.nextLine())
 
         while (scanner.hasNextLine())
-            string.append("\n"+scanner.nextLine())
+            string.append("\n" + scanner.nextLine())
 
 
         scanner.close()
         return string.toString()
     }
 
-    private fun loadImage(){
-        val string: String  = readData()
-        if (string.isNotEmpty()){
+    private fun loadImage() {
+        val string: String = readData()
+        if (string.isNotEmpty()) {
             imageView!!.setImageURI(Uri.parse(readData()))
-        }
-        else{
+        } else {
             imageView!!.setImageResource(R.drawable.edden_face)
         }
 
