@@ -24,6 +24,10 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
@@ -36,11 +40,15 @@ import java.util.*
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     var shakeToOpen = true
-    var imageView: CircleImageView? = null
-    var imageInfoFile: File? = null;
+    private var imageView: CircleImageView? = null
+    private var imageInfoFile: File? = null
+
+
+    private val db = Firebase.firestore
+    private lateinit var auth: FirebaseAuth
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
 
     override fun onStart() {
         super.onStart()
@@ -56,6 +64,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        auth = Firebase.auth
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -64,7 +73,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        imageInfoFile = File(getFilesDir(), "profileImageURI.txt")
+        imageInfoFile = File(filesDir, "profileImageURI.txt")
 
         setSupportActionBar(toolbar)
 
@@ -118,7 +127,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             }
         }
 
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_pass)
         }
@@ -182,9 +191,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         }
     }
 
-    fun readData(): String {
+    private fun readData(): String {
         if (!imageInfoFile!!.exists()){
-            return "";
+            return ""
         }
         val scanner = Scanner(imageInfoFile)
         val string = StringBuilder(scanner.nextLine())
@@ -197,9 +206,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         return string.toString()
     }
 
-    fun loadImage(){
-        var string: String  = readData();
-        if (!string.isEmpty()){
+    private fun loadImage(){
+        val string: String  = readData()
+        if (string.isNotEmpty()){
             imageView!!.setImageURI(Uri.parse(readData()))
         }
         else{
