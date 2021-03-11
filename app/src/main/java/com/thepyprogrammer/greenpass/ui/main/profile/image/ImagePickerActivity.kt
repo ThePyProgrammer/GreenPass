@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ import com.yalantis.ucrop.UCrop
 import java.io.File
 
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.ui.main.MainActivity
 
 
 class ImagePickerActivity : AppCompatActivity() {
@@ -259,4 +261,24 @@ class ImagePickerActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem) =
+            when (item.itemId) {
+                android.R.id.home -> {
+                    // This ID represents the Home or Up button. In the case of this
+                    // activity, the Up button is shown. For
+                    // more details, see the Navigation pattern on Android Design:
+                    //
+                    // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+                    val toast = Toast.makeText(
+                            applicationContext,
+                            "Moving back to Main Page",
+                            Toast.LENGTH_LONG
+                    )
+                    toast.show()
+                    navigateUpTo(Intent(this, MainActivity::class.java))
+                    true
+                }
+                else -> super.onOptionsItemSelected(item)
+            }
 }

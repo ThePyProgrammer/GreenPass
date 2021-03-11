@@ -60,6 +60,7 @@
     <string name="datePlaceholder">date</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_intro">IntroActivity</string>
+    <string name="title_activity_profile_picture">Profile Picture</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

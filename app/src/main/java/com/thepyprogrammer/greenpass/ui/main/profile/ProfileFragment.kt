@@ -43,6 +43,11 @@ class ProfileFragment : Fragment() {
         loadImage()
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadImage()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())

@@ -45,7 +45,11 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     override fun onStart() {
         super.onStart()
         loadImage()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        loadImage()
     }
 
 
