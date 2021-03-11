@@ -19,11 +19,10 @@ import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.yalantis.ucrop.UCrop
-import java.io.File
-
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
+import com.yalantis.ucrop.UCrop
+import java.io.File
 
 
 class ImagePickerActivity : AppCompatActivity() {
@@ -263,22 +262,22 @@ class ImagePickerActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
-            when (item.itemId) {
-                android.R.id.home -> {
-                    // This ID represents the Home or Up button. In the case of this
-                    // activity, the Up button is shown. For
-                    // more details, see the Navigation pattern on Android Design:
-                    //
-                    // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-                    val toast = Toast.makeText(
-                            applicationContext,
-                            "Moving back to Main Page",
-                            Toast.LENGTH_LONG
-                    )
-                    toast.show()
-                    navigateUpTo(Intent(this, MainActivity::class.java))
-                    true
-                }
-                else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            android.R.id.home -> {
+                // This ID represents the Home or Up button. In the case of this
+                // activity, the Up button is shown. For
+                // more details, see the Navigation pattern on Android Design:
+                //
+                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+                val toast = Toast.makeText(
+                    applicationContext,
+                    "Moving back to Main Page",
+                    Toast.LENGTH_LONG
+                )
+                toast.show()
+                navigateUpTo(Intent(this, MainActivity::class.java))
+                true
             }
+            else -> super.onOptionsItemSelected(item)
+        }
 }
