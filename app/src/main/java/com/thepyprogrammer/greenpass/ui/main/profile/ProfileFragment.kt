@@ -13,16 +13,13 @@ import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.main.profile.image.ImageDetailsActivity
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_profile.imageView
-import kotlinx.android.synthetic.main.nav_header_main.*
 import java.io.File
-import java.lang.StringBuilder
 import java.util.*
 
 class ProfileFragment : Fragment() {
 
-    var circleImageView:CircleImageView? = null
-    var imageInfoFile: File? = null;
+    var circleImageView: CircleImageView? = null
+    var imageInfoFile: File? = null
 
     companion object {
         fun newInstance() = ProfileFragment()
@@ -53,7 +50,7 @@ class ProfileFragment : Fragment() {
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide_right)
         exitTransition = inflater.inflateTransition(R.transition.fade)
-        imageInfoFile = File(activity?.getFilesDir(), "profileImageURI.txt")
+        imageInfoFile = File(activity?.filesDir, "profileImageURI.txt")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -68,31 +65,29 @@ class ProfileFragment : Fragment() {
     }
 
     fun readData(): String {
-        if (!imageInfoFile!!.exists()){
-            return "";
+        if (!imageInfoFile!!.exists()) {
+            return ""
         }
         val scanner = Scanner(imageInfoFile)
         val string = StringBuilder(scanner.nextLine())
 
         while (scanner.hasNextLine())
-            string.append("\n"+scanner.nextLine())
+            string.append("\n" + scanner.nextLine())
 
 
         scanner.close()
         return string.toString()
     }
 
-    fun loadImage(){
-        var string: String  = readData();
-        if (!string.isEmpty()){
+    fun loadImage() {
+        var string: String = readData()
+        if (!string.isEmpty()) {
             imageView!!.setImageURI(Uri.parse(readData()))
-        }
-        else{
+        } else {
             imageView!!.setImageResource(R.drawable.edden_face)
         }
 
     }
-
 
 
 }
