@@ -23,11 +23,8 @@ import com.thepyprogrammer.greenpass.ui.main.MainActivity
 import com.thepyprogrammer.greenpass.ui.main.profile.image.ImagePickerActivity.Companion.showImagePickerOptions
 import com.thepyprogrammer.greenpass.ui.main.profile.image.ImagePickerActivity.PickerOptionListener
 import java.io.File
-import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.PrintWriter
-import java.lang.StringBuilder
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -38,13 +35,13 @@ class ImageDetailsActivity : AppCompatActivity() {
     var WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 4209
     var INTERNET_PERMISSION_CODE = 666
     var imageButton: ImageButton? = null
-    var imageInfoFile: File? = null;
+    var imageInfoFile: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_details)
         imageButton = findViewById(R.id.imageDetailsImageView)
-        imageInfoFile = File(getFilesDir(), "profileImageURI.txt")
+        imageInfoFile = File(filesDir, "profileImageURI.txt")
     }
 
     override fun onStart() {
@@ -202,7 +199,7 @@ class ImageDetailsActivity : AppCompatActivity() {
         }
     }
 
-    fun writeData(s: String){
+    fun writeData(s: String) {
         val output: PrintWriter = PrintWriter(imageInfoFile)
         output.println(s)
         output.close()
@@ -210,49 +207,48 @@ class ImageDetailsActivity : AppCompatActivity() {
     }
 
     fun readData(): String {
-        if (!imageInfoFile!!.exists()){
-            return "";
+        if (!imageInfoFile!!.exists()) {
+            return ""
         }
         val scanner = Scanner(imageInfoFile)
         val string = StringBuilder(scanner.nextLine())
 
         while (scanner.hasNextLine())
-            string.append("\n"+scanner.nextLine())
+            string.append("\n" + scanner.nextLine())
 
 
         scanner.close()
         return string.toString()
     }
 
-    fun loadImage(){
-        var string: String  = readData();
-        if (!string.isEmpty()){
+    fun loadImage() {
+        var string: String = readData()
+        if (!string.isEmpty()) {
             imageButton!!.setImageURI(Uri.parse(readData()))
-        }
-        else{
+        } else {
             imageButton!!.setImageResource(R.drawable.edden_face)
         }
 
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
-            when (item.itemId) {
-                android.R.id.home -> {
-                    // This ID represents the Home or Up button. In the case of this
-                    // activity, the Up button is shown. For
-                    // more details, see the Navigation pattern on Android Design:
-                    //
-                    // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-                    val toast = Toast.makeText(
-                            applicationContext,
-                            "Moving back to Main Page",
-                            Toast.LENGTH_LONG
-                    )
-                    toast.show()
-                    navigateUpTo(Intent(this, MainActivity::class.java))
-                    true
-                }
-                else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            android.R.id.home -> {
+                // This ID represents the Home or Up button. In the case of this
+                // activity, the Up button is shown. For
+                // more details, see the Navigation pattern on Android Design:
+                //
+                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+                val toast = Toast.makeText(
+                    applicationContext,
+                    "Moving back to Main Page",
+                    Toast.LENGTH_LONG
+                )
+                toast.show()
+                navigateUpTo(Intent(this, MainActivity::class.java))
+                true
             }
+            else -> super.onOptionsItemSelected(item)
+        }
 
 }
