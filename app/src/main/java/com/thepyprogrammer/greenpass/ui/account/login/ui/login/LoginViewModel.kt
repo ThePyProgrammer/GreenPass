@@ -7,7 +7,7 @@ import android.util.Patterns
 import com.thepyprogrammer.greenpass.ui.account.login.data.LoginRepository
 import com.thepyprogrammer.greenpass.ui.account.login.data.Result
 
-import com.thepyprogrammer.greenpass.ui.account.login.R
+import com.thepyprogrammer.greenpass.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
