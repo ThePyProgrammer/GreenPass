@@ -17,10 +17,6 @@
         android:theme="@style/Theme.GreenPass"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.account.AccountActivity"
-            android:label="@string/title_activity_account"
-            android:theme="@style/Theme.GreenPass.NoActionBar"></activity>
-        <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/Theme.GreenPass.NoActionBar">
             <intent-filter>
