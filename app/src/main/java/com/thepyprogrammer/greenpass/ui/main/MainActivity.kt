@@ -30,8 +30,10 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.File
 import java.util.*
 
@@ -105,7 +107,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         actionBarDrawerToggle.syncState()
 
         val navHeader = navView.getHeaderView(0)
-        imageView = navHeader.findViewById(R.id.imageView)
+        val imageView: CircleImageView? = navHeader.findViewById(R.id.imageView)
+
+        imageView?.setOnClickListener(ImageClickListener(this@MainActivity))
 
 
         bottomNavigation.setupWithNavController(navController)
