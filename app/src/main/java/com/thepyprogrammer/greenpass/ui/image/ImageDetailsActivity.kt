@@ -32,7 +32,7 @@ import java.util.*
 
 
 class ImageDetailsActivity : AppCompatActivity() {
-    var REQUEST_IMAGE = 2169
+    private var REQUEST_IMAGE = 2169
     var CAMERA_PERMISSION_CODE = 6969
     var READ_EXTERNAL_STORAGE_PERMISSION_CODE = 4206
     var WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 4209
@@ -50,7 +50,7 @@ class ImageDetailsActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.title = title
         toolbar.inflateMenu(R.menu.image_bar_menu)
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
         imageView = findViewById(R.id.imageDetailsImageView)
@@ -69,7 +69,7 @@ class ImageDetailsActivity : AppCompatActivity() {
     }
 
     // my button click function
-    fun onProfileImageClick() {
+    private fun onProfileImageClick() {
         Dexter.withActivity(this)
             .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : MultiplePermissionsListener {
@@ -135,7 +135,7 @@ class ImageDetailsActivity : AppCompatActivity() {
                     grantResults
             )
         // Checking whether user granted the permission or not.
-        if (grantResults.size > 0
+        if (grantResults.isNotEmpty()
             && grantResults[0] == PackageManager.PERMISSION_GRANTED
         ) {
             return
@@ -162,36 +162,38 @@ class ImageDetailsActivity : AppCompatActivity() {
     }
 
     private fun launchCameraIntent() {
-        val intent = Intent(this, ImagePickerActivity::class.java)
-        intent.putExtra(
-                ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
-                ImagePickerActivity.REQUEST_IMAGE_CAPTURE
-        )
+        Intent(this, ImagePickerActivity::class.java).apply {
+            putExtra(
+                    ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
+                    ImagePickerActivity.REQUEST_IMAGE_CAPTURE
+            )
 
-        // setting aspect ratio
-        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
-        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
-        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
+            // setting aspect ratio
+            putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
+            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
+            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
 
-        // setting maximum bitmap width and height
-        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true)
-        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000)
-        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000)
-        startActivityForResult(intent, REQUEST_IMAGE)
+            // setting maximum bitmap width and height
+            putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true)
+            putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000)
+            putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000)
+            startActivityForResult(this, REQUEST_IMAGE)
+        }
     }
 
     private fun launchGalleryIntent() {
-        val intent = Intent(this, ImagePickerActivity::class.java)
-        intent.putExtra(
-                ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
-                ImagePickerActivity.REQUEST_GALLERY_IMAGE
-        )
+        Intent(this, ImagePickerActivity::class.java).apply {
+            putExtra(
+                    ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
+                    ImagePickerActivity.REQUEST_GALLERY_IMAGE
+            )
 
-        // setting aspect ratio
-        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
-        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
-        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
-        startActivityForResult(intent, REQUEST_IMAGE)
+            // setting aspect ratio
+            putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
+            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
+            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
+            startActivityForResult(this, REQUEST_IMAGE)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -202,7 +204,6 @@ class ImageDetailsActivity : AppCompatActivity() {
                 try {
                     // You can update this bitmap to your server
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
-
 
                     //save uri to internal storage
                     writeData(uri.toString())
@@ -218,14 +219,15 @@ class ImageDetailsActivity : AppCompatActivity() {
         }
     }
 
-    fun writeData(s: String) {
+    private fun writeData(s: String) {
+
         val output = PrintWriter(imageInfoFile)
         output.println(s)
         output.close()
         println(s)
     }
 
-    fun readData(): String {
+    private fun readData(): String {
         if (!imageInfoFile!!.exists()) {
             return ""
         }
@@ -240,12 +242,12 @@ class ImageDetailsActivity : AppCompatActivity() {
         return string.toString()
     }
 
-    fun loadImage() {
-        var string: String = readData()
-        if (!string.isEmpty()) {
+    private fun loadImage() {
+        val string: String = readData()
+        if (string.isNotEmpty()) {
             imageView!!.setImageURI(Uri.parse(readData()))
         } else {
-            imageView!!.setImageResource(R.drawable.edden_face)
+            imageView!!.setImageResource(R.drawable.face)
         }
 
     }
