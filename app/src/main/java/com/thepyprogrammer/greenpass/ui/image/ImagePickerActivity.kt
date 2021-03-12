@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.main.profile.image
+package com.thepyprogrammer.greenpass.ui.image
 
 import android.Manifest
 import android.content.ContentResolver

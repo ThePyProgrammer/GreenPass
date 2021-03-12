@@ -1,4 +1,4 @@
-package com.thepyprogrammer.greenpass.ui.main.profile.image
+package com.thepyprogrammer.greenpass.ui.image
 
 import android.Manifest
 import android.content.Intent
@@ -20,8 +20,8 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
-import com.thepyprogrammer.greenpass.ui.main.profile.image.ImagePickerActivity.Companion.showImagePickerOptions
-import com.thepyprogrammer.greenpass.ui.main.profile.image.ImagePickerActivity.PickerOptionListener
+import com.thepyprogrammer.greenpass.ui.image.ImagePickerActivity.Companion.showImagePickerOptions
+import com.thepyprogrammer.greenpass.ui.image.ImagePickerActivity.PickerOptionListener
 import java.io.File
 import java.io.IOException
 import java.io.PrintWriter
@@ -145,8 +145,8 @@ class ImageDetailsActivity : AppCompatActivity() {
     private fun launchCameraIntent() {
         val intent = Intent(this, ImagePickerActivity::class.java)
         intent.putExtra(
-            ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
-            ImagePickerActivity.REQUEST_IMAGE_CAPTURE
+                ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
+                ImagePickerActivity.REQUEST_IMAGE_CAPTURE
         )
 
         // setting aspect ratio
@@ -164,8 +164,8 @@ class ImageDetailsActivity : AppCompatActivity() {
     private fun launchGalleryIntent() {
         val intent = Intent(this, ImagePickerActivity::class.java)
         intent.putExtra(
-            ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
-            ImagePickerActivity.REQUEST_GALLERY_IMAGE
+                ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
+                ImagePickerActivity.REQUEST_GALLERY_IMAGE
         )
 
         // setting aspect ratio
