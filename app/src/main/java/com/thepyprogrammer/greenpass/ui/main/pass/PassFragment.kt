@@ -16,11 +16,6 @@ import com.thepyprogrammer.greenpass.R
 class PassFragment : Fragment() {
     private var visible: Boolean = false
 
-
-    // private var dummyButton: Button? = null
-    // private var fullscreenContent: View? = null
-    // private var fullscreenContentControls: View? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
