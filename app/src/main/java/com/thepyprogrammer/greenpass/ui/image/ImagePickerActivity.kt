@@ -66,32 +66,30 @@ class ImagePickerActivity : AppCompatActivity() {
         }
     }
 
-    private fun takeCameraImage() {
-        Dexter.withActivity(this)
-            .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            .withListener(object : MultiplePermissionsListener {
-                override fun onPermissionsChecked(report: MultiplePermissionsReport) {
-                    if (report.areAllPermissionsGranted()) {
-                        fileName = System.currentTimeMillis().toString() + ".jpg"
-                        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                        takePictureIntent.putExtra(
-                            MediaStore.EXTRA_OUTPUT,
-                            getCacheImagePath(fileName)
-                        )
-                        if (takePictureIntent.resolveActivity(packageManager) != null) {
-                            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-                        }
+    private fun takeCameraImage() = Dexter.withActivity(this)
+        .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        .withListener(object : MultiplePermissionsListener {
+            override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                if (report.areAllPermissionsGranted()) {
+                    fileName = System.currentTimeMillis().toString() + ".jpg"
+                    val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    takePictureIntent.putExtra(
+                        MediaStore.EXTRA_OUTPUT,
+                        getCacheImagePath(fileName)
+                    )
+                    if (takePictureIntent.resolveActivity(packageManager) != null) {
+                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
                     }
                 }
+            }
 
-                override fun onPermissionRationaleShouldBeShown(
-                    permissions: MutableList<com.karumi.dexter.listener.PermissionRequest>?,
-                    token: PermissionToken?
-                ) {
-                    token?.continuePermissionRequest()
-                }
-            }).check()
-    }
+            override fun onPermissionRationaleShouldBeShown(
+                permissions: MutableList<com.karumi.dexter.listener.PermissionRequest>?,
+                token: PermissionToken?
+            ) {
+                token?.continuePermissionRequest()
+            }
+        }).check()
 
     private fun chooseImageFromGallery() {
         Dexter.withActivity(this)
@@ -226,7 +224,7 @@ class ImagePickerActivity : AppCompatActivity() {
                 context.getString(R.string.lbl_take_camera_picture),
                 context.getString(R.string.lbl_choose_from_gallery)
             )
-            builder.setItems(animals) { dialog, which ->
+            builder.setItems(animals) { _, which ->
                 when (which) {
                     0 -> listener.onTakeCameraSelected()
                     1 -> listener.onChooseGallerySelected()
@@ -247,18 +245,6 @@ class ImagePickerActivity : AppCompatActivity() {
             return name
         }
 
-        /**
-         * Calling this will delete the images from cache directory
-         * useful to clear some memory
-         */
-        fun clearCache(context: Context) {
-            val path = File(context.externalCacheDir, "camera")
-            if (path.exists() && path.isDirectory) {
-                for (child in path.listFiles()) {
-                    child.delete()
-                }
-            }
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
