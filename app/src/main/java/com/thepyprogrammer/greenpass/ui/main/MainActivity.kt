@@ -15,8 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -33,6 +31,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
 import de.hdodenhof.circleimageview.CircleImageView
@@ -53,7 +52,6 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     private lateinit var viewModel: ProfileViewModel
 
-    private val db = Firebase.firestore
     private lateinit var auth: FirebaseAuth
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -74,6 +72,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         auth = Firebase.auth
+
+        FirebaseUtil.firestore?.collection("users")
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
