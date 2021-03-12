@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.*
 
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel : ViewModel() {
     // TODO: Implement the ViewModel
     var image = MutableLiveData<String>()
 
@@ -34,7 +34,6 @@ class ProfileViewModel: ViewModel() {
     }
 
 
-
     /*
     fun setNRIC(NRIC_: String): Boolean {
         if (NRIC_.matches(Regex("[ST]\\d{7}[A-Z]"))){
@@ -50,10 +49,6 @@ class ProfileViewModel: ViewModel() {
         return email_.matches(Regex("\\S+@\\S+"))
     }
      */
-
-
-
-
 
 
 }
