@@ -1,5 +1,6 @@
 package com.thepyprogrammer.greenpass.ui.main
 
+import android.graphics.Color
 import android.hardware.SensorManager
 import android.net.Uri
 import android.os.Bundle
@@ -41,7 +42,7 @@ import java.util.*
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     var shakeToOpen = true
-    private lateinit var imageView: CircleImageView
+    private var imageView: CircleImageView? = null
     private var imageInfoFile: File? = null
 
     lateinit var nameTextView: TextView
@@ -108,13 +109,23 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         drawerLayout.setDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
 
-        drawerLayout.setRadius(GravityCompat.START, 25F);//set end container's corner radius (dimension)
+        drawerLayout.apply {
+            setViewScale(GravityCompat.START, 0.9f); //set height scale for main view (0f to 1f)
+            setViewElevation(GravityCompat.START, 20F); //set main view elevation when drawer open (dimension)
+            setViewScrimColor(GravityCompat.START, Color.TRANSPARENT); //set drawer overlay coloe (color)
+            drawerElevation = 20F; //set drawer elevation (dimension)
+            setContrastThreshold(3F); //set maximum of contrast ratio between white text and background color.
+            setRadius(GravityCompat.START, 25F);//set end container's corner radius (dimension)
+        }
+
 
         navView.getHeaderView(0).apply {
             findViewById<CircleImageView>(R.id.imageView).also {
                 it.setOnClickListener(ImageClickListener(this@MainActivity))
             }
         }
+
+        loadImage()
 
         findViewById<BottomNavigationView>(R.id.bottom_navigation).apply {
             setupWithNavController(navController)
@@ -237,8 +248,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     private fun loadImage() {
         val string: String = readData()
         if (string.isNotEmpty())
-            imageView.setImageURI(Uri.parse(readData()))
+            imageView?.setImageURI(Uri.parse(readData()))
         else
-            imageView.setImageResource(R.drawable.face)
+            imageView?.setImageResource(R.drawable.face)
     }
 }
