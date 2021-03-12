@@ -7,5 +7,6 @@ data class VaccinatedUser(
         val fullName: String,
         val nric: String,
         val email: String,
-        val dateOfVaccine: Timestamp
+        val dateOfVaccine: Timestamp,
+        val password: String
 ): Serializable
