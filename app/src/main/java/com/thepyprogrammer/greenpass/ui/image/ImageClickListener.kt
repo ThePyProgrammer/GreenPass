@@ -9,7 +9,8 @@ class ImageClickListener(val context: Context?) : View.OnClickListener {
     constructor(fragment: Fragment) : this(fragment.context)
 
     override fun onClick(v: View?) {
-        val intent = Intent(context, ImageDetailsActivity::class.java)
-        context?.startActivity(intent)
+        Intent(context, ImageDetailsActivity::class.java).also {
+            context?.startActivity(it)
+        }
     }
 }
