@@ -76,7 +76,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/datePlaceholder"
-                android:textSize="60sp"
+                android:textSize="50sp"
                 android:textColor="?attr/fullscreenTextColor"
                 android:gravity="center"
                 android:textStyle="bold"
