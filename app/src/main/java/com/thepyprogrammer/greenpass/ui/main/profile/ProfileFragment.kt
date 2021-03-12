@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionInflater
@@ -18,26 +17,18 @@ import com.thepyprogrammer.greenpass.ui.main.ProfileViewModel
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.File
-import java.sql.Time
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ProfileFragment : Fragment() {
-
     var circleImageView: CircleImageView? = null
     var imageInfoFile: File? = null
     lateinit var nameTextView: TextView
-    lateinit var NRICTextView: TextView
+    private lateinit var NRICTextView: TextView
     lateinit var emailTextView: TextView
     lateinit var dateTextView: TextView
     lateinit var button: Button
     private lateinit var viewModel: ProfileViewModel
-
-
-    companion object {
-        fun newInstance() = ProfileFragment()
-    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -99,16 +90,16 @@ class ProfileFragment : Fragment() {
         }
         val vacinatedDateObserver = Observer<Date> { newDate ->
             // Update the UI, in this case, a TextView.
-            var format = SimpleDateFormat("dd/MM/yyy")
+            val format = SimpleDateFormat("dd/MM/yyy")
             dateTextView.text = format.format(newDate)
         }
-        viewModel.pName.observe(getViewLifecycleOwner(), nameObserver)
-        viewModel.email.observe(getViewLifecycleOwner(), emailObserver)
-        viewModel.NRIC.observe(getViewLifecycleOwner(), NRICObserver)
-        viewModel.date.observe(getViewLifecycleOwner(), vacinatedDateObserver)
+        viewModel.pName.observe(viewLifecycleOwner, nameObserver)
+        viewModel.email.observe(viewLifecycleOwner, emailObserver)
+        viewModel.NRIC.observe(viewLifecycleOwner, NRICObserver)
+        viewModel.date.observe(viewLifecycleOwner, vacinatedDateObserver)
     }
 
-    fun readData(): String {
+    private fun readData(): String {
         if (!imageInfoFile!!.exists()) {
             return ""
         }
@@ -123,9 +114,9 @@ class ProfileFragment : Fragment() {
         return string.toString()
     }
 
-    fun loadImage() {
-        var string: String = readData()
-        if (!string.isEmpty()) {
+    private fun loadImage() {
+        val string: String = readData()
+        if (string.isNotEmpty()) {
             imageView!!.setImageURI(Uri.parse(readData()))
         } else {
             imageView!!.setImageResource(R.drawable.edden_face)
