@@ -41,7 +41,7 @@ import java.util.*
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     var shakeToOpen = true
-    private var imageView: CircleImageView? = null
+    private lateinit var imageView: CircleImageView
     private var imageInfoFile: File? = null
 
     lateinit var nameTextView: TextView
@@ -237,8 +237,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     private fun loadImage() {
         val string: String = readData()
         if (string.isNotEmpty())
-            imageView!!.setImageURI(Uri.parse(readData()))
+            imageView.setImageURI(Uri.parse(readData()))
         else
-            imageView!!.setImageResource(R.drawable.face)
+            imageView.setImageResource(R.drawable.face)
     }
 }
