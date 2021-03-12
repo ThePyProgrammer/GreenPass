@@ -186,7 +186,6 @@ class ImageDetailsActivity : AppCompatActivity() {
                     // You can update this bitmap to your server
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
 
-
                     //save uri to internal storage
                     writeData(uri.toString())
 
