@@ -32,14 +32,14 @@
 
 
         <activity
-            android:name=".ui.main.profile.image.ImageDetailsActivity"
+            android:name=".ui.image.ImageDetailsActivity"
             android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/Theme.GreenPass.Intro">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.thepyprogrammer.greenpass.ui.main.MainActivity" />
         </activity>
-        <activity android:name=".ui.main.profile.image.ImagePickerActivity"
+        <activity android:name=".ui.image.ImagePickerActivity"
             android:label="@string/title_activity_profile_picture"
             android:theme="@style/Theme.GreenPass.DarkActionBar"
             android:parentActivityName=".ui.main.MainActivity">
