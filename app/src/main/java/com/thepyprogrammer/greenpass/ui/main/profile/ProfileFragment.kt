@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
-import com.thepyprogrammer.greenpass.ui.main.profile.image.ImageDetailsActivity
+import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
+import com.thepyprogrammer.greenpass.ui.image.ImageDetailsActivity
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.File
@@ -58,10 +59,7 @@ class ProfileFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         // TODO: Use the ViewModel
 
-        imageView.setOnClickListener { view ->
-            val intent = Intent(context, ImageDetailsActivity::class.java)
-            startActivity(intent)
-        }
+        imageView.setOnClickListener(ImageClickListener(context))
     }
 
     fun readData(): String {
