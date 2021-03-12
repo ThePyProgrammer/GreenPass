@@ -15,7 +15,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -40,9 +39,11 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
-
     var shakeToOpen = true
+
     private var imageView: CircleImageView? = null
+    private var imageNavMenuView: CircleImageView? = null
+
     private var imageInfoFile: File? = null
 
     lateinit var nameTextView: TextView
@@ -110,17 +111,17 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         actionBarDrawerToggle.syncState()
 
         drawerLayout.apply {
-            setViewScale(GravityCompat.START, 0.9f); //set height scale for main view (0f to 1f)
-            setViewElevation(GravityCompat.START, 20F); //set main view elevation when drawer open (dimension)
-            setViewScrimColor(GravityCompat.START, Color.TRANSPARENT); //set drawer overlay coloe (color)
-            drawerElevation = 20F; //set drawer elevation (dimension)
-            setContrastThreshold(3F); //set maximum of contrast ratio between white text and background color.
-            setRadius(GravityCompat.START, 25F);//set end container's corner radius (dimension)
+            setViewScale(GravityCompat.START, 0.9f) //set height scale for main view (0f to 1f)
+            setViewElevation(GravityCompat.START, 20F) //set main view elevation when drawer open (dimension)
+            setViewScrimColor(GravityCompat.START, Color.TRANSPARENT) //set drawer overlay coloe (color)
+            drawerElevation = 20F //set drawer elevation (dimension)
+            setContrastThreshold(3F) //set maximum of contrast ratio between white text and background color.
+            setRadius(GravityCompat.START, 25F) //set end container's corner radius (dimension)
         }
 
 
         navView.getHeaderView(0).apply {
-            findViewById<CircleImageView>(R.id.imageView).also {
+            imageNavMenuView = findViewById<CircleImageView>(R.id.imageView).also {
                 it.setOnClickListener(ImageClickListener(this@MainActivity))
             }
         }
@@ -247,9 +248,14 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     private fun loadImage() {
         val string: String = readData()
-        if (string.isNotEmpty())
+        if (string.isNotEmpty()) {
             imageView?.setImageURI(Uri.parse(readData()))
-        else
+            imageNavMenuView?.setImageURI(Uri.parse(readData()))
+        } else {
             imageView?.setImageResource(R.drawable.face)
+            imageNavMenuView?.setImageResource(R.drawable.face)
+        }
     }
+
+
 }
