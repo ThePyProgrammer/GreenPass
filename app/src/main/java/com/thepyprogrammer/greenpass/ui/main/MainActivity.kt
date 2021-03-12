@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -25,6 +26,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.infideap.drawerbehavior.AdvanceDrawerLayout
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
@@ -68,7 +70,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         FirebaseUtil.firestore?.collection("users")
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        val drawerLayout: AdvanceDrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val fab: FloatingActionButton = findViewById(R.id.fab)
         val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
@@ -105,6 +107,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
+
+        drawerLayout.setRadius(GravityCompat.START, 25F);//set end container's corner radius (dimension)
 
         navView.getHeaderView(0).apply {
             findViewById<CircleImageView>(R.id.imageView).also {
