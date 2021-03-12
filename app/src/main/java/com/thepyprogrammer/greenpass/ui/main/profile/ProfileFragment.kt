@@ -67,10 +67,10 @@ class ProfileFragment : Fragment() {
         dateTextView = view?.findViewById(R.id.date)!!
 
 
-         //testing code for viewmodel
+        //testing code for viewmodel
         button = view?.findViewById(R.id.button2)!!
 
-        button.setOnClickListener{
+        button.setOnClickListener {
             viewModel.pName.value = "This is a thing!"
         }
 
