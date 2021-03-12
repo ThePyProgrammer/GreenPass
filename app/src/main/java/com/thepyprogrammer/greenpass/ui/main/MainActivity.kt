@@ -25,10 +25,6 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
@@ -38,7 +34,6 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.File
 import java.util.*
-
 
 
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
@@ -101,11 +96,11 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         }
 
         val actionBarDrawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-            toolbar,
-            R.string.openDrawer,
-            R.string.closeDrawer
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.openDrawer,
+                R.string.closeDrawer
         ) {}
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle)
@@ -172,10 +167,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // replace "*" with icon
 
         builder.setSpan(
-            ImageSpan(this, R.drawable.ic_settings),
-            0,
-            1,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                ImageSpan(this, R.drawable.ic_settings),
+                0,
+                1,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
 
@@ -186,14 +181,14 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
 
     override fun onOptionsItemSelected(item: MenuItem) =
-        when (item.itemId) {
-            R.id.action_settings -> {
-                val navController = findNavController(R.id.nav_host_fragment)
-                navController.navigate(R.id.nav_settings)
-                true
+            when (item.itemId) {
+                R.id.action_settings -> {
+                    val navController = findNavController(R.id.nav_host_fragment)
+                    navController.navigate(R.id.nav_settings)
+                    true
+                }
+                else -> false
             }
-            else -> false
-        }
 
     private fun hideBottom(view: BottomAppBar) {
         view.clearAnimation()
@@ -213,7 +208,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     override fun hearShake() {
         val navHostFragment: Fragment? =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+                supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         val fragment = (navHostFragment?.childFragmentManager?.fragments?.get(0))!!
         if (shakeToOpen and (fragment !is PassFragment)) {
             val navController = findNavController(R.id.nav_host_fragment)
