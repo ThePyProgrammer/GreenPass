@@ -6,22 +6,25 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.thepyprogrammer.greenpass.R
-import com.thepyprogrammer.greenpass.ui.main.MainActivity
 import com.thepyprogrammer.greenpass.ui.image.ImagePickerActivity.Companion.showImagePickerOptions
 import com.thepyprogrammer.greenpass.ui.image.ImagePickerActivity.PickerOptionListener
+import com.thepyprogrammer.greenpass.ui.main.MainActivity
+import com.thepyprogrammer.greenpass.ui.main.ProfileViewModel
 import java.io.File
 import java.io.IOException
 import java.io.PrintWriter
@@ -29,19 +32,35 @@ import java.util.*
 
 
 class ImageDetailsActivity : AppCompatActivity() {
-    private var REQUEST_IMAGE = 2169
+    var REQUEST_IMAGE = 2169
     var CAMERA_PERMISSION_CODE = 6969
     var READ_EXTERNAL_STORAGE_PERMISSION_CODE = 4206
     var WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 4209
     var INTERNET_PERMISSION_CODE = 666
-    var imageButton: ImageButton? = null
+    var imageView: ImageView? = null
     var imageInfoFile: File? = null
+    val profileViewModel: ProfileViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_details)
-        imageButton = findViewById(R.id.imageDetailsImageView)
+
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.title = title
+        toolbar.inflateMenu(R.menu.image_bar_menu)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+
+
+        imageView = findViewById(R.id.imageDetailsImageView)
         imageInfoFile = File(filesDir, "profileImageURI.txt")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.image_bar_menu, menu)
+        return true
     }
 
     override fun onStart() {
@@ -50,7 +69,7 @@ class ImageDetailsActivity : AppCompatActivity() {
     }
 
     // my button click function
-    fun onProfileImageClick(view: View) {
+    fun onProfileImageClick() {
         Dexter.withActivity(this)
             .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : MultiplePermissionsListener {
@@ -60,27 +79,27 @@ class ImageDetailsActivity : AppCompatActivity() {
                     } else {
                         // TODO - handle permission denied case
                         checkPermission(
-                            Manifest.permission.CAMERA,
-                            CAMERA_PERMISSION_CODE
+                                Manifest.permission.CAMERA,
+                                CAMERA_PERMISSION_CODE
                         )
                         checkPermission(
-                            Manifest.permission.READ_EXTERNAL_STORAGE,
-                            READ_EXTERNAL_STORAGE_PERMISSION_CODE
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                READ_EXTERNAL_STORAGE_PERMISSION_CODE
                         )
                         checkPermission(
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            WRITE_EXTERNAL_STORAGE_PERMISSION_CODE
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                WRITE_EXTERNAL_STORAGE_PERMISSION_CODE
                         )
                         checkPermission(
-                            Manifest.permission.INTERNET,
-                            INTERNET_PERMISSION_CODE
+                                Manifest.permission.INTERNET,
+                                INTERNET_PERMISSION_CODE
                         )
                     }
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
-                    permissions: List<PermissionRequest?>?,
-                    token: PermissionToken
+                        permissions: List<PermissionRequest?>?,
+                        token: PermissionToken
                 ) {
                     token.continuePermissionRequest()
                 }
@@ -91,40 +110,40 @@ class ImageDetailsActivity : AppCompatActivity() {
 
         // Checking if permission is not granted
         if (ContextCompat.checkSelfPermission(
-                this,
-                permission
-            )
+                        this,
+                        permission
+                )
             == PackageManager.PERMISSION_DENIED
         ) {
             ActivityCompat
                 .requestPermissions(
-                    this, arrayOf(permission),
-                    requestCode
+                        this, arrayOf(permission),
+                        requestCode
                 )
         }
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<String?>,
+            grantResults: IntArray
     ) {
         super
             .onRequestPermissionsResult(
-                requestCode,
-                permissions,
-                grantResults
+                    requestCode,
+                    permissions,
+                    grantResults
             )
         // Checking whether user granted the permission or not.
-        if (grantResults.isNotEmpty()
+        if (grantResults.size > 0
             && grantResults[0] == PackageManager.PERMISSION_GRANTED
         ) {
             return
         } else {
             Toast.makeText(
-                this,
-                "To select an icon, these permissions are required.",
-                Toast.LENGTH_SHORT
+                    this,
+                    "To select an icon, these permissions are required.",
+                    Toast.LENGTH_SHORT
             )
                 .show()
         }
@@ -143,38 +162,36 @@ class ImageDetailsActivity : AppCompatActivity() {
     }
 
     private fun launchCameraIntent() {
-        Intent(this, ImagePickerActivity::class.java).apply {
-            putExtra(
-                    ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
-                    ImagePickerActivity.REQUEST_IMAGE_CAPTURE
-            )
+        val intent = Intent(this, ImagePickerActivity::class.java)
+        intent.putExtra(
+                ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
+                ImagePickerActivity.REQUEST_IMAGE_CAPTURE
+        )
 
-            // setting aspect ratio
-            putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
-            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
-            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
 
-            // setting maximum bitmap width and height
-            putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true)
-            putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000)
-            putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000)
-            startActivityForResult(this, REQUEST_IMAGE)
-        }
+        // setting maximum bitmap width and height
+        intent.putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true)
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000)
+        intent.putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000)
+        startActivityForResult(intent, REQUEST_IMAGE)
     }
 
     private fun launchGalleryIntent() {
-        Intent(this, ImagePickerActivity::class.java).apply {
-            putExtra(
-                    ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
-                    ImagePickerActivity.REQUEST_GALLERY_IMAGE
-            )
+        val intent = Intent(this, ImagePickerActivity::class.java)
+        intent.putExtra(
+                ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
+                ImagePickerActivity.REQUEST_GALLERY_IMAGE
+        )
 
-            // setting aspect ratio
-            putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
-            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
-            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
-            startActivityForResult(this, REQUEST_IMAGE)
-        }
+        // setting aspect ratio
+        intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
+        startActivityForResult(intent, REQUEST_IMAGE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -185,6 +202,7 @@ class ImageDetailsActivity : AppCompatActivity() {
                 try {
                     // You can update this bitmap to your server
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+
 
                     //save uri to internal storage
                     writeData(uri.toString())
@@ -200,15 +218,14 @@ class ImageDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun writeData(s: String) {
-        PrintWriter(imageInfoFile).apply {
-            println(s)
-            close()
-        }
+    fun writeData(s: String) {
+        val output = PrintWriter(imageInfoFile)
+        output.println(s)
+        output.close()
         println(s)
     }
 
-    private fun readData(): String {
+    fun readData(): String {
         if (!imageInfoFile!!.exists()) {
             return ""
         }
@@ -223,12 +240,12 @@ class ImageDetailsActivity : AppCompatActivity() {
         return string.toString()
     }
 
-    private fun loadImage() {
-        val string: String = readData()
-        if (string.isNotEmpty()) {
-            imageButton!!.setImageURI(Uri.parse(readData()))
+    fun loadImage() {
+        var string: String = readData()
+        if (!string.isEmpty()) {
+            imageView!!.setImageURI(Uri.parse(readData()))
         } else {
-            imageButton!!.setImageResource(R.drawable.edden_face)
+            imageView!!.setImageResource(R.drawable.edden_face)
         }
 
     }
@@ -242,14 +259,19 @@ class ImageDetailsActivity : AppCompatActivity() {
                 //
                 // http://developer.android.com/design/patterns/navigation.html#up-vs-back
                 val toast = Toast.makeText(
-                    applicationContext,
-                    "Moving back to Main Page",
-                    Toast.LENGTH_LONG
+                        applicationContext,
+                        "Moving back to Main Page",
+                        Toast.LENGTH_LONG
                 )
-                toast.show()
+                //toast.show()
                 navigateUpTo(Intent(this, MainActivity::class.java))
                 true
             }
+            R.id.action_edit -> {
+                onProfileImageClick()
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
 

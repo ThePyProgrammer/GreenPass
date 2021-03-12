@@ -24,9 +24,12 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
-import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
 import de.hdodenhof.circleimageview.CircleImageView
@@ -40,6 +43,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     var shakeToOpen = true
     private var imageView: CircleImageView? = null
     private var imageInfoFile: File? = null
+
+
+    private val db = Firebase.firestore
+    private lateinit var auth: FirebaseAuth
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
@@ -58,31 +65,31 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        auth = Firebase.auth
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val fab: FloatingActionButton = findViewById(R.id.fab)
         val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
         imageInfoFile = File(filesDir, "profileImageURI.txt")
-
-        FirebaseUtil.firestore?.collection("users")
 
         setSupportActionBar(toolbar)
 
         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-        ShakeDetector(this).start(sensorManager)
+        val sd = ShakeDetector(this)
+        sd.start(sensorManager)
 
+        navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-                setOf(
-                        R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
-                ), drawerLayout
+            setOf(
+                R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
+            ), drawerLayout
         )
-
-        navController = findNavController(R.id.nav_host_fragment)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
@@ -92,23 +99,23 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             toolbar,
             R.string.openDrawer,
             R.string.closeDrawer
-        ) {}
+        ) {
+
+        }
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
 
-        navView.getHeaderView(0).apply {
-            findViewById<CircleImageView>(R.id.imageView).also {
-                it.setOnClickListener(ImageClickListener(this@MainActivity))
-            }
-        }
+        val navHeader = navView.getHeaderView(0)
+        val imageView: CircleImageView? = navHeader.findViewById(R.id.imageView)
+        this.imageView = navHeader.findViewById(R.id.imageView)
+
+        imageView?.setOnClickListener(ImageClickListener(this@MainActivity))
 
 
-        findViewById<BottomNavigationView>(R.id.bottom_navigation).apply {
-            setupWithNavController(navController)
-            menu.getItem(1).isEnabled = false
-            background = null
-        }
+        bottomNavigation.setupWithNavController(navController)
+        bottomNavigation.menu.getItem(1).isEnabled = false
+        bottomNavigation.background = null
 
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -199,16 +206,18 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         while (scanner.hasNextLine())
             string.append("\n" + scanner.nextLine())
 
+
         scanner.close()
         return string.toString()
     }
 
     private fun loadImage() {
         val string: String = readData()
-        if (string.isNotEmpty())
+        if (string.isNotEmpty()) {
             imageView!!.setImageURI(Uri.parse(readData()))
-        else
-            imageView!!.setImageResource(R.drawable.face)
+        } else {
+            imageView!!.setImageResource(R.drawable.edden_face)
+        }
 
     }
 }

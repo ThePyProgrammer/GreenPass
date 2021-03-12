@@ -33,8 +33,9 @@
 
         <activity
             android:name=".ui.image.ImageDetailsActivity"
+            android:label="@string/title_activity_profile_picture"
             android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/Theme.GreenPass.Intro">
+            android:theme="@style/Theme.GreenPass.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.thepyprogrammer.greenpass.ui.main.MainActivity" />
