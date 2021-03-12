@@ -119,7 +119,7 @@ class ProfileFragment : Fragment() {
         if (string.isNotEmpty()) {
             imageView!!.setImageURI(Uri.parse(readData()))
         } else {
-            imageView!!.setImageResource(R.drawable.edden_face)
+            imageView!!.setImageResource(R.drawable.face_trans)
         }
     }
 
