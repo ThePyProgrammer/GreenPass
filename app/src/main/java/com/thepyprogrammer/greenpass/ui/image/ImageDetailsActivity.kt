@@ -246,7 +246,7 @@ class ImageDetailsActivity : AppCompatActivity() {
         if (string.isNotEmpty()) {
             imageView!!.setImageURI(Uri.parse(readData()))
         } else {
-            imageView!!.setImageResource(R.drawable.face)
+            imageView!!.setImageResource(R.drawable.face_trans)
         }
 
     }
