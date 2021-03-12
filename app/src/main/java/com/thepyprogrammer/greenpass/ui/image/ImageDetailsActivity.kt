@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -71,39 +70,39 @@ class ImageDetailsActivity : AppCompatActivity() {
     // my button click function
     private fun onProfileImageClick() {
         Dexter.withActivity(this)
-            .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            .withListener(object : MultiplePermissionsListener {
-                override fun onPermissionsChecked(report: MultiplePermissionsReport) {
-                    if (report.areAllPermissionsGranted()) {
-                        showImagePickerOptions()
-                    } else {
-                        // TODO - handle permission denied case
-                        checkPermission(
-                                Manifest.permission.CAMERA,
-                                CAMERA_PERMISSION_CODE
-                        )
-                        checkPermission(
-                                Manifest.permission.READ_EXTERNAL_STORAGE,
-                                READ_EXTERNAL_STORAGE_PERMISSION_CODE
-                        )
-                        checkPermission(
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                WRITE_EXTERNAL_STORAGE_PERMISSION_CODE
-                        )
-                        checkPermission(
-                                Manifest.permission.INTERNET,
-                                INTERNET_PERMISSION_CODE
-                        )
+                .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(object : MultiplePermissionsListener {
+                    override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                        if (report.areAllPermissionsGranted()) {
+                            showImagePickerOptions()
+                        } else {
+                            // TODO - handle permission denied case
+                            checkPermission(
+                                    Manifest.permission.CAMERA,
+                                    CAMERA_PERMISSION_CODE
+                            )
+                            checkPermission(
+                                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                                    READ_EXTERNAL_STORAGE_PERMISSION_CODE
+                            )
+                            checkPermission(
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                    WRITE_EXTERNAL_STORAGE_PERMISSION_CODE
+                            )
+                            checkPermission(
+                                    Manifest.permission.INTERNET,
+                                    INTERNET_PERMISSION_CODE
+                            )
+                        }
                     }
-                }
 
-                override fun onPermissionRationaleShouldBeShown(
-                        permissions: List<PermissionRequest?>?,
-                        token: PermissionToken
-                ) {
-                    token.continuePermissionRequest()
-                }
-            }).check()
+                    override fun onPermissionRationaleShouldBeShown(
+                            permissions: List<PermissionRequest?>?,
+                            token: PermissionToken
+                    ) {
+                        token.continuePermissionRequest()
+                    }
+                }).check()
     }
 
     fun checkPermission(permission: String, requestCode: Int) {
@@ -113,13 +112,13 @@ class ImageDetailsActivity : AppCompatActivity() {
                         this,
                         permission
                 )
-            == PackageManager.PERMISSION_DENIED
+                == PackageManager.PERMISSION_DENIED
         ) {
             ActivityCompat
-                .requestPermissions(
-                        this, arrayOf(permission),
-                        requestCode
-                )
+                    .requestPermissions(
+                            this, arrayOf(permission),
+                            requestCode
+                    )
         }
     }
 
@@ -129,14 +128,14 @@ class ImageDetailsActivity : AppCompatActivity() {
             grantResults: IntArray
     ) {
         super
-            .onRequestPermissionsResult(
-                    requestCode,
-                    permissions,
-                    grantResults
-            )
+                .onRequestPermissionsResult(
+                        requestCode,
+                        permissions,
+                        grantResults
+                )
         // Checking whether user granted the permission or not.
         if (grantResults.isNotEmpty()
-            && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED
         ) {
             return
         } else {
@@ -145,7 +144,7 @@ class ImageDetailsActivity : AppCompatActivity() {
                     "To select an icon, these permissions are required.",
                     Toast.LENGTH_SHORT
             )
-                .show()
+                    .show()
         }
     }
 
@@ -253,28 +252,28 @@ class ImageDetailsActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
-        when (item.itemId) {
-            android.R.id.home -> {
-                // This ID represents the Home or Up button. In the case of this
-                // activity, the Up button is shown. For
-                // more details, see the Navigation pattern on Android Design:
-                //
-                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-                val toast = Toast.makeText(
-                        applicationContext,
-                        "Moving back to Main Page",
-                        Toast.LENGTH_LONG
-                )
-                //toast.show()
-                navigateUpTo(Intent(this, MainActivity::class.java))
-                true
-            }
-            R.id.action_edit -> {
-                onProfileImageClick()
-                true
-            }
+            when (item.itemId) {
+                android.R.id.home -> {
+                    // This ID represents the Home or Up button. In the case of this
+                    // activity, the Up button is shown. For
+                    // more details, see the Navigation pattern on Android Design:
+                    //
+                    // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+                    val toast = Toast.makeText(
+                            applicationContext,
+                            "Moving back to Main Page",
+                            Toast.LENGTH_LONG
+                    )
+                    //toast.show()
+                    navigateUpTo(Intent(this, MainActivity::class.java))
+                    true
+                }
+                R.id.action_edit -> {
+                    onProfileImageClick()
+                    true
+                }
 
-            else -> super.onOptionsItemSelected(item)
-        }
+                else -> super.onOptionsItemSelected(item)
+            }
 
 }
