@@ -9,11 +9,14 @@ import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -38,12 +41,17 @@ import java.io.File
 import java.util.*
 
 
+
 class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     var shakeToOpen = true
     private var imageView: CircleImageView? = null
     private var imageInfoFile: File? = null
 
+    lateinit var nameTextView: TextView
+    lateinit var emailTextView: TextView
+
+    private lateinit var viewModel: ProfileViewModel
 
     private val db = Firebase.firestore
     private lateinit var auth: FirebaseAuth
@@ -135,6 +143,26 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_pass)
         }
+
+        /**
+        //todo nameTextView keeps on throwing null pointer; seems like view is currently null. Place code in the correct position to fix this
+        nameTextView = findViewById(R.id.nameicView)
+        emailTextView = findViewById(R.id.emailView)
+
+        /**View Model**/
+        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        val nameObserver = Observer<String> { newName ->
+        // Update the UI, in this case, a TextView.
+        nameTextView.text = newName
+        }
+        val emailObserver = Observer<String> { newEmail ->
+        // Update the UI, in this case, a TextView.
+        emailTextView.text = newEmail
+        }
+
+        viewModel.pName.observe(this, nameObserver)
+        viewModel.email.observe(this, emailObserver)
+         */
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

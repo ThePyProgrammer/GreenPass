@@ -8,10 +8,10 @@ class ProfileViewModel: ViewModel() {
     // TODO: Implement the ViewModel
     var image = MutableLiveData<String>()
 
-    var pName = MutableLiveData<String>()
-    var NRIC = MutableLiveData<String>()
-    var email = MutableLiveData<String>()
-    var date = MutableLiveData<Date>()
+    var pName = MutableLiveData<String>("name")
+    var NRIC = MutableLiveData<String>("IC")
+    var email = MutableLiveData<String>("email")
+    var date = MutableLiveData<Date>(Date())
 
     fun checkNRIC(NRIC_: String): Boolean {
         return NRIC_.matches(Regex("[ST]\\d{7}[A-Z]"))

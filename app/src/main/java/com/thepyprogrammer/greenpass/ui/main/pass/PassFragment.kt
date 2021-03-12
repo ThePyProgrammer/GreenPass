@@ -5,9 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.ui.main.ProfileViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.
@@ -15,6 +21,9 @@ import com.thepyprogrammer.greenpass.R
  */
 class PassFragment : Fragment() {
     private var visible: Boolean = false
+    lateinit var nameTextView: TextView
+    lateinit var dateTextView: TextView
+    private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +42,23 @@ class PassFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         visible = true
+
+        nameTextView = view?.findViewById(R.id.name)!!
+        dateTextView = view?.findViewById(R.id.date)!!
+
+        val nameObserver = Observer<String> { newName ->
+            // Update the UI, in this case, a TextView.
+            nameTextView.text = newName
+        }
+        val vacinatedDateObserver = Observer<Date> { newDate ->
+            // Update the UI, in this case, a TextView.
+            var format = SimpleDateFormat("dd/MM/yyy")
+            dateTextView.text = format.format(newDate)
+        }
+        viewModel.pName.observe(getViewLifecycleOwner(), nameObserver)
+        viewModel.date.observe(getViewLifecycleOwner(), vacinatedDateObserver)
     }
 
     override fun onResume() {

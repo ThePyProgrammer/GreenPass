@@ -38,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/namePlaceholder"
                 android:textAlignment="center"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="25sp"
@@ -54,7 +53,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/icPlaceholder"
                 android:textAlignment="center"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="25sp"
@@ -69,7 +67,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/emailPlaceholder"
                 android:textAlignment="center"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp"
@@ -96,12 +93,11 @@
 
             <TextView
                 android:id="@+id/date"
-                android:layout_width="40dp"
+                android:layout_width="80dp"
                 android:layout_height="25dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/datePlaceholder"
                 android:textAlignment="center"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp"
@@ -110,8 +106,7 @@
                 app:layout_constraintStart_toEndOf="@id/dateOfVaccine"
                 app:layout_constraintTop_toBottomOf="@id/email" />
 
-            <!--
-            for testing
+
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
@@ -124,7 +119,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.442" />
 
-             -->
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

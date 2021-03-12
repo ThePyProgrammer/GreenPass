@@ -76,12 +76,12 @@ class ProfileFragment : Fragment() {
         dateTextView = view?.findViewById(R.id.date)!!
 
 
-        /**testing code for viewmodel
-         * button = view?.findViewById(R.id.button2)!!
+         //testing code for viewmodel
+        button = view?.findViewById(R.id.button2)!!
 
         button.setOnClickListener{
-            viewModel.pName.value = viewModel.pName.value + "thing"
-        }**/
+            viewModel.pName.value = "This is a thing!"
+        }
 
         imageView.setOnClickListener(ImageClickListener(this))
 
