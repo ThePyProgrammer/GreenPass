@@ -21,8 +21,8 @@ import java.util.*
  */
 class PassFragment : Fragment() {
     private var visible: Boolean = false
-    lateinit var nameTextView: TextView
-    lateinit var dateTextView: TextView
+    private lateinit var nameTextView: TextView
+    private lateinit var dateTextView: TextView
     private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
@@ -45,8 +45,8 @@ class PassFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         visible = true
 
-        nameTextView = view?.findViewById(R.id.name)!!
-        dateTextView = view?.findViewById(R.id.date)!!
+        nameTextView = view.findViewById(R.id.name)!!
+        dateTextView = view.findViewById(R.id.date)!!
 
         val nameObserver = Observer<String> { newName ->
             // Update the UI, in this case, a TextView.
@@ -57,8 +57,8 @@ class PassFragment : Fragment() {
             var format = SimpleDateFormat("dd/MM/yyy")
             dateTextView.text = format.format(newDate)
         }
-        viewModel.pName.observe(getViewLifecycleOwner(), nameObserver)
-        viewModel.date.observe(getViewLifecycleOwner(), vacinatedDateObserver)
+        viewModel.pName.observe(viewLifecycleOwner, nameObserver)
+        viewModel.date.observe(viewLifecycleOwner, vacinatedDateObserver)
     }
 
     override fun onResume() {
