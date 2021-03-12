@@ -59,7 +59,7 @@ class ProfileFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         // TODO: Use the ViewModel
 
-        imageView.setOnClickListener(ImageClickListener(context))
+        imageView.setOnClickListener(ImageClickListener(this))
     }
 
     fun readData(): String {
