@@ -24,12 +24,11 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
 import de.hdodenhof.circleimageview.CircleImageView
@@ -45,8 +44,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     private var imageInfoFile: File? = null
 
 
-    private val db = Firebase.firestore
-    private lateinit var auth: FirebaseAuth
+    private val db = FirebaseUtil.firestore
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
@@ -65,7 +63,6 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        auth = Firebase.auth
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -205,7 +202,6 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         while (scanner.hasNextLine())
             string.append("\n" + scanner.nextLine())
 
-
         scanner.close()
         return string.toString()
     }
@@ -215,7 +211,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         if (string.isNotEmpty()) {
             imageView!!.setImageURI(Uri.parse(readData()))
         } else {
-            imageView!!.setImageResource(R.drawable.edden_face)
+            imageView!!.setImageResource(R.drawable.face)
         }
 
     }
