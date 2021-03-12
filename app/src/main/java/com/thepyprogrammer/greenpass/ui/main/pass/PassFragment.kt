@@ -54,7 +54,7 @@ class PassFragment : Fragment() {
         }
         val vacinatedDateObserver = Observer<Date> { newDate ->
             // Update the UI, in this case, a TextView.
-            var format = SimpleDateFormat("dd/MM/yyy")
+            val format = SimpleDateFormat("dd/MM/yyy")
             dateTextView.text = format.format(newDate)
         }
         viewModel.pName.observe(viewLifecycleOwner, nameObserver)
