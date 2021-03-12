@@ -10,12 +10,12 @@ class IntroActivity : MaterialIntroActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addSlide(
-            SlideFragmentBuilder()
-                .backgroundColor(R.color.fourth_slide_background)
-                .buttonsColor(R.color.fourth_slide_buttons)
-                .title("That's it")
-                .description("Would you join us?")
-                .build()
+                SlideFragmentBuilder()
+                        .backgroundColor(R.color.fourth_slide_background)
+                        .buttonsColor(R.color.fourth_slide_buttons)
+                        .title("That's it")
+                        .description("Would you join us?")
+                        .build()
         )
     }
 }
