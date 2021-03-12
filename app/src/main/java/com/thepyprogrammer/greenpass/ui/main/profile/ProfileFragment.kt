@@ -1,6 +1,5 @@
 package com.thepyprogrammer.greenpass.ui.main.profile
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,20 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
-import com.thepyprogrammer.greenpass.ui.image.ImageDetailsActivity
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.File
 import java.util.*
 
 class ProfileFragment : Fragment() {
 
-    var circleImageView: CircleImageView? = null
-    var imageInfoFile: File? = null
-
-    companion object {
-        fun newInstance() = ProfileFragment()
-    }
+    private var imageInfoFile: File? = null
 
     private lateinit var viewModel: ProfileViewModel
 
@@ -62,7 +54,7 @@ class ProfileFragment : Fragment() {
         imageView.setOnClickListener(ImageClickListener(this))
     }
 
-    fun readData(): String {
+    private fun readData(): String {
         if (!imageInfoFile!!.exists()) {
             return ""
         }
@@ -77,9 +69,9 @@ class ProfileFragment : Fragment() {
         return string.toString()
     }
 
-    fun loadImage() {
-        var string: String = readData()
-        if (!string.isEmpty()) {
+    private fun loadImage() {
+        val string: String = readData()
+        if (string.isNotEmpty()) {
             imageView!!.setImageURI(Uri.parse(readData()))
         } else {
             imageView!!.setImageResource(R.drawable.edden_face)
