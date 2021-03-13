@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
-import com.thepyprogrammer.greenpass.ui.main.ProfileViewModel
+import com.thepyprogrammer.greenpass.ui.main.MainViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,7 +23,7 @@ class PassFragment : Fragment() {
     private var visible: Boolean = false
     private lateinit var nameTextView: TextView
     private lateinit var dateTextView: TextView
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -42,7 +42,7 @@ class PassFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         visible = true
 
         nameTextView = view.findViewById(R.id.name)!!
