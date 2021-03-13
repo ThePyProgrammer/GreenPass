@@ -117,6 +117,11 @@ dependencies {
 
     implementation 'com.infideap.drawerbehavior:drawer-behavior:1.0.4'
 
+    implementation 'com.tasomaniac:emailautocompletetextview:0.2'
+    implementation 'com.tasomaniac:emailautocompletetextview-design:0.2'
+
+    implementation 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
+
     // notice that the compiler version must be the same than our gradle version
     kapt 'com.android.databinding:compiler:3.1.4'
 
