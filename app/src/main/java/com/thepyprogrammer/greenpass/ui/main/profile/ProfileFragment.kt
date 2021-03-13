@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
-import com.thepyprogrammer.greenpass.ui.main.ProfileViewModel
+import com.thepyprogrammer.greenpass.ui.main.MainViewModel
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.File
@@ -28,7 +28,7 @@ class ProfileFragment : Fragment() {
     lateinit var emailTextView: TextView
     lateinit var dateTextView: TextView
     lateinit var button: Button
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +58,7 @@ class ProfileFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
 
         nameTextView = view?.findViewById(R.id.name)!!
