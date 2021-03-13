@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     lateinit var nameTextView: TextView
     lateinit var emailTextView: TextView
 
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var viewModel: MainViewModel
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         emailTextView = findViewById(R.id.emailView)
 
         /**View Model**/
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         val nameObserver = Observer<String> { newName ->
         // Update the UI, in this case, a TextView.
         nameTextView.text = newName
