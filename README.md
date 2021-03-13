@@ -21,7 +21,7 @@ The pass is a simplified `CardView`. It contains your Name and Date of Vaccine.
 
 #### Shake
 
-You can shake the device to open the pass.
+You can actually shake the device to open the pass.
 
 
 
