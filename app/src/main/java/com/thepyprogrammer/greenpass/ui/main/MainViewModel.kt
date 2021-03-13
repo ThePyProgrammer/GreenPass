@@ -8,30 +8,24 @@ class MainViewModel : ViewModel() {
     // TODO: Implement the ViewModel
     var image = MutableLiveData<String>()
 
-    var pName = MutableLiveData<String>("name")
-    var NRIC = MutableLiveData<String>("IC")
-    var email = MutableLiveData<String>("email")
-    var date = MutableLiveData<Date>(Date())
+    var pName = MutableLiveData("name")
+    var NRIC = MutableLiveData("IC")
+    var email = MutableLiveData("email")
+    var date = MutableLiveData(Date())
 
-    fun checkNRIC(NRIC_: String): Boolean {
-        return NRIC_.matches(Regex("[ST]\\d{7}[A-Z]"))
+    fun checkNRIC(NRIC: String): Boolean {
+        return NRIC.matches(Regex("[ST]\\d{7}[A-Z]"))
     }
 
-    fun checkEmail(email_: String): Boolean {
-        return email_.matches(Regex("\\S+@\\S+"))
+    fun checkEmail(email: String): Boolean {
+        return email.matches(Regex("\\S+@\\S+"))
     }
 
-    fun getResultName(): MutableLiveData<String> {
-        return pName
-    }
+    fun getResultName() = pName
 
-    fun getResultNRIC(): MutableLiveData<String> {
-        return NRIC
-    }
+    fun getResultNRIC() = NRIC
 
-    fun getResultEmail(): MutableLiveData<String> {
-        return email
-    }
+    fun getResultEmail() = email
 
 
     /*
