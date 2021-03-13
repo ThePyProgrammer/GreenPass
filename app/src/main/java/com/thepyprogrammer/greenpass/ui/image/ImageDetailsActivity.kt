@@ -23,7 +23,7 @@ import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.image.ImagePickerActivity.Companion.showImagePickerOptions
 import com.thepyprogrammer.greenpass.ui.image.ImagePickerActivity.PickerOptionListener
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
-import com.thepyprogrammer.greenpass.ui.main.ProfileViewModel
+import com.thepyprogrammer.greenpass.ui.main.MainViewModel
 import java.io.File
 import java.io.IOException
 import java.io.PrintWriter
@@ -38,7 +38,7 @@ class ImageDetailsActivity : AppCompatActivity() {
     var INTERNET_PERMISSION_CODE = 666
     var imageView: ImageView? = null
     var imageInfoFile: File? = null
-    val profileViewModel: ProfileViewModel? = null
+    val profileViewModel: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
