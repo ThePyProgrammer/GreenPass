@@ -17,6 +17,9 @@
         android:theme="@style/Theme.GreenPass"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".ui.login.AuthActivity"
+            android:label="@string/title_activity_auth"></activity>
+        <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/Theme.GreenPass.NoActionBar">
             <intent-filter>
@@ -29,8 +32,6 @@
             android:name=".ui.intro.IntroActivity"
             android:label="@string/title_activity_profile_picture"
             android:theme="@style/Theme.GreenPass.Intro" />
-
-
         <activity
             android:name=".ui.image.ImageDetailsActivity"
             android:label="@string/title_activity_profile_picture"
@@ -40,10 +41,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.thepyprogrammer.greenpass.ui.main.MainActivity" />
         </activity>
-        <activity android:name=".ui.image.ImagePickerActivity"
+        <activity
+            android:name=".ui.image.ImagePickerActivity"
             android:label="@string/title_activity_profile_picture"
-            android:theme="@style/Theme.GreenPass.DarkActionBar"
-            android:parentActivityName=".ui.main.MainActivity">
+            android:parentActivityName=".ui.main.MainActivity"
+            android:theme="@style/Theme.GreenPass.DarkActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.thepyprogrammer.greenpass.ui.main.MainActivity" />
