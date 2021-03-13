@@ -88,8 +88,7 @@
                 <TextView
                     android:id="@+id/dateOfVaccine"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_height="25dp"
                     android:fontFamily="sans-serif-light"
                     android:text="@string/dateOfVaccinationText"
                     android:textAlignment="center"
@@ -100,7 +99,6 @@
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:layout_marginEnd="10dp"
                     android:fontFamily="sans-serif-light"
                     android:textAlignment="center"
                     android:textColor="?attr/colorOnSurface"
