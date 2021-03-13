@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.*
 
-class ProfileViewModel : ViewModel() {
+class MainViewModel : ViewModel() {
     // TODO: Implement the ViewModel
     var image = MutableLiveData<String>()
 
