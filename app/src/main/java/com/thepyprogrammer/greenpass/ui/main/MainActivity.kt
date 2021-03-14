@@ -1,5 +1,7 @@
 package com.thepyprogrammer.greenpass.ui.main
 
+import QRCodeScanner
+import android.content.Intent
 import android.graphics.Color
 import android.hardware.SensorManager
 import android.net.Uri
@@ -91,9 +93,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-                setOf(
-                        R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
-                ), drawerLayout
+            setOf(
+                R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
+            ), drawerLayout
         )
 
         navController = findNavController(R.id.nav_host_fragment).apply {
@@ -102,11 +104,11 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         }
 
         val actionBarDrawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.openDrawer,
-                R.string.closeDrawer
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.openDrawer,
+            R.string.closeDrawer
         ) {}
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle)
@@ -186,14 +188,29 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // replace "*" with icon
 
         builder.setSpan(
-                ImageSpan(this, R.drawable.ic_settings),
-                0,
-                1,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            ImageSpan(this, R.drawable.ic_settings),
+            0,
+            1,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
 
         item.title = builder
+
+
+        val itemScanner: MenuItem = menu.findItem(R.id.action_scanner)
+        val builderScanner = SpannableStringBuilder("* Scanner")
+        // replace "*" with icon
+
+        builderScanner.setSpan(
+            ImageSpan(this, R.drawable.ic_baseline_qr_code_scanner_24),
+            0,
+            1,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+
+        itemScanner.title = builderScanner
 
         return true
     }
@@ -204,6 +221,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
                 R.id.action_settings -> {
                     val navController = findNavController(R.id.nav_host_fragment)
                     navController.navigate(R.id.nav_settings)
+                    true
+                }
+                R.id.action_scanner -> {
+                    startActivity(Intent(this, QRCodeScanner::class.java))
                     true
                 }
                 else -> false

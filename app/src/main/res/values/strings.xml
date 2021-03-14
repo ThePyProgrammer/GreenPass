@@ -95,7 +95,9 @@
     <string name="sign_in_button">Sign In</string>
     <string name="action_edit">Edit</string>
     <string name="title_activity_auth">AuthActivity</string>
+    <string name="title_activity_scanner">ScannerActivity</string>
     <string name="action_login">Login</string>
     <string name="action_full_name">Full Name</string>
     <string name="action_nric">NRIC</string>
+    <string name="action_scanner">Scanner</string>
 </resources>
