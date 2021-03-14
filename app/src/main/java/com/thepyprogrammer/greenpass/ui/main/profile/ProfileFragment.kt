@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
@@ -58,7 +59,11 @@ class ProfileFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = activity?.run {
+            ViewModelProviders.of(this)[MainViewModel::class.java]
+        } ?: throw Exception("Invalid Activity")
+
+        //ViewModelProvider(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
 
         nameTextView = view?.findViewById(R.id.name)!!

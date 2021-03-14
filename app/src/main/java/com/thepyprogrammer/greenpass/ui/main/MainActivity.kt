@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -153,10 +155,11 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             navController.navigate(R.id.nav_pass)
         }
 
-        /*
-        //todo nameTextView keeps on throwing null pointer; seems like view is currently null. Place code in the correct position to fix this
-        nameTextView = findViewById(R.id.nameicView)
-        emailTextView = findViewById(R.id.emailView)
+
+        var header = navView.getHeaderView(0)
+
+        nameTextView = header.findViewById(R.id.nameicView)
+        emailTextView = header.findViewById(R.id.emailView)
 
         /**View Model**/
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -171,7 +174,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         viewModel.pName.observe(this, nameObserver)
         viewModel.email.observe(this, emailObserver)
-         */
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
