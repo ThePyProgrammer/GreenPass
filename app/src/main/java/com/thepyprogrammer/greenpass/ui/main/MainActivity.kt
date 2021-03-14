@@ -1,6 +1,5 @@
 package com.thepyprogrammer.greenpass.ui.main
 
-import QRCodeScanner
 import android.content.Intent
 import android.graphics.Color
 import android.hardware.SensorManager
@@ -36,6 +35,7 @@ import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
+import com.thepyprogrammer.greenpass.ui.scanner.QRCodeScanner
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.File
