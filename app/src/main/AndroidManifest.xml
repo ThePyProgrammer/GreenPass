@@ -17,11 +17,11 @@
         android:theme="@style/Theme.GreenPass"
         tools:ignore="GoogleAppIndexingWarning" >
         <activity
-            android:name=".ui.scanner.QRCodeScanner"
-            android:label="@string/title_activity_scanner" />
-        <activity
             android:name=".ui.auth.AuthActivity"
             android:label="@string/title_activity_auth" />
+        <activity
+            android:name=".ui.scanner.QRCodeScanner"
+            android:label="@string/title_activity_scanner" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/Theme.GreenPass.NoActionBar" >
