@@ -21,21 +21,19 @@ class MainViewModel : ViewModel() {
     fun getResultEmail() = email
 
 
-
     fun setNRIC(NRIC: String): Boolean {
-        if (Validate.checkNRIC(NRIC)){
+        if (Validate.checkNRIC(NRIC)) {
             this.NRIC.value = NRIC
         }
         return NRIC.matches(Validate.nricRegex)
     }
 
     fun setEmail(email: String): Boolean {
-        if (Validate.checkEmail(email)){
+        if (Validate.checkEmail(email)) {
             this.email.value = email
         }
         return email.matches(Validate.emailRegex)
     }
-
 
 
 }
