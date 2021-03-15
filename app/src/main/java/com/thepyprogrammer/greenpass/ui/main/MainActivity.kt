@@ -155,8 +155,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         }
 
         fab.setOnClickListener {
-            val navController = findNavController(R.id.nav_host_fragment)
-            navController.navigate(R.id.nav_pass)
+            navigateToPass()
         }
 
 
