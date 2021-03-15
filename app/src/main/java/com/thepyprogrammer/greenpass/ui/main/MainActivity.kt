@@ -50,8 +50,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     private var imageInfoFile: File? = null
 
-    lateinit var nameTextView: TextView
-    lateinit var emailTextView: TextView
+    private lateinit var nameTextView: TextView
+    private lateinit var emailTextView: TextView
 
     private lateinit var viewModel: MainViewModel
 
@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         }
 
 
-        var header = navView.getHeaderView(0)
+        val header = navView.getHeaderView(0)
 
         nameTextView = header.findViewById(R.id.nameicView)
         emailTextView = header.findViewById(R.id.emailView)
