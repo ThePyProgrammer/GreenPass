@@ -1,9 +1,6 @@
 package com.thepyprogrammer.greenpass.ui.auth
 
-import android.app.Activity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,21 +15,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.thepyprogrammer.greenpass.R
 
-fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-    this.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(editable: Editable?) {
-            afterTextChanged.invoke(editable.toString())
-        }
 
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+class LoginFragment : Fragment() {
 
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-    })
-}
-
-class LoginFragment: Fragment() {
-
-    private lateinit var loginViewModel: LoginViewModel
+    private lateinit var authViewModel: AuthViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -46,10 +32,10 @@ class LoginFragment: Fragment() {
         val login = root.findViewById<Button>(R.id.login)
         val loading = root.findViewById<ProgressBar>(R.id.loading)
 
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-                .get(LoginViewModel::class.java)
+        authViewModel = ViewModelProvider(this, LoginViewModelFactory())
+                .get(AuthViewModel::class.java)
 
-        loginViewModel.loginFormState.observe(viewLifecycleOwner, Observer {
+        authViewModel.loginFormState.observe(viewLifecycleOwner, Observer {
             val loginState = it ?: return@Observer
 
             // disable login button unless both username / password is valid
@@ -63,7 +49,7 @@ class LoginFragment: Fragment() {
             }
         })
 
-        loginViewModel.loginResult.observe(viewLifecycleOwner, Observer {
+        authViewModel.loginResult.observe(viewLifecycleOwner, Observer {
             val loginResult = it ?: return@Observer
 
             loading.visibility = View.GONE
@@ -77,7 +63,7 @@ class LoginFragment: Fragment() {
         })
 
         username.afterTextChanged {
-            loginViewModel.loginDataChanged(
+            authViewModel.loginDataChanged(
                     username.text.toString(),
                     password.text.toString()
             )
@@ -85,7 +71,7 @@ class LoginFragment: Fragment() {
 
         password.apply {
             afterTextChanged {
-                loginViewModel.loginDataChanged(
+                authViewModel.loginDataChanged(
                         username.text.toString(),
                         password.text.toString()
                 )
@@ -94,7 +80,7 @@ class LoginFragment: Fragment() {
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
-                        loginViewModel.login(
+                        authViewModel.login(
                                 username.text.toString(),
                                 password.text.toString()
                         )
@@ -104,7 +90,7 @@ class LoginFragment: Fragment() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+                authViewModel.login(username.text.toString(), password.text.toString())
             }
         }
         return root
