@@ -213,9 +213,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     override fun onOptionsItemSelected(item: MenuItem) =
             when (item.itemId) {
-                R.id.action_settings -> {
-                    navigateToSettings()
-                }
+                R.id.action_settings -> navigateToSettings()
+
                 R.id.action_scanner -> {
                     startActivity(Intent(this, QRCodeScanner::class.java))
                     true
