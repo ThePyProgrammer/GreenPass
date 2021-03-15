@@ -34,7 +34,7 @@ class RegisterFragment : Fragment() {
         val nric = root.findViewById<EditText>(R.id.nricInput)
         val password = root.findViewById<EditText>(R.id.passwordInput)
         val dateSelector = root.findViewById<Button>(R.id.dateSelector)
-        val login = root.findViewById<Button>(R.id.login)
+        val register = root.findViewById<Button>(R.id.register)
         val loading = root.findViewById<ProgressBar>(R.id.loading)
 
         dateSelector.setOnClickListener {
@@ -46,7 +46,7 @@ class RegisterFragment : Fragment() {
 
                         }, viewModel.date.value!!.toDate().year, viewModel.date.value!!.toDate().month - 1, viewModel.date.value!!.toDate().day)
             }
-            datePickerDialog?.datePicker?.minDate = System.currentTimeMillis() - 1000
+            datePickerDialog?.datePicker?.maxDate = System.currentTimeMillis() - 1000
             datePickerDialog?.show()
         }
 
@@ -87,9 +87,9 @@ class RegisterFragment : Fragment() {
             viewModel.password.value = it
         }
 
-        login.setOnClickListener {
+        register.setOnClickListener {
             loading.visibility = View.VISIBLE
-            val result = viewModel.login()
+            val result = viewModel.register()
             if (result is Result.Success) {
                 val user = result.data
                 FirebaseUtil.user = user
