@@ -170,15 +170,15 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             val arr = nameTextView.text.split("@")
             nameTextView.text = "${newName}@${arr[1]}"
         }
-        val emailObserver = Observer<String> { newEmail -> emailTextView.text = newEmail }
         val nricObserver = Observer<String> { newNric ->
             val arr = nameTextView.text.split("@")
             nameTextView.text = "${arr[0]}@${newNric}"
         }
+        val emailObserver = Observer<String> { newEmail -> emailTextView.text = newEmail }
 
         viewModel.pName.observe(this, nameObserver)
-        viewModel.email.observe(this, emailObserver)
         viewModel.NRIC.observe(this, nricObserver)
+        viewModel.email.observe(this, emailObserver)
 
     }
 
