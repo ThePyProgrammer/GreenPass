@@ -34,10 +34,6 @@ class LoginFragment: Fragment() {
 
     private lateinit var loginViewModel: LoginViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -45,7 +41,7 @@ class LoginFragment: Fragment() {
         val root = inflater.inflate(R.layout.fragment_login, container, false)
 
 
-        val username = root.findViewById<EditText>(R.id.nricInput) //   quickFix
+        val username = root.findViewById<EditText>(R.id.nricInput)
         val password = root.findViewById<EditText>(R.id.password)
         val login = root.findViewById<Button>(R.id.login)
         val loading = root.findViewById<ProgressBar>(R.id.loading)
