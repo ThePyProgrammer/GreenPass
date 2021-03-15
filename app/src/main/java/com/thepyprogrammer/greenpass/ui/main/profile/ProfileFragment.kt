@@ -67,7 +67,6 @@ class ProfileFragment : Fragment() {
 
         nameTextView = view?.findViewById(R.id.name)!!
         NRICTextView = view?.findViewById(R.id.nric)!!
-        emailTextView = view?.findViewById(R.id.email)!!
         dateTextView = view?.findViewById(R.id.date)!!
 
 
@@ -84,10 +83,6 @@ class ProfileFragment : Fragment() {
             // Update the UI, in this case, a TextView.
             nameTextView.text = newName
         }
-        val emailObserver = Observer<String> { newEmail ->
-            // Update the UI, in this case, a TextView.
-            emailTextView.text = newEmail
-        }
         val NRICObserver = Observer<String> { newNRIC ->
             // Update the UI, in this case, a TextView.
             NRICTextView.text = newNRIC
@@ -98,7 +93,6 @@ class ProfileFragment : Fragment() {
             dateTextView.text = format.format(newDate)
         }
         viewModel.pName.observe(viewLifecycleOwner, nameObserver)
-        viewModel.email.observe(viewLifecycleOwner, emailObserver)
         viewModel.NRIC.observe(viewLifecycleOwner, NRICObserver)
         viewModel.date.observe(viewLifecycleOwner, vacinatedDateObserver)
     }
