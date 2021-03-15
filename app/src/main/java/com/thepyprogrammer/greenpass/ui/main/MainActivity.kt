@@ -35,6 +35,8 @@ import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
+import com.thepyprogrammer.greenpass.ui.main.profile.ProfileFragment
+import com.thepyprogrammer.greenpass.ui.main.settings.SettingsFragment
 import com.thepyprogrammer.greenpass.ui.scanner.QRCodeScanner
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -219,9 +221,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
     override fun onOptionsItemSelected(item: MenuItem) =
             when (item.itemId) {
                 R.id.action_settings -> {
-                    val navController = findNavController(R.id.nav_host_fragment)
-                    navController.navigate(R.id.nav_settings)
-                    true
+                    navigateToSettings()
                 }
                 R.id.action_scanner -> {
                     startActivity(Intent(this, QRCodeScanner::class.java))
@@ -246,14 +246,37 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun hearShake() {
-        val navHostFragment: Fragment? =
-                supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-        val fragment = (navHostFragment?.childFragmentManager?.fragments?.get(0))!!
-        if (shakeToOpen and (fragment !is PassFragment)) {
+    private val currentFragment: Fragment
+        get() = (
+                supportFragmentManager
+                        .findFragmentById(R.id.nav_host_fragment)?.childFragmentManager?.fragments?.get(0)
+                )!!
+
+    private fun navigateToProfile() =
+        if ((currentFragment !is ProfileFragment)) {
+            val navController = findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.nav_profile)
+            true
+        } else false
+
+    private fun navigateToPass() =
+        if ((currentFragment !is PassFragment)) {
             val navController = findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.nav_pass)
+            true
+        } else false
 
+    private fun navigateToSettings() =
+        if ((currentFragment !is SettingsFragment)) {
+            val navController = findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.nav_settings)
+            true
+        } else false
+
+
+    override fun hearShake() {
+        if (shakeToOpen) {
+            navigateToPass()
         }
     }
 
