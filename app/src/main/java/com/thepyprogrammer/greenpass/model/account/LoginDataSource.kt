@@ -12,13 +12,13 @@ class LoginDataSource {
     fun login(nric: String, password: String): Result<VaccinatedUser> {
         return try {
             var data: Map<String?, Any?>? = null
-            var success = true;
+            var success = true
             var e: Exception = Exception()
             FirebaseUtil.userCollection()?.document(nric)?.get()
                     ?.addOnSuccessListener {
                         data = it?.data
                     }?.addOnFailureListener {
-                        success = false;
+                        success = false
                         e = it
                     }
 
