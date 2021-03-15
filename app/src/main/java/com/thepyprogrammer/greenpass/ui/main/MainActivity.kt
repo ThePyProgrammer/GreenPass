@@ -166,14 +166,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         /**View Model**/
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        val nameObserver = Observer<String> { newName ->
-        // Update the UI, in this case, a TextView.
-        nameTextView.text = newName
-        }
-        val emailObserver = Observer<String> { newEmail ->
-        // Update the UI, in this case, a TextView.
-        emailTextView.text = newEmail
-        }
+        val nameObserver = Observer<String> { newName -> nameTextView.text = newName }
+        val emailObserver = Observer<String> { newEmail -> emailTextView.text = newEmail }
 
         viewModel.pName.observe(this, nameObserver)
         viewModel.email.observe(this, emailObserver)
