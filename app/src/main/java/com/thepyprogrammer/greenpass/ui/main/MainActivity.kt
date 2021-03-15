@@ -95,9 +95,9 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
-            ), drawerLayout
+                setOf(
+                        R.id.nav_profile, R.id.nav_pass, R.id.nav_settings
+                ), drawerLayout
         )
 
         navController = findNavController(R.id.nav_host_fragment).apply {
@@ -106,11 +106,11 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         }
 
         val actionBarDrawerToggle: ActionBarDrawerToggle = object : ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-            toolbar,
-            R.string.openDrawer,
-            R.string.closeDrawer
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.openDrawer,
+                R.string.closeDrawer
         ) {}
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle)
@@ -245,25 +245,25 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
                 )!!
 
     private fun navigateToProfile() =
-        if ((currentFragment !is ProfileFragment)) {
-            val navController = findNavController(R.id.nav_host_fragment)
-            navController.navigate(R.id.nav_profile)
-            true
-        } else false
+            if ((currentFragment !is ProfileFragment)) {
+                val navController = findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_profile)
+                true
+            } else false
 
     private fun navigateToPass() =
-        if ((currentFragment !is PassFragment)) {
-            val navController = findNavController(R.id.nav_host_fragment)
-            navController.navigate(R.id.nav_pass)
-            true
-        } else false
+            if ((currentFragment !is PassFragment)) {
+                val navController = findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_pass)
+                true
+            } else false
 
     private fun navigateToSettings() =
-        if ((currentFragment !is SettingsFragment)) {
-            val navController = findNavController(R.id.nav_host_fragment)
-            navController.navigate(R.id.nav_settings)
-            true
-        } else false
+            if ((currentFragment !is SettingsFragment)) {
+                val navController = findNavController(R.id.nav_host_fragment)
+                navController.navigate(R.id.nav_settings)
+                true
+            } else false
 
 
     override fun hearShake() {
