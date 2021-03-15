@@ -33,6 +33,7 @@ import com.infideap.drawerbehavior.AdvanceDrawerLayout
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
+import com.thepyprogrammer.greenpass.ui.auth.AuthViewModel
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
 import com.thepyprogrammer.greenpass.ui.main.profile.ProfileFragment
@@ -52,8 +53,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     private var imageInfoFile: File? = null
 
-    private lateinit var nameTextView: TextView
-    private lateinit var emailTextView: TextView
+    private lateinit var nameView: TextView
+    private lateinit var nricView: TextView
 
     private lateinit var viewModel: MainViewModel
 
@@ -161,24 +162,20 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         val header = navView.getHeaderView(0)
 
-        nameTextView = header.findViewById(R.id.nameicView)
-        emailTextView = header.findViewById(R.id.emailView)
+        nameView = header.findViewById(R.id.nameView)
+        nricView = header.findViewById(R.id.nricView)
 
         /**View Model**/
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         val nameObserver = Observer<String> { newName ->
-            val arr = nameTextView.text.split("@")
-            nameTextView.text = "${newName}@${arr[1]}"
+            nameView.text = newName
         }
         val nricObserver = Observer<String> { newNric ->
-            val arr = nameTextView.text.split("@")
-            nameTextView.text = "${arr[0]}@${newNric}"
+            nricView.text = newNric
         }
-        val emailObserver = Observer<String> { newEmail -> emailTextView.text = newEmail }
 
         viewModel.pName.observe(this, nameObserver)
         viewModel.NRIC.observe(this, nricObserver)
-        viewModel.email.observe(this, emailObserver)
 
     }
 
