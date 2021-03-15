@@ -1,12 +1,13 @@
 package com.thepyprogrammer.greenpass.model
 
 import android.util.Patterns
+import java.text.SimpleDateFormat
 
-object Validate {
+object Util {
     val nricRegex = Regex("[STFG]\\d{7}[A-Z]")
-    val emailRegex = Patterns.EMAIL_ADDRESS.toRegex()
+    val format = SimpleDateFormat("dd/MM/yyyy")
 
     fun checkNRIC(NRIC: String) = NRIC.matches(nricRegex)
 
-    fun checkEmail(email: String) = email.matches(emailRegex)
+
 }
