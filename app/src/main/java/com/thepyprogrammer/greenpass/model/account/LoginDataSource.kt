@@ -1,6 +1,7 @@
 package com.thepyprogrammer.greenpass.model.account
 
 import com.google.firebase.Timestamp
+import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import java.io.IOException
 
 /**
@@ -8,11 +9,37 @@ import java.io.IOException
  */
 class LoginDataSource {
 
-    fun login(fullName: String, email: String, password: String): Result<VaccinatedUser> {
+    fun login(nric: String, password: String): Result<VaccinatedUser> {
         return try {
-            // TODO: handle loggedInUser authentication
-            val fakeUser = VaccinatedUser(java.util.UUID.randomUUID().toString(), fullName, email, Timestamp.now(), password)
-            Result.Success(fakeUser)
+            var data: Map<String?, Any?>? = null
+            var success = true;
+            var e: Exception = Exception()
+            FirebaseUtil.userCollection()?.document(nric)?.get()
+                    ?.addOnSuccessListener {
+                        data = it?.data
+                    }?.addOnFailureListener {
+                        success = false;
+                        e = it
+                    }
+
+            if (!success) {
+                return Result.Error(e)
+            } else {
+
+                return if (data != null) {
+                    if ((data!!["password"] as String) == password) {
+                        val fullName = data!!["fullName"] as String
+                        val user = VaccinatedUser(nric, fullName, data!!["dateOfVaccine"] as Timestamp, password)
+                        Result.Success(user)
+                    } else {
+                        Result.Error(Exception("It seems you don't exist."))
+                    }
+
+                } else {
+                    return Result.Error(Exception("It seems you don't exist."))
+                }
+            }
+
         } catch (e: Throwable) {
             Result.Error(IOException("Error logging in", e))
         }
