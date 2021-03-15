@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import com.google.firebase.Timestamp
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.model.Util.format
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -19,11 +20,6 @@ import java.util.*
 
 class RegisterFragment : Fragment() {
     private var dateSelected: Timestamp = Timestamp.now()
-
-    companion object {
-        val format = SimpleDateFormat("dd/MM/yyyy")
-    }
-
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
