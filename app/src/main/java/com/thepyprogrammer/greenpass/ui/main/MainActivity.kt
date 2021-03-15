@@ -166,11 +166,19 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         /**View Model**/
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        val nameObserver = Observer<String> { newName -> nameTextView.text = newName }
+        val nameObserver = Observer<String> { newName ->
+            val arr = nameTextView.text.split("@")
+            nameTextView.text = "${newName}@${arr[1]}"
+        }
         val emailObserver = Observer<String> { newEmail -> emailTextView.text = newEmail }
+        val nricObserver = Observer<String> { newNric ->
+            val arr = nameTextView.text.split("@")
+            nameTextView.text = "${arr[0]}@${newNric}"
+        }
 
         viewModel.pName.observe(this, nameObserver)
         viewModel.email.observe(this, emailObserver)
+        viewModel.NRIC.observe(this, nricObserver)
 
     }
 
