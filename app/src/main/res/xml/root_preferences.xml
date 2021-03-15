@@ -14,7 +14,7 @@
         <SwitchPreferenceCompat
             app:key="theme"
             app:defaultValue="false"
-            app:title="Dark Theme" />
+            app:title="Dark Theme (Beta)" />
 
     </PreferenceCategory>
 
