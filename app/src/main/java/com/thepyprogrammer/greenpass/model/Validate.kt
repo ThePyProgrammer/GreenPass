@@ -1,6 +1,6 @@
 package com.thepyprogrammer.greenpass.model
 
-import android.util.Patterns;
+import android.util.Patterns
 
 object Validate {
     val nricRegex = Regex("[STFG]\\d{7}[A-Z]")
