@@ -102,4 +102,5 @@
     <string name="action_scanner">Scanner</string>
     <string name="name_ic_placeholder">name@ic</string>
     <string name="action_date">Select Date</string>
+    <string name="action_register">Register</string>
 </resources>
