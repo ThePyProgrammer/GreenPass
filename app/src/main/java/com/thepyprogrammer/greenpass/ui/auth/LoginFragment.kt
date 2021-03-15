@@ -1,6 +1,7 @@
 package com.thepyprogrammer.greenpass.ui.auth
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +11,14 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.thepyprogrammer.greenpass.R
 
 
 class LoginFragment : Fragment() {
 
-    private lateinit var authViewModel: LoginViewModel
+    private lateinit var viewModel: AuthViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -24,11 +27,26 @@ class LoginFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_login, container, false)
 
 
-        val username = root.findViewById<EditText>(R.id.nricInput)
+        val nric = root.findViewById<EditText>(R.id.nricInput)
         val password = root.findViewById<EditText>(R.id.passwordInput)
         val login = root.findViewById<Button>(R.id.login)
         val loading = root.findViewById<ProgressBar>(R.id.loading)
 
+        /**View Model**/
+        viewModel = activity?.let { ViewModelProvider(it).get(AuthViewModel::class.java) }!!
+
+        nric.afterTextChanged {
+            viewModel.NRIC.value = it
+        }
+
+        password.afterTextChanged {
+            viewModel.password.value = it
+        }
+
+        login.setOnClickListener {
+            loading.visibility = View.VISIBLE
+            viewModel.login()
+        }
 
 
 
