@@ -13,5 +13,6 @@ object FirebaseUtil {
             if (FIRESTORE == null) FIRESTORE = Firebase.firestore
             return FIRESTORE
         }
+
     fun userCollection() = firestore?.collection("users")
 }
