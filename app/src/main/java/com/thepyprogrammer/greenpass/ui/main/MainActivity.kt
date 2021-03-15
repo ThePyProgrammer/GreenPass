@@ -178,7 +178,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         viewModel.pName.value = FirebaseUtil.user?.fullName
         viewModel.NRIC.value = FirebaseUtil.user?.nric
         viewModel.date.value = FirebaseUtil.user?.dateOfVaccine?.toDate()
-        
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu) = run { // Inflate the menu; this adds items to the action bar if it is present.
