@@ -6,7 +6,6 @@ import com.google.firebase.ktx.Firebase
 
 object FirebaseUtil {
     private var FIRESTORE: FirebaseFirestore? = null
-    private var uid = ""
 
     // Connect to the Cloud Firestore
     val firestore: FirebaseFirestore?
