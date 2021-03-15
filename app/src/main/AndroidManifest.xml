@@ -18,18 +18,19 @@
         tools:ignore="GoogleAppIndexingWarning" >
         <activity
             android:name=".ui.auth.AuthActivity"
-            android:label="@string/title_activity_auth" />
+            android:label="@string/title_activity_auth">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.scanner.QRCodeScanner"
             android:label="@string/title_activity_scanner" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/Theme.GreenPass.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.intro.IntroActivity"
