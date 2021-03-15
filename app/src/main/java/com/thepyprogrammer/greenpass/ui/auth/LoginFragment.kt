@@ -4,21 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.thepyprogrammer.greenpass.R
 
 
 class LoginFragment : Fragment() {
 
-    private lateinit var authViewModel: AuthViewModel
+    private lateinit var authViewModel: LoginViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -28,71 +25,75 @@ class LoginFragment : Fragment() {
 
 
         val username = root.findViewById<EditText>(R.id.nricInput)
-        val password = root.findViewById<EditText>(R.id.password)
+        val password = root.findViewById<EditText>(R.id.passwordInput)
         val login = root.findViewById<Button>(R.id.login)
         val loading = root.findViewById<ProgressBar>(R.id.loading)
 
-        authViewModel = ViewModelProvider(this, LoginViewModelFactory())
-                .get(AuthViewModel::class.java)
 
-        authViewModel.loginFormState.observe(viewLifecycleOwner, Observer {
-            val loginState = it ?: return@Observer
 
-            // disable login button unless both username / password is valid
-            login.isEnabled = loginState.isDataValid
 
-            if (loginState.usernameError != null) {
-                username.error = getString(loginState.usernameError)
-            }
-            if (loginState.passwordError != null) {
-                password.error = getString(loginState.passwordError)
-            }
-        })
-
-        authViewModel.loginResult.observe(viewLifecycleOwner, Observer {
-            val loginResult = it ?: return@Observer
-
-            loading.visibility = View.GONE
-            if (loginResult.error != null) {
-                showLoginFailed(loginResult.error)
-            }
-            if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
-            }
-
-        })
-
-        username.afterTextChanged {
-            authViewModel.loginDataChanged(
-                    username.text.toString(),
-                    password.text.toString()
-            )
-        }
-
-        password.apply {
-            afterTextChanged {
-                authViewModel.loginDataChanged(
-                        username.text.toString(),
-                        password.text.toString()
-                )
-            }
-
-            setOnEditorActionListener { _, actionId, _ ->
-                when (actionId) {
-                    EditorInfo.IME_ACTION_DONE ->
-                        authViewModel.login(
-                                username.text.toString(),
-                                password.text.toString()
-                        )
-                }
-                false
-            }
-
-            login.setOnClickListener {
-                loading.visibility = View.VISIBLE
-                authViewModel.login(username.text.toString(), password.text.toString())
-            }
-        }
+//
+//        authViewModel = ViewModelProvider(this, LoginViewModelFactory())
+//                .get(LoginViewModel::class.java)
+//
+//        authViewModel.loginFormState.observe(viewLifecycleOwner, Observer {
+//            val loginState = it ?: return@Observer
+//
+//            // disable login button unless both username / password is valid
+//            login.isEnabled = loginState.isDataValid
+//
+//            if (loginState.usernameError != null) {
+//                username.error = getString(loginState.usernameError)
+//            }
+//            if (loginState.passwordError != null) {
+//                password.error = getString(loginState.passwordError)
+//            }
+//        })
+//
+//        authViewModel.loginResult.observe(viewLifecycleOwner, Observer {
+//            val loginResult = it ?: return@Observer
+//
+//            loading.visibility = View.GONE
+//            if (loginResult.error != null) {
+//                showLoginFailed(loginResult.error)
+//            }
+//            if (loginResult.success != null) {
+//                updateUiWithUser(loginResult.success)
+//            }
+//
+//        })
+//
+//        username.afterTextChanged {
+//            authViewModel.loginDataChanged(
+//                    username.text.toString(),
+//                    password.text.toString()
+//            )
+//        }
+//
+//        password.apply {
+//            afterTextChanged {
+//                authViewModel.loginDataChanged(
+//                        username.text.toString(),
+//                        password.text.toString()
+//                )
+//            }
+//
+//            setOnEditorActionListener { _, actionId, _ ->
+//                when (actionId) {
+//                    EditorInfo.IME_ACTION_DONE ->
+//                        authViewModel.login(
+//                                username.text.toString(),
+//                                password.text.toString()
+//                        )
+//                }
+//                false
+//            }
+//
+//            login.setOnClickListener {
+//                loading.visibility = View.VISIBLE
+//                authViewModel.login(username.text.toString(), password.text.toString())
+//            }
+//        }
         return root
     }
 
