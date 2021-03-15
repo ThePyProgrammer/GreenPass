@@ -9,4 +9,9 @@ data class VaccinatedUser(
         val email: String,
         val dateOfVaccine: Timestamp,
         val password: String
-): Serializable
+): Serializable {
+    companion object {
+
+    }
+
+}
