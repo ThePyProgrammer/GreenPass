@@ -6,15 +6,15 @@ import com.thepyprogrammer.greenpass.model.account.LoginDataSource
 import com.thepyprogrammer.greenpass.model.account.LoginRepository
 
 /**
- * ViewModel provider factory to instantiate LoginViewModel.
- * Required given LoginViewModel has a non-empty constructor
+ * ViewModel provider factory to instantiate AuthViewModel.
+ * Required given AuthViewModel has a non-empty constructor
  */
 class LoginViewModelFactory : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(
+        if (modelClass.isAssignableFrom(AuthViewModel::class.java)) {
+            return AuthViewModel(
                     loginRepository = LoginRepository(
                             dataSource = LoginDataSource()
                     )
