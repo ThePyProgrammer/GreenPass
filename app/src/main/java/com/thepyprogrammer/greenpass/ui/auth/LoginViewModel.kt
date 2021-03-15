@@ -9,7 +9,7 @@ import com.thepyprogrammer.greenpass.model.account.LoginRepository
 import com.thepyprogrammer.greenpass.model.account.Result
 
 
-class AuthViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
