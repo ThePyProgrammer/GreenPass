@@ -76,8 +76,6 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        FirebaseUtil.firestore?.collection("users")
-
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val drawerLayout: AdvanceDrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -177,6 +175,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         viewModel.pName.observe(this, nameObserver)
         viewModel.NRIC.observe(this, nricObserver)
 
+        viewModel.pName.value = FirebaseUtil.user?.fullName
+        viewModel.NRIC.value = FirebaseUtil.user?.nric
+        viewModel.date.value = FirebaseUtil.user?.dateOfVaccine?.toDate()
+        
     }
 
     override fun onCreateOptionsMenu(menu: Menu) = run { // Inflate the menu; this adds items to the action bar if it is present.
