@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         imageInfoFile = File(filesDir, "profileImageURI.txt")
 
-        FirebaseUtil.firestore?.collection("users")
+
 
         setSupportActionBar(toolbar)
 
