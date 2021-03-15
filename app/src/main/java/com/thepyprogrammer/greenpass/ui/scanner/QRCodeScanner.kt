@@ -1,4 +1,5 @@
 package com.thepyprogrammer.greenpass.ui.scanner
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -6,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.budiyev.android.codescanner.*
 import com.thepyprogrammer.greenpass.R
-
 
 
 class QRCodeScanner : AppCompatActivity() {
@@ -39,8 +39,8 @@ class QRCodeScanner : AppCompatActivity() {
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
             runOnUiThread {
                 Toast.makeText(
-                    this, "Camera initialization error: ${it.message}",
-                    Toast.LENGTH_LONG
+                        this, "Camera initialization error: ${it.message}",
+                        Toast.LENGTH_LONG
                 ).show()
             }
         }
