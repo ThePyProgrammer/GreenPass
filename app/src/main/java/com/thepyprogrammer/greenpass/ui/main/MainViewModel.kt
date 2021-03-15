@@ -2,6 +2,7 @@ package com.thepyprogrammer.greenpass.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.thepyprogrammer.greenpass.model.Validate
 import java.util.*
 
 class MainViewModel : ViewModel() {
@@ -13,14 +14,6 @@ class MainViewModel : ViewModel() {
     var email = MutableLiveData("email")
     var date = MutableLiveData(Date())
 
-    fun checkNRIC(NRIC: String): Boolean {
-        return NRIC.matches(Regex("[ST]\\d{7}[A-Z]"))
-    }
-
-    fun checkEmail(email: String): Boolean {
-        return email.matches(Regex("\\S+@\\S+"))
-    }
-
     fun getResultName() = pName
 
     fun getResultNRIC() = NRIC
@@ -28,21 +21,21 @@ class MainViewModel : ViewModel() {
     fun getResultEmail() = email
 
 
-    /*
-    fun setNRIC(NRIC_: String): Boolean {
-        if (NRIC_.matches(Regex("[ST]\\d{7}[A-Z]"))){
-            NRIC.value = NRIC_
+
+    fun setNRIC(NRIC: String): Boolean {
+        if (Validate.checkNRIC(NRIC)){
+            this.NRIC.value = NRIC
         }
-        return NRIC_.matches(Regex("[ST]\\d{7}[A-Z]"))
+        return NRIC.matches(Validate.nricRegex)
     }
 
-    fun setEmail(email_: String): Boolean {
-        if (email_.matches(Regex("\\S+@\\S+"))){
-            email.value = email_
+    fun setEmail(email: String): Boolean {
+        if (Validate.checkEmail(email)){
+            this.email.value = email
         }
-        return email_.matches(Regex("\\S+@\\S+"))
+        return email.matches(Validate.emailRegex)
     }
-     */
+
 
 
 }
