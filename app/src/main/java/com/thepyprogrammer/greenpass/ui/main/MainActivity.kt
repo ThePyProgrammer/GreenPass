@@ -180,40 +180,32 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
+    override fun onCreateOptionsMenu(menu: Menu) = run { // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.overflow_menu, menu)
 
-        val itemSettings: MenuItem = menu.findItem(R.id.action_settings)
-        val builderSettings = SpannableStringBuilder("* Settings")
-        // replace "*" with icon
+        menu.findItem(R.id.action_settings).apply {
+            title = SpannableStringBuilder("* Settings").also {
+                it.setSpan( // replace "*" with icon
+                        ImageSpan(this@MainActivity, R.drawable.ic_settings),
+                        0,
+                        1,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
 
-        builderSettings.setSpan(
-            ImageSpan(this, R.drawable.ic_settings),
-            0,
-            1,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
+        menu.findItem(R.id.action_scanner).apply {
+            title = SpannableStringBuilder("* Scanner").also {
+                it.setSpan( // replace "*" with icon
+                        ImageSpan(this@MainActivity, R.drawable.ic_qr_code_scanner),
+                        0,
+                        1,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
 
-
-        itemSettings.title = builderSettings
-
-
-        val itemScanner: MenuItem = menu.findItem(R.id.action_scanner)
-        val builderScanner = SpannableStringBuilder("* Scanner")
-        // replace "*" with icon
-
-        builderScanner.setSpan(
-            ImageSpan(this, R.drawable.ic_qr_code_scanner),
-            0,
-            1,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-
-
-        itemScanner.title = builderScanner
-
-        return true
+        true
     }
 
 
