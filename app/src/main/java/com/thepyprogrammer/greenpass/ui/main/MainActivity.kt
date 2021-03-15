@@ -184,11 +184,11 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.overflow_menu, menu)
 
-        val item: MenuItem = menu.findItem(R.id.action_settings)
-        val builder = SpannableStringBuilder("* Settings")
+        val itemSettings: MenuItem = menu.findItem(R.id.action_settings)
+        val builderSettings = SpannableStringBuilder("* Settings")
         // replace "*" with icon
 
-        builder.setSpan(
+        builderSettings.setSpan(
             ImageSpan(this, R.drawable.ic_settings),
             0,
             1,
@@ -196,7 +196,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         )
 
 
-        item.title = builder
+        itemSettings.title = builderSettings
 
 
         val itemScanner: MenuItem = menu.findItem(R.id.action_scanner)
@@ -204,7 +204,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         // replace "*" with icon
 
         builderScanner.setSpan(
-            ImageSpan(this, R.drawable.ic_baseline_qr_code_scanner_24),
+            ImageSpan(this, R.drawable.ic_qr_code_scanner),
             0,
             1,
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
