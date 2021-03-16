@@ -19,7 +19,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.model.Util
 import com.thepyprogrammer.greenpass.model.account.Result
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
@@ -37,10 +40,11 @@ class LoginFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_login, container, false)
 
 
-        val nric = root.findViewById<EditText>(R.id.nricInput)
-        val password = root.findViewById<EditText>(R.id.passwordInput)
+        val nric = root.findViewById<TextInputEditText>(R.id.nricInput)
+        val password = root.findViewById<TextInputEditText>(R.id.passwordInput)
         val login = root.findViewById<Button>(R.id.login)
         val loading = root.findViewById<ProgressBar>(R.id.loading)
+        val nricLayout = root.findViewById<TextInputLayout>(R.id.nricInputLayout)
 
         /**View Model**/
         viewModel = activity?.let { ViewModelProvider(it).get(AuthViewModel::class.java) }!!
@@ -55,9 +59,15 @@ class LoginFragment : Fragment() {
         viewModel.NRIC.observe(requireActivity(), nricObserver)
         viewModel.password.observe(requireActivity(), passwordObserver)
 
-//        nric.afterTextChanged {
+        nric.afterTextChanged {
 //            viewModel.NRIC.value = it
-//        }
+            if (it.length != 9)
+                nricLayout.error = "NRIC Length should be ${nricLayout.counterMaxLength}"
+            else if (!Util.checkNRIC(it))
+                nricLayout.error = "NRIC format is inaccurate"
+            else
+                nricLayout.error = null;
+        }
 //
 //        password.afterTextChanged {
 //            viewModel.password.value = it
