@@ -8,8 +8,8 @@ import com.thepyprogrammer.greenpass.model.account.VaccinatedUser
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 
 class AuthViewModel(): ViewModel() {
-    var pName = MutableLiveData("name")
-    var NRIC = MutableLiveData("IC")
+    var pName = MutableLiveData("")
+    var NRIC = MutableLiveData("")
     var date = MutableLiveData(Timestamp.now())
     var password = MutableLiveData("")
 
