@@ -30,4 +30,15 @@
         <item name="fullscreenTextColor">@color/white</item>
         <item name="colorSecondaryVariant">@color/grey_80_percent</item>
     </style>
+
+    <style name="Theme.GreenPass.DarkActionBarSameLightDark">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+
+    </style>
 </resources>

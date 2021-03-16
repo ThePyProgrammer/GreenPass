@@ -3,9 +3,11 @@ package com.thepyprogrammer.greenpass.ui.image
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -50,6 +52,8 @@ class ImageDetailsActivity : AppCompatActivity() {
         toolbar.title = title
         toolbar.inflateMenu(R.menu.image_bar_menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setTitleTextColor(Color.WHITE)
+
 
 
         imageView = findViewById(R.id.imageDetailsImageView)

@@ -753,6 +753,7 @@
     <color name="dark_blue_20_percent">#FF0F2B34</color>
     <color name="dark_blue_10_percent">#FF101E23</color>
     <color name="white_10_percent">#FFE9E9E9</color>
+    <color name="white_30_percent">#FFAAAAAA</color>
     <color name="grey_50_percent">#FF808080</color>
     <color name="grey_80_percent">#FFCCCCCC</color>
 
