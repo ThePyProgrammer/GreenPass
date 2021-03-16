@@ -23,6 +23,7 @@
         <item name="android:textColor">@android:color/white</item>
 
 
+
     </style>
 
     <style name="ThemeOverlay.GreenPass.FullscreenContainer" parent="">
@@ -40,5 +41,9 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
 
+    </style>
+
+    <style name="Theme.GreenPass.DarkActionBar.BackButton" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/white</item>
     </style>
 </resources>

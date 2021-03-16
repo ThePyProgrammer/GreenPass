@@ -22,7 +22,7 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
             app:menu="@menu/image_bar_menu"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            android:theme="@style/Theme.GreenPass.DarkActionBar.BackButton"
             />
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -33,6 +33,10 @@
 
     </style>
 
+    <style name="Theme.GreenPass.DarkActionBar.BackButton" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
     <style name="Theme.GreenPass.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.GreenPass.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
