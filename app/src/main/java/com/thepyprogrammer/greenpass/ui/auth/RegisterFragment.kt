@@ -12,8 +12,11 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Timestamp
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.model.Util
 import com.thepyprogrammer.greenpass.model.Util.format
 import com.thepyprogrammer.greenpass.model.account.Result
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
@@ -33,12 +36,13 @@ class RegisterFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_register, container, false)
 
-        val fullname = root.findViewById<EditText>(R.id.fullNameInput)
-        val nric = root.findViewById<EditText>(R.id.nricInput)
-        val password = root.findViewById<EditText>(R.id.passwordInput)
+        val fullname = root.findViewById<TextInputEditText>(R.id.fullNameInput)
+        val nric = root.findViewById<TextInputEditText>(R.id.nricInput)
+        val password = root.findViewById<TextInputEditText>(R.id.passwordInput)
         val dateSelector = root.findViewById<Button>(R.id.dateSelector)
         val register = root.findViewById<Button>(R.id.register)
         val loading = root.findViewById<ProgressBar>(R.id.loading)
+        val nricLayout = root.findViewById<TextInputLayout>(R.id.nricInputLayout)
 
         dateSelector.setOnClickListener {
             val datePickerDialog = context?.let { it1 ->
@@ -59,6 +63,8 @@ class RegisterFragment : Fragment() {
             datePickerDialog?.datePicker?.minDate = Date(120, 12, 30).toInstant().toEpochMilli()
             datePickerDialog?.show()
         }
+
+
 
         /**View Model**/
         viewModel = activity?.let { ViewModelProvider(it).get(AuthViewModel::class.java) }!!
@@ -83,6 +89,16 @@ class RegisterFragment : Fragment() {
         viewModel.NRIC.observe(requireActivity(), nricObserver)
         viewModel.password.observe(requireActivity(), passwordObserver)
         viewModel.date.observe(requireActivity(), dateObserver)
+
+        nric.afterTextChanged {
+//            viewModel.NRIC.value = it
+            if (it.length != 9)
+                nricLayout.error = "NRIC Length should be ${nricLayout.counterMaxLength}"
+            else if (!Util.checkNRIC(it))
+                nricLayout.error = "NRIC format is inaccurate"
+            else
+                nricLayout.error = null;
+        }
 
 //
 //        fullname.afterTextChanged {
