@@ -166,6 +166,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         /**View Model**/
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
+        viewModel.pName.value = FirebaseUtil.user?.fullName
+        viewModel.NRIC.value = FirebaseUtil.user?.nric
+        viewModel.date.value = FirebaseUtil.user?.dateOfVaccine?.toDate()
+
 
         val nameObserver = Observer<String> { newName ->
             nameView.text = newName
@@ -176,10 +180,6 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         viewModel.pName.observe(this, nameObserver)
         viewModel.NRIC.observe(this, nricObserver)
-
-        viewModel.pName.value = FirebaseUtil.user?.fullName
-        viewModel.NRIC.value = FirebaseUtil.user?.nric
-        viewModel.date.value = FirebaseUtil.user?.dateOfVaccine?.toDate()
 
     }
 
