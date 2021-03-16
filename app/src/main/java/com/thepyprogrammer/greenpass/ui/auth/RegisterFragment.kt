@@ -28,7 +28,7 @@ class RegisterFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_login, container, false)
+        val root = inflater.inflate(R.layout.fragment_register, container, false)
 
         val fullname = root.findViewById<EditText>(R.id.fullNameInput)
         val nric = root.findViewById<EditText>(R.id.nricInput)
@@ -74,18 +74,18 @@ class RegisterFragment : Fragment() {
         viewModel.password.observe(requireActivity(), passwordObserver)
         viewModel.date.observe(requireActivity(), dateObserver)
 
-
-        fullname.afterTextChanged {
-            viewModel.pName.value = it
-        }
-
-        nric.afterTextChanged {
-            viewModel.NRIC.value = it
-        }
-
-        password.afterTextChanged {
-            viewModel.password.value = it
-        }
+//
+//        fullname.afterTextChanged {
+//            viewModel.pName.value = it
+//        }
+//
+//        nric.afterTextChanged {
+//            viewModel.NRIC.value = it
+//        }
+//
+//        password.afterTextChanged {
+//            viewModel.password.value = it
+//        }
 
         register.setOnClickListener {
             loading.visibility = View.VISIBLE
