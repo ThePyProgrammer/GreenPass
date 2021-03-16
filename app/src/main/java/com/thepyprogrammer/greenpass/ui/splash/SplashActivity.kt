@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.ui.auth.AuthActivity
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -21,8 +22,8 @@ class SplashActivity : AppCompatActivity() {
         backgroundImage.startAnimation(slideAnimation)
 
         Handler().postDelayed({
-            val home = Intent(applicationContext, MainActivity::class.java)
-            startActivity(home)
+            val auth = Intent(applicationContext, AuthActivity::class.java)
+            startActivity(auth)
             finish()
         }, SPLASH_TIME_OUT.toLong())
     }
