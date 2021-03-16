@@ -17,8 +17,13 @@
         android:theme="@style/Theme.GreenPass"
         tools:ignore="GoogleAppIndexingWarning" >
         <activity
-            android:name=".ui.auth.AuthActivity"
-            android:label="@string/title_activity_auth">
+            android:name=".ui.auth.AuthActivity">
+        </activity>
+        <activity
+            android:name=".ui.scanner.QRCodeScanner" />
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:theme="@style/Theme.GreenPass.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,15 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.scanner.QRCodeScanner"
-            android:label="@string/title_activity_scanner" />
-        <activity
-            android:name=".ui.splash.SplashActivity"
-            android:theme="@style/Theme.GreenPass.NoActionBar" >
-        </activity>
-        <activity
             android:name=".ui.intro.IntroActivity"
-            android:label="@string/title_activity_profile_picture"
             android:theme="@style/Theme.GreenPass.Intro" />
         <activity
             android:name=".ui.image.ImageDetailsActivity"
