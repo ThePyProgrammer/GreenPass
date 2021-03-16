@@ -21,9 +21,11 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.Timestamp
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.Util
 import com.thepyprogrammer.greenpass.model.account.Result
+import com.thepyprogrammer.greenpass.model.account.VaccinatedUser
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
 import com.thepyprogrammer.greenpass.ui.scanner.QRCodeScanner
@@ -43,6 +45,7 @@ class LoginFragment : Fragment() {
         val nric = root.findViewById<TextInputEditText>(R.id.nricInput)
         val password = root.findViewById<TextInputEditText>(R.id.passwordInput)
         val login = root.findViewById<Button>(R.id.login)
+        val esc = root.findViewById<Button>(R.id.escape)
         val loading = root.findViewById<ProgressBar>(R.id.loading)
         val nricLayout = root.findViewById<TextInputLayout>(R.id.nricInputLayout)
 
@@ -74,6 +77,8 @@ class LoginFragment : Fragment() {
 //        }
 
         login.setOnClickListener {
+            viewModel.NRIC.value = nric.text.toString()
+            viewModel.password.value = password.text.toString()
             loading.visibility = View.VISIBLE
             val result = viewModel.login()
             if (result is Result.Success) {
@@ -81,6 +86,11 @@ class LoginFragment : Fragment() {
                 FirebaseUtil.user = user
                 startActivity(Intent(activity, MainActivity::class.java))
             }
+        }
+
+        esc.setOnClickListener {
+            FirebaseUtil.user = VaccinatedUser("IC", "name", Timestamp.now(), "test")
+            startActivity(Intent(activity, MainActivity::class.java))
         }
 
         return root
