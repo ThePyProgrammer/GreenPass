@@ -55,13 +55,13 @@ class LoginFragment : Fragment() {
         viewModel.NRIC.observe(requireActivity(), nricObserver)
         viewModel.password.observe(requireActivity(), passwordObserver)
 
-        nric.afterTextChanged {
-            viewModel.NRIC.value = it
-        }
-
-        password.afterTextChanged {
-            viewModel.password.value = it
-        }
+//        nric.afterTextChanged {
+//            viewModel.NRIC.value = it
+//        }
+//
+//        password.afterTextChanged {
+//            viewModel.password.value = it
+//        }
 
         login.setOnClickListener {
             loading.visibility = View.VISIBLE
