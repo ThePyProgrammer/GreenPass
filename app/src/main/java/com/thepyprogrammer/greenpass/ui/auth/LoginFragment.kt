@@ -89,7 +89,7 @@ class LoginFragment : Fragment() {
         }
 
         esc.setOnClickListener {
-            FirebaseUtil.user = VaccinatedUser("IC", "name", Timestamp.now(), "test")
+            FirebaseUtil.user = VaccinatedUser("S1234567D", "Prannay Gupta", Timestamp.now(), "helloWorld")
             startActivity(Intent(activity, MainActivity::class.java))
         }
 
