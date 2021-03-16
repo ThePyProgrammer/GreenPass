@@ -165,6 +165,8 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         /**View Model**/
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+
         val nameObserver = Observer<String> { newName ->
             nameView.text = newName
         }
