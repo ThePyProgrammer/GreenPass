@@ -18,7 +18,10 @@ import com.thepyprogrammer.greenpass.model.Util.format
 import com.thepyprogrammer.greenpass.model.account.Result
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
-import java.util.Date
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.*
+
 
 class RegisterFragment : Fragment() {
 
@@ -41,12 +44,19 @@ class RegisterFragment : Fragment() {
             val datePickerDialog = context?.let { it1 ->
                 DatePickerDialog(it1,
                         { _, year, monthOfYear, dayOfMonth ->
-                            viewModel.date.value = Timestamp(Date(year, monthOfYear + 1, dayOfMonth))
+                            viewModel.date.value = Timestamp(
+                                    Date.from(LocalDate.of(year, monthOfYear + 1, dayOfMonth)
+                                            .atStartOfDay()
+                                            .atZone(ZoneId.systemDefault())
+                                            .toInstant()
+                                    )
+                            )
                             dateSelector.text = format.format(viewModel.date.value!!.toDate())
 
                         }, viewModel.date.value!!.toDate().year, viewModel.date.value!!.toDate().month - 1, viewModel.date.value!!.toDate().day)
             }
             datePickerDialog?.datePicker?.maxDate = System.currentTimeMillis() - 1000
+            datePickerDialog?.datePicker?.minDate = Date(120, 12, 30).toInstant().toEpochMilli()
             datePickerDialog?.show()
         }
 
