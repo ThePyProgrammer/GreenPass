@@ -18,13 +18,15 @@
         tools:ignore="GoogleAppIndexingWarning" >
         <activity
             android:name=".ui.auth.AuthActivity"
-            android:theme="@style/Theme.GreenPass.NoActionBar" >
+            android:theme="@style/Theme.GreenPass.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.scanner.QRCodeScanner" />
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@style/Theme.GreenPass.NoActionBar" >
+            android:theme="@style/Theme.GreenPass.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
