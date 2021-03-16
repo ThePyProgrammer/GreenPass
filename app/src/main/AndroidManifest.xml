@@ -17,7 +17,8 @@
         android:theme="@style/Theme.GreenPass"
         tools:ignore="GoogleAppIndexingWarning" >
         <activity
-            android:name=".ui.auth.AuthActivity">
+            android:name=".ui.auth.AuthActivity"
+            android:theme="@style/Theme.GreenPass.NoActionBar" >
         </activity>
         <activity
             android:name=".ui.scanner.QRCodeScanner" />
