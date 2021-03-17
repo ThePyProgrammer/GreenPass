@@ -7,7 +7,9 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.ui.image.EditImage
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
+
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -32,6 +34,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         themePreference?.setOnPreferenceChangeListener { _: Preference, any: Any ->
             AppCompatDelegate.setDefaultNightMode(if (any as Boolean) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO)
+            true
+        }
+
+        val button: Preference? = findPreference("image")
+        button?.onPreferenceClickListener = Preference.OnPreferenceClickListener { //code for what you want it to do
+            activity?.let { it1 -> EditImage(it1, it1) }
             true
         }
     }
