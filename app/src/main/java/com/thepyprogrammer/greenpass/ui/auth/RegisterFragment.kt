@@ -148,7 +148,7 @@ class RegisterFragment : Fragment() {
                         }
                         else -> {
                             FirebaseUtil.user = viewModel.user_result.value
-                            FirebaseUtil.retrieveImage(activity)
+
                             viewModel.user_result.value?.password?.let { Log.d("TAG", it) }
                             loading.visibility = View.GONE
                             startActivity(Intent(activity, MainActivity::class.java))
