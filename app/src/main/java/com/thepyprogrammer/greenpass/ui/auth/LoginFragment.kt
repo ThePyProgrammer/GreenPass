@@ -87,7 +87,7 @@ class LoginFragment : Fragment() {
             loading.visibility = View.VISIBLE
             viewModel.login()
 
-            FirebaseUtil.retrieveImage(activity)
+            // FirebaseUtil.retrieveImage(requireActivity())
 
             startActivityForResult(Intent(activity, MainActivity::class.java).also {
                 it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
