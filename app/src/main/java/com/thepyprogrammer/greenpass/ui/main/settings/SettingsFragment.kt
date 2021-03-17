@@ -87,19 +87,4 @@ class SettingsFragment : PreferenceFragmentCompat() {
         output.close()
         println(s)
     }
-
-    private fun readData(): String {
-        if (!imageInfoFile!!.exists()) {
-            return ""
-        }
-        val scanner = Scanner(imageInfoFile)
-        val string = StringBuilder(scanner.nextLine())
-
-        while (scanner.hasNextLine())
-            string.append("\n" + scanner.nextLine())
-
-
-        scanner.close()
-        return string.toString()
-    }
 }
