@@ -83,7 +83,7 @@ class AuthViewModel(): ViewModel() {
             )
             if (pw.length >= 8) {
                 FirebaseUtil.userCollection()
-                    ?.document(nric)
+                    .document(nric)
                     ?.set(data)
                     ?.addOnSuccessListener {}
                     ?.addOnFailureListener {
@@ -111,24 +111,27 @@ class AuthViewModel(): ViewModel() {
         var data: Map<String?, Any?>? = null
         var success = true
 
-        FirebaseUtil.userCollection()?.document(nric)?.get()
+        FirebaseUtil.userCollection().document(nric)?.get()
             ?.addOnSuccessListener {
                 data = it?.data
-                if (data == null){
-                    val user = VaccinatedUser("", "", Timestamp.now(), "")
-                    user_result?.value = user
-                    Result.Error(Exception("It seems you don't exist."))
-                }
-                else if ((data!!["password"] as String) == password) {
-                    val fullName = data!!["fullName"] as String
-                    val user = VaccinatedUser(nric, fullName, data!!["dateOfVaccine"] as Timestamp, password)
-                    user_result?.value = user
-                    Log.d("TAG", "Data is Correct!")
-                } else {
-                    val user = VaccinatedUser("", "", Timestamp.now(), "")
-                    user_result?.value = user
-                    Log.d("TAG", "Data is Wrong!")
-                    Result.Error(Exception("It seems you don't exist."))
+                when {
+                    data == null -> {
+                        val user = VaccinatedUser("", "", Timestamp.now(), "")
+                        user_result?.value = user
+                        Result.Error(Exception("It seems you don't exist."))
+                    }
+                    (data!!["password"] as String) == password -> {
+                        val fullName = data!!["fullName"] as String
+                        val user = VaccinatedUser(nric, fullName, data!!["dateOfVaccine"] as Timestamp, password)
+                        user_result?.value = user
+                        Log.d("TAG", "Data is Correct!")
+                    }
+                    else -> {
+                        val user = VaccinatedUser("", "", Timestamp.now(), "")
+                        user_result?.value = user
+                        Log.d("TAG", "Data is Wrong!")
+                        Result.Error(Exception("It seems you don't exist."))
+                    }
                 }
             }?.addOnFailureListener {
                 val user = VaccinatedUser("", "", Timestamp.now(), "")
