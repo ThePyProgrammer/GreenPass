@@ -21,6 +21,7 @@ import com.thepyprogrammer.greenpass.model.Util
 import com.thepyprogrammer.greenpass.model.account.VaccinatedUser
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
+import java.util.*
 
 
 class LoginFragment : Fragment() {
@@ -49,13 +50,24 @@ class LoginFragment : Fragment() {
         loading = root.findViewById(R.id.loading)
         nricLayout = root.findViewById(R.id.nricInputLayout)
 
+        val nricObserver = Observer<String>{ newNric ->
+            nric.setText(newNric)
+        }
+
+        val passwordObserver = Observer<String> { newPassword ->
+            password.setText(newPassword)
+        }
+
+        viewModel.NRIC.observe(requireActivity(), nricObserver)
+        viewModel.password.observe(requireActivity(), passwordObserver)
+
         nric.afterTextChanged {
 //            viewModel.NRIC.value = it
             if(it.trim().isNotEmpty())
                 nricLayout.error = null
             else if (it.trim().length != 9)
                 nricLayout.error = "NRIC Length should be ${nricLayout.counterMaxLength}"
-            else if (!Util.checkNRIC(it.trim().toUpperCase()))
+            else if (!Util.checkNRIC(it.trim().toUpperCase(Locale.ROOT)))
                 nricLayout.error = "NRIC format is inaccurate"
             else
                 nricLayout.error = null
@@ -66,7 +78,7 @@ class LoginFragment : Fragment() {
 //        }
 
         login.setOnClickListener {
-            viewModel.NRIC.value = nric.text.toString().trim().toUpperCase()
+            viewModel.NRIC.value = nric.text.toString().trim().toUpperCase(Locale.ROOT)
             viewModel.password.value = password.text.toString().trim()
             loading.visibility = View.VISIBLE
             viewModel.login()
