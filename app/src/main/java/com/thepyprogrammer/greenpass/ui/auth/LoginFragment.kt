@@ -1,5 +1,6 @@
 package com.thepyprogrammer.greenpass.ui.auth
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -67,6 +68,15 @@ class LoginFragment : Fragment() {
             viewModel.password.value = password.text.toString()
             loading.visibility = View.VISIBLE
             viewModel.login()
+
+            startActivityForResult(Intent(activity, MainActivity::class.java).also {
+                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }, 0)
+
+            activity?.setResult(Activity.RESULT_OK)
+
+            //Complete and destroy login activity once successful
+            activity?.finish()
         }
 
         esc.setOnClickListener {
@@ -77,7 +87,15 @@ class LoginFragment : Fragment() {
                 "helloWorld"
             )
             loading.visibility = View.GONE
-            startActivity(Intent(activity, MainActivity::class.java))
+
+            startActivityForResult(Intent(activity, MainActivity::class.java).also {
+                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }, 0)
+
+            activity?.setResult(Activity.RESULT_OK)
+
+            //Complete and destroy login activity once successful
+            activity?.finish()
         }
 
         return root
