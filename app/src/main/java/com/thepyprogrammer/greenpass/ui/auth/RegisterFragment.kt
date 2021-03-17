@@ -99,9 +99,11 @@ class RegisterFragment : Fragment() {
 
         nric.afterTextChanged {
 //            viewModel.NRIC.value = it
-            if (it.length != 9)
+            if(it.trim().isNotEmpty())
+                nricLayout.error = null
+            else if (it.trim().length != 9)
                 nricLayout.error = "NRIC Length should be ${nricLayout.counterMaxLength}"
-            else if (!Util.checkNRIC(it))
+            else if (!Util.checkNRIC(it.trim()))
                 nricLayout.error = "NRIC format is inaccurate"
             else
                 nricLayout.error = null
