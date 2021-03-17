@@ -3,23 +3,21 @@ package com.thepyprogrammer.greenpass.ui.auth
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
 import com.thepyprogrammer.greenpass.model.account.Result
 import com.thepyprogrammer.greenpass.model.account.VaccinatedUser
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
-import java.util.*
 
 class AuthViewModel(): ViewModel() {
     var pName = MutableLiveData("")
     var NRIC = MutableLiveData("")
     var date = MutableLiveData(Timestamp.now())
     var password = MutableLiveData("")
-    var user_result = MutableLiveData<VaccinatedUser>(VaccinatedUser("", "", Timestamp(0, 0), ""))
+    var user_result = MutableLiveData(VaccinatedUser("", "", Timestamp(0, 0), ""))
 
     fun register(){
-        val fullName = pName.value!!
-        val nric = NRIC.value!!
+        val fullName = pName.value!!.trim()
+        val nric = NRIC.value!!.trim()
         val dateOfVaccine = date.value!!
         val pw = password.value!!
         var success = true
@@ -30,7 +28,7 @@ class AuthViewModel(): ViewModel() {
             "dateOfVaccine" to dateOfVaccine,
             "password" to pw
         )
-        Log.d("TAG", fullName + " " + nric + " " + pw)
+        Log.d("TAG", "$fullName $nric $pw")
         if (pw.length >= 8) {
             FirebaseUtil.userCollection()
                 ?.document(nric)
@@ -89,7 +87,7 @@ class AuthViewModel(): ViewModel() {
     }
 
     fun login(){
-        val nric = NRIC.value!!
+        val nric = NRIC.value!!.trim()
         val password = this.password.value!!
         var data: Map<String?, Any?>? = null
         var success = true
