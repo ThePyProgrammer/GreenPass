@@ -76,6 +76,7 @@ class LoginFragment : Fragment() {
                 Timestamp.now(),
                 "helloWorld"
             )
+            loading.visibility = View.GONE
             startActivity(Intent(activity, MainActivity::class.java))
         }
 
@@ -104,6 +105,7 @@ class LoginFragment : Fragment() {
                 else {
                     FirebaseUtil.user = viewModel.user_result?.value
                     Log.d("TAG", "Data is Correct second!")
+                    loading.visibility = View.GONE
                     startActivity(Intent(activity, MainActivity::class.java))
                 }
             }
