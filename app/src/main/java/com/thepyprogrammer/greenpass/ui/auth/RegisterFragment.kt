@@ -1,5 +1,6 @@
 package com.thepyprogrammer.greenpass.ui.auth
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
@@ -104,7 +105,7 @@ class RegisterFragment : Fragment() {
             else if (!Util.checkNRIC(it))
                 nricLayout.error = "NRIC format is inaccurate"
             else
-                nricLayout.error = null;
+                nricLayout.error = null
         }
 
 //
@@ -129,6 +130,7 @@ class RegisterFragment : Fragment() {
         }
 
         val resultObserver =
+<<<<<<< HEAD
             Observer<VaccinatedUser> { result ->
                 if (viewModel.user_result?.value?.password == "old"){}
                 else if (viewModel.user_result?.value?.password == ""){
@@ -144,11 +146,25 @@ class RegisterFragment : Fragment() {
                 } else {
                     FirebaseUtil.user = viewModel.user_result?.value
                     viewModel.user_result?.value?.password?.let { Log.d("TAG", it) }
+=======
+            Observer<VaccinatedUser> {
+                if (viewModel.user_result.value?.password != "") {
+                    FirebaseUtil.user = viewModel.user_result.value
+                    Log.d("TAG", "Data is Correct second!")
+>>>>>>> 7a59adf6b57131a7e4e1138367e17e0946c98576
                     loading.visibility = View.GONE
-                    startActivity(Intent(activity, MainActivity::class.java))
+
+                    startActivityForResult(Intent(activity, MainActivity::class.java).also {
+                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    }, 0)
+
+                    activity?.setResult(Activity.RESULT_OK)
+
+                    //Complete and destroy login activity once successful
+                    activity?.finish()
                 }
             }
-        viewModel.user_result?.observe(getViewLifecycleOwner(),resultObserver);
+        viewModel.user_result.observe(viewLifecycleOwner,resultObserver)
 
         return root
     }
