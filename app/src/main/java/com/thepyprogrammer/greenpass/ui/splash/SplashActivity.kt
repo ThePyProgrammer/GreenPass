@@ -7,9 +7,15 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Timestamp
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.model.Util
+import com.thepyprogrammer.greenpass.model.account.VaccinatedUser
+import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.auth.AuthActivity
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
+import java.io.File
+import java.util.*
 
 class SplashActivity : AppCompatActivity() {
 
@@ -20,6 +26,26 @@ class SplashActivity : AppCompatActivity() {
         val backgroundImage: ImageView = findViewById(R.id.splash_screen_image)
         val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.side_slide)
         backgroundImage.startAnimation(slideAnimation)
+
+        val accountDetails = File(filesDir, "accountDetails.txt")
+        if(accountDetails.exists()) {
+            val sc = Scanner(accountDetails)
+            val nric = sc.nextLine()
+            if(nric != "null") {
+                val fullName = sc.nextLine()
+                val dateOfVaccine = Timestamp(Util.format.parse(sc.nextLine()))
+                val password = sc.nextLine()
+                FirebaseUtil.user = VaccinatedUser(
+                    nric, fullName, dateOfVaccine, password
+                )
+                Handler().postDelayed({
+                    val main = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(main)
+                    finish()
+                }, SPLASH_TIME_OUT.toLong())
+                return
+            }
+        }
 
         Handler().postDelayed({
             val auth = Intent(applicationContext, AuthActivity::class.java)
