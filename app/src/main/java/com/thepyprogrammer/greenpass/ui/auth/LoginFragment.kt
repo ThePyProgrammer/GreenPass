@@ -30,7 +30,6 @@ class LoginFragment : Fragment() {
     lateinit var nric: TextInputEditText
     private lateinit var password: TextInputEditText
     private lateinit var login: Button
-    //private lateinit var esc: Button
     private lateinit var loading: ProgressBar
     private lateinit var nricLayout: TextInputLayout
 
