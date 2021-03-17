@@ -45,6 +45,8 @@ import com.thepyprogrammer.greenpass.ui.scanner.QRCodeScanner
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.File
+import java.io.FileOutputStream
+import java.io.PrintWriter
 import java.util.*
 
 
@@ -88,7 +90,12 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         imageInfoFile = File(filesDir, "profileImageURI.txt")
         FirebaseUtil.retrieveImage(this)
 
+        val accountDetails = File(filesDir, "accountDetails.txt")
+        if(!accountDetails.exists()) accountDetails.createNewFile();
 
+        val pw = PrintWriter(accountDetails)
+        pw.println(FirebaseUtil.user.toString())
+        pw.close()
 
         setSupportActionBar(toolbar)
 
