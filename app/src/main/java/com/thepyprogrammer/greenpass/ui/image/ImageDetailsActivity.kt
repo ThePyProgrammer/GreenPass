@@ -1,29 +1,18 @@
 package com.thepyprogrammer.greenpass.ui.image
 
-import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.thepyprogrammer.greenpass.R
-import com.thepyprogrammer.greenpass.ui.image.ImagePickerActivity.Companion.showImagePickerOptions
-import com.thepyprogrammer.greenpass.ui.image.ImagePickerActivity.PickerOptionListener
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
 import com.thepyprogrammer.greenpass.ui.main.MainViewModel
 import java.io.File
@@ -34,10 +23,6 @@ import java.util.*
 
 class ImageDetailsActivity : AppCompatActivity() {
     private var REQUEST_IMAGE = 2169
-    var CAMERA_PERMISSION_CODE = 6969
-    var READ_EXTERNAL_STORAGE_PERMISSION_CODE = 4206
-    var WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 4209
-    var INTERNET_PERMISSION_CODE = 666
     var imageView: ImageView? = null
     var imageInfoFile: File? = null
     val profileViewModel: MainViewModel? = null
@@ -71,60 +56,6 @@ class ImageDetailsActivity : AppCompatActivity() {
         loadImage()
     }
 
-    // my button click function
-    private fun onProfileImageClick() {
-        Dexter.withActivity(this)
-                .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .withListener(object : MultiplePermissionsListener {
-                    override fun onPermissionsChecked(report: MultiplePermissionsReport) {
-                        if (report.areAllPermissionsGranted()) {
-                            showImagePickerOptions()
-                        } else {
-                            // TODO - handle permission denied case
-                            checkPermission(
-                                    Manifest.permission.CAMERA,
-                                    CAMERA_PERMISSION_CODE
-                            )
-                            checkPermission(
-                                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    READ_EXTERNAL_STORAGE_PERMISSION_CODE
-                            )
-                            checkPermission(
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                    WRITE_EXTERNAL_STORAGE_PERMISSION_CODE
-                            )
-                            checkPermission(
-                                    Manifest.permission.INTERNET,
-                                    INTERNET_PERMISSION_CODE
-                            )
-                        }
-                    }
-
-                    override fun onPermissionRationaleShouldBeShown(
-                            permissions: List<PermissionRequest?>?,
-                            token: PermissionToken
-                    ) {
-                        token.continuePermissionRequest()
-                    }
-                }).check()
-    }
-
-    fun checkPermission(permission: String, requestCode: Int) {
-
-        // Checking if permission is not granted
-        if (ContextCompat.checkSelfPermission(
-                        this,
-                        permission
-                )
-                == PackageManager.PERMISSION_DENIED
-        ) {
-            ActivityCompat
-                    .requestPermissions(
-                            this, arrayOf(permission),
-                            requestCode
-                    )
-        }
-    }
 
     override fun onRequestPermissionsResult(
             requestCode: Int,
@@ -151,53 +82,53 @@ class ImageDetailsActivity : AppCompatActivity() {
                     .show()
         }
     }
-
-    private fun showImagePickerOptions() {
-        showImagePickerOptions(this, object : PickerOptionListener {
-            override fun onTakeCameraSelected() {
-                launchCameraIntent()
-            }
-
-            override fun onChooseGallerySelected() {
-                launchGalleryIntent()
-            }
-        })
-    }
-
-    private fun launchCameraIntent() {
-        Intent(this, ImagePickerActivity::class.java).apply {
-            putExtra(
-                    ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
-                    ImagePickerActivity.REQUEST_IMAGE_CAPTURE
-            )
-
-            // setting aspect ratio
-            putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
-            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
-            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
-
-            // setting maximum bitmap width and height
-            putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true)
-            putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000)
-            putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000)
-            startActivityForResult(this, REQUEST_IMAGE)
-        }
-    }
-
-    private fun launchGalleryIntent() {
-        Intent(this, ImagePickerActivity::class.java).apply {
-            putExtra(
-                    ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
-                    ImagePickerActivity.REQUEST_GALLERY_IMAGE
-            )
-
-            // setting aspect ratio
-            putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
-            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
-            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
-            startActivityForResult(this, REQUEST_IMAGE)
-        }
-    }
+//
+//    private fun showImagePickerOptions() {
+//        showImagePickerOptions(this, object : PickerOptionListener {
+//            override fun onTakeCameraSelected() {
+//                launchCameraIntent()
+//            }
+//
+//            override fun onChooseGallerySelected() {
+//                launchGalleryIntent()
+//            }
+//        })
+//    }
+//
+//    private fun launchCameraIntent() {
+//        Intent(this, ImagePickerActivity::class.java).apply {
+//            putExtra(
+//                    ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
+//                    ImagePickerActivity.REQUEST_IMAGE_CAPTURE
+//            )
+//
+//            // setting aspect ratio
+//            putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
+//            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
+//            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
+//
+//            // setting maximum bitmap width and height
+//            putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true)
+//            putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000)
+//            putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000)
+//            startActivityForResult(this, REQUEST_IMAGE)
+//        }
+//    }
+//
+//    private fun launchGalleryIntent() {
+//        Intent(this, ImagePickerActivity::class.java).apply {
+//            putExtra(
+//                    ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
+//                    ImagePickerActivity.REQUEST_GALLERY_IMAGE
+//            )
+//
+//            // setting aspect ratio
+//            putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
+//            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
+//            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
+//            startActivityForResult(this, REQUEST_IMAGE)
+//        }
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -206,7 +137,7 @@ class ImageDetailsActivity : AppCompatActivity() {
                 val uri: Uri? = data?.getParcelableExtra("path")
                 try {
                     // You can update this bitmap to your server
-                    val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+                    MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
 
                     //save uri to internal storage
                     writeData(uri.toString())
@@ -223,7 +154,6 @@ class ImageDetailsActivity : AppCompatActivity() {
     }
 
     private fun writeData(s: String) {
-
         val output = PrintWriter(imageInfoFile)
         output.println(s)
         output.close()
@@ -268,12 +198,12 @@ class ImageDetailsActivity : AppCompatActivity() {
                             "Moving back to Main Page",
                             Toast.LENGTH_LONG
                     )
-                    //toast.show()
+                    toast.show()
                     navigateUpTo(Intent(this, MainActivity::class.java))
                     true
                 }
                 R.id.action_edit -> {
-                    onProfileImageClick()
+                    EditImage(this, this)
                     true
                 }
 
