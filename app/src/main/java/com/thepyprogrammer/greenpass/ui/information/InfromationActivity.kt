@@ -31,14 +31,14 @@ class InfromationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_infromation)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_infromation)
-        viewModel = activity_?.run {
+        viewModel = activity_.run {
             ViewModelProviders.of(this)[MainViewModel::class.java]
         } ?: throw Exception("Invalid Activity")
         button = findViewById(R.id.button)
 
         textView = binding.textView
         binding.myViewModel = viewModel
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         button.setOnClickListener{
             finish()
@@ -47,7 +47,7 @@ class InfromationActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        binding?.invalidateAll()
+        binding.invalidateAll()
         Log.d("TAG", viewModel?.pName?.value.toString())
     }
 }
