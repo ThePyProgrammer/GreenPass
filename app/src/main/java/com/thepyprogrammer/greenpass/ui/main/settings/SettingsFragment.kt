@@ -25,6 +25,8 @@ import java.util.*
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
+    private var imageInfoFile: File? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
