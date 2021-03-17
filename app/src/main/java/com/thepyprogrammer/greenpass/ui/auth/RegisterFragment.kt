@@ -3,6 +3,7 @@ package com.thepyprogrammer.greenpass.ui.auth
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +20,13 @@ import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.Util
 import com.thepyprogrammer.greenpass.model.Util.format
 import com.thepyprogrammer.greenpass.model.account.Result
+import com.thepyprogrammer.greenpass.model.account.VaccinatedUser
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
+import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_register.*
+import kotlinx.android.synthetic.main.fragment_register.nricInput
+import kotlinx.android.synthetic.main.fragment_register.passwordInput
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
@@ -115,13 +121,22 @@ class RegisterFragment : Fragment() {
 
         register.setOnClickListener {
             loading.visibility = View.VISIBLE
-            val result = viewModel.register()
-            if (result is Result.Success) {
-                val user = result.data
-                FirebaseUtil.user = user
-                startActivity(Intent(activity, MainActivity::class.java))
-            }
+            viewModel.NRIC.value = nricInput.text.toString()
+            viewModel.pName.value = fullNameInput.text.toString()
+            viewModel.password.value = passwordInput.text.toString()
+            viewModel.register()
         }
+
+        val resultObserver =
+            Observer<VaccinatedUser> { result ->
+                if (viewModel.user_result?.value?.password == ""){}
+                else {
+                    FirebaseUtil.user = viewModel.user_result?.value
+                    Log.d("TAG", "Data is Correct second!")
+                    startActivity(Intent(activity, MainActivity::class.java))
+                }
+            }
+        viewModel.user_result?.observe(getViewLifecycleOwner(),resultObserver);
 
         return root
     }
