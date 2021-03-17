@@ -103,7 +103,7 @@ class RegisterFragment : Fragment() {
                 nricLayout.error = null
             else if (it.trim().length != 9)
                 nricLayout.error = "NRIC Length should be ${nricLayout.counterMaxLength}"
-            else if (!Util.checkNRIC(it.trim()))
+            else if (!Util.checkNRIC(it.trim().toUpperCase()))
                 nricLayout.error = "NRIC format is inaccurate"
             else
                 nricLayout.error = null
@@ -124,8 +124,8 @@ class RegisterFragment : Fragment() {
 
         register.setOnClickListener {
             loading.visibility = View.VISIBLE
-            viewModel.NRIC.value = nricInput.text.toString()
-            viewModel.pName.value = fullNameInput.text.toString()
+            viewModel.NRIC.value = nricInput.text.toString().trim().toUpperCase()
+            viewModel.pName.value = fullNameInput.text.toString().trim()
             viewModel.password.value = passwordInput.text.toString()
             viewModel.register()
         }
