@@ -12,6 +12,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Timestamp
@@ -120,11 +121,19 @@ class LoginFragment : Fragment() {
 
         val resultObserver =
             Observer<VaccinatedUser> {
-                if (viewModel.user_result.value?.password != "") {
+                if (viewModel.user_result.value?.password?.length!! >= 8) {
                     FirebaseUtil.user = viewModel.user_result.value
                     Log.d("TAG", "Data is Correct second!")
                     loading.visibility = View.GONE
                     startActivity(Intent(activity, MainActivity::class.java))
+                }
+                else{
+                    nric.setText("")
+                    password.setText("")
+                    loading.visibility = View.GONE
+                    val sb =
+                        view?.let { it1 -> Snackbar.make(it1, "Invalid ID and Password", Snackbar.LENGTH_LONG) }
+                    sb?.show()
                 }
             }
         viewModel.user_result.observe(viewLifecycleOwner,resultObserver)

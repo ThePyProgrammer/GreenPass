@@ -1,6 +1,5 @@
 package com.thepyprogrammer.greenpass.ui.auth
 
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +13,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Timestamp
@@ -106,7 +106,7 @@ class RegisterFragment : Fragment() {
             else if (!Util.checkNRIC(it.trim()))
                 nricLayout.error = "NRIC format is inaccurate"
             else
-                nricLayout.error = null
+                nricLayout.error = null;
         }
 
 //
@@ -131,23 +131,26 @@ class RegisterFragment : Fragment() {
         }
 
         val resultObserver =
-            Observer<VaccinatedUser> {
-                if (viewModel.user_result.value?.password != "") {
-                    FirebaseUtil.user = viewModel.user_result.value
-                    Log.d("TAG", "Data is Correct second!")
+            Observer<VaccinatedUser> { result ->
+                if (viewModel.user_result?.value?.password == "old"){}
+                else if (viewModel.user_result?.value?.password == ""){
                     loading.visibility = View.GONE
-
-                    startActivityForResult(Intent(activity, MainActivity::class.java).also {
-                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    }, 0)
-
-                    activity?.setResult(Activity.RESULT_OK)
-
-                    //Complete and destroy login activity once successful
-                    activity?.finish()
+                    val sb =
+                        view?.let { it1 -> Snackbar.make(it1, "NRIC Already Registered!", Snackbar.LENGTH_LONG) }
+                    sb?.show()
+                } else if (viewModel.user_result?.value?.password.equals("3")){
+                    loading.visibility = View.GONE
+                    val sb =
+                        view?.let { it1 -> Snackbar.make(it1, "Password Length Too Short!", Snackbar.LENGTH_LONG) }
+                    sb?.show()
+                } else {
+                    FirebaseUtil.user = viewModel.user_result?.value
+                    viewModel.user_result?.value?.password?.let { Log.d("TAG", it) }
+                    loading.visibility = View.GONE
+                    startActivity(Intent(activity, MainActivity::class.java))
                 }
             }
-        viewModel.user_result.observe(viewLifecycleOwner,resultObserver)
+        viewModel.user_result?.observe(getViewLifecycleOwner(),resultObserver);
 
         return root
     }
