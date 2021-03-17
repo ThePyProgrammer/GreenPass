@@ -29,7 +29,7 @@ class LoginFragment : Fragment() {
     lateinit var nric: TextInputEditText
     private lateinit var password: TextInputEditText
     private lateinit var login: Button
-    private lateinit var esc: Button
+    //private lateinit var esc: Button
     private lateinit var loading: ProgressBar
     private lateinit var nricLayout: TextInputLayout
 
@@ -45,7 +45,7 @@ class LoginFragment : Fragment() {
         nric = root.findViewById(R.id.nricInput)
         password = root.findViewById(R.id.passwordInput)
         login = root.findViewById(R.id.login)
-        esc = root.findViewById(R.id.escape)
+        //esc = root.findViewById(R.id.escape)
         loading = root.findViewById(R.id.loading)
         nricLayout = root.findViewById(R.id.nricInputLayout)
 
