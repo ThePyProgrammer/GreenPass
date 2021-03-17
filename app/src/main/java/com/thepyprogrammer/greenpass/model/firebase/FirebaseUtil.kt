@@ -9,6 +9,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.thepyprogrammer.greenpass.model.account.VaccinatedUser
 import android.net.Uri
+import com.google.firebase.storage.StorageException
 import java.io.File
 import java.io.PrintWriter
 
@@ -47,22 +48,25 @@ object FirebaseUtil {
     }
 
     fun retrieveImage(activity: Activity) {
-        val storageRef = storage.reference
-        val imageRef = storageRef.child("images/${user?.nric}.jpg")
+        try {
+            val storageRef = storage.reference
+            val imageRef = storageRef.child("images/${user?.nric}.jpg")
 
-        val localFile = File(activity.filesDir, "profile.jpg")
-        if(!localFile.exists()) localFile.createNewFile()
-        var success = false
-        imageRef.getFile(localFile).addOnSuccessListener {
-            success = true
-        }.addOnFailureListener {
-        }
-        if(success) {
-            val uri = Uri.fromFile(localFile)
-            val imageInfoFile = File(activity.filesDir, "profileImageURI.txt")
-            val output = PrintWriter(imageInfoFile)
-            output.println(uri.toString())
-            output.close()
+            val localFile = File(activity.filesDir, "profile.jpg")
+            if (!localFile.exists()) localFile.createNewFile()
+            var success = false
+            imageRef.getFile(localFile).addOnSuccessListener {
+                success = true
+            }.addOnFailureListener {
+            }
+            if (success) {
+                val uri = Uri.fromFile(localFile)
+                val imageInfoFile = File(activity.filesDir, "profileImageURI.txt")
+                val output = PrintWriter(imageInfoFile)
+                output.println(uri.toString())
+                output.close()
+            }
+        } catch (e:StorageException) {
         }
     }
 
