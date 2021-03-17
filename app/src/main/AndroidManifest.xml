@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.thepyprogrammer.greenpass" >
+    package="com.thepyprogrammer.greenpass">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -15,18 +15,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenPass"
-        tools:ignore="GoogleAppIndexingWarning" >
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.information.InfromationActivity"></activity>
         <activity
             android:name=".ui.auth.AuthActivity"
-            android:theme="@style/Theme.GreenPass.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".ui.scanner.QRCodeScanner" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GreenPass.NoActionBar"></activity>
+        <activity android:name=".ui.scanner.QRCodeScanner" />
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@style/Theme.GreenPass.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GreenPass.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,7 +39,7 @@
             android:name=".ui.image.ImageDetailsActivity"
             android:label="@string/title_activity_profile_picture"
             android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/Theme.GreenPass.NoActionBar" >
+            android:theme="@style/Theme.GreenPass.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.thepyprogrammer.greenpass.ui.main.MainActivity" />
@@ -49,7 +48,7 @@
             android:name=".ui.image.ImagePickerActivity"
             android:label="@string/title_activity_profile_picture"
             android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/Theme.GreenPass.DarkActionBar" >
+            android:theme="@style/Theme.GreenPass.DarkActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.thepyprogrammer.greenpass.ui.main.MainActivity" />
@@ -65,7 +64,7 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider" />
