@@ -4,8 +4,11 @@
         <Preference
             app:title="Set Profile Pic"
             app:key="image"
-            app:summary="Click to set your profile picture"
-            />
+            app:summary="Click to set your profile picture" />
+
+        <Preference
+            app:title="Logout"
+            app:key="logout" />
 
     </PreferenceCategory>
 
