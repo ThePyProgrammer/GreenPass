@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.model.Util
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
 import com.thepyprogrammer.greenpass.ui.main.MainViewModel
 import de.hdodenhof.circleimageview.CircleImageView
@@ -89,8 +90,9 @@ class ProfileFragment : Fragment() {
         }
         val vacinatedDateObserver = Observer<Date> { newDate ->
             // Update the UI, in this case, a TextView.
-            val format = SimpleDateFormat("dd/MM/yyy")
-            dateTextView.text = format.format(newDate)
+            if(newDate != null) {
+                dateTextView.text = Util.format.format(newDate)
+            }
         }
         viewModel.pName.observe(viewLifecycleOwner, nameObserver)
         viewModel.NRIC.observe(viewLifecycleOwner, NRICObserver)
