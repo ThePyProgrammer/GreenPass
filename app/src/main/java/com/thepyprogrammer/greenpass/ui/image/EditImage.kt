@@ -14,13 +14,6 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 
 class EditImage(val context: Context, val activity: Activity) {
-    private var REQUEST_IMAGE = 2169
-    var CAMERA_PERMISSION_CODE = 6969
-    var READ_EXTERNAL_STORAGE_PERMISSION_CODE = 4206
-    var WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 4209
-    var INTERNET_PERMISSION_CODE = 666
-
-
     // my button click function
     init {
         Dexter.withActivity(activity)
@@ -33,19 +26,19 @@ class EditImage(val context: Context, val activity: Activity) {
                             // TODO - handle permission denied case
                             checkPermission(
                                     Manifest.permission.CAMERA,
-                                    CAMERA_PERMISSION_CODE
+                                    ImageUtil.CAMERA_PERMISSION_CODE
                             )
                             checkPermission(
                                     Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    READ_EXTERNAL_STORAGE_PERMISSION_CODE
+                                    ImageUtil.READ_EXTERNAL_STORAGE_PERMISSION_CODE
                             )
                             checkPermission(
                                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                    WRITE_EXTERNAL_STORAGE_PERMISSION_CODE
+                                    ImageUtil.WRITE_EXTERNAL_STORAGE_PERMISSION_CODE
                             )
                             checkPermission(
                                     Manifest.permission.INTERNET,
-                                    INTERNET_PERMISSION_CODE
+                                    ImageUtil.INTERNET_PERMISSION_CODE
                             )
                         }
                     }
@@ -104,7 +97,7 @@ class EditImage(val context: Context, val activity: Activity) {
             putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true)
             putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000)
             putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000)
-            activity.startActivityForResult(this, REQUEST_IMAGE)
+            activity.startActivityForResult(this, ImageUtil.REQUEST_IMAGE)
         }
     }
 
@@ -119,7 +112,7 @@ class EditImage(val context: Context, val activity: Activity) {
             putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
             putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
             putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
-            activity.startActivityForResult(this, REQUEST_IMAGE)
+            activity.startActivityForResult(this, ImageUtil.REQUEST_IMAGE)
         }
     }
 }
