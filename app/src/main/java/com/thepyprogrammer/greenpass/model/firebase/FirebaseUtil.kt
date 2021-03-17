@@ -1,5 +1,7 @@
 package com.thepyprogrammer.greenpass.model.firebase
 
+import android.app.Activity
+import android.content.Context
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -7,6 +9,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.thepyprogrammer.greenpass.model.account.VaccinatedUser
 import android.net.Uri
+import java.io.File
+import java.io.PrintWriter
 
 object FirebaseUtil {
     private var FIRESTORE: FirebaseFirestore? = null
@@ -40,10 +44,26 @@ object FirebaseUtil {
             // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
             // ...
         }
-
-
     }
 
+    fun retrieveImage(activity: Activity?) {
+        val storageRef = storage.reference
+        val imageRef = storageRef.child("images/${user?.nric}.jpg")
+
+        val localFile = File(activity?.filesDir, "images/profile.jpg")
+        var success = false
+        imageRef.getFile(localFile).addOnSuccessListener {
+            success = true
+        }.addOnFailureListener {
+        }
+        if(success) {
+            val uri = Uri.fromFile(localFile)
+            val imageInfoFile = File(activity?.filesDir, "profileImageURI.txt")
+            val output = PrintWriter(imageInfoFile)
+            output.println(uri.toString())
+            output.close()
+        }
+    }
 
     fun userCollection() = firestore.collection("users")
 }
