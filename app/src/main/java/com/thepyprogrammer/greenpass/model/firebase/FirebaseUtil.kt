@@ -46,11 +46,11 @@ object FirebaseUtil {
         }
     }
 
-    fun retrieveImage(activity: Activity?) {
+    fun retrieveImage(activity: Activity) {
         val storageRef = storage.reference
         val imageRef = storageRef.child("images/${user?.nric}.jpg")
 
-        val localFile = File(activity?.filesDir, "profile.jpg")
+        val localFile = File(activity.filesDir, "profile.jpg")
         if(!localFile.exists()) localFile.createNewFile()
         var success = false
         imageRef.getFile(localFile).addOnSuccessListener {
@@ -59,7 +59,7 @@ object FirebaseUtil {
         }
         if(success) {
             val uri = Uri.fromFile(localFile)
-            val imageInfoFile = File(activity?.filesDir, "profileImageURI.txt")
+            val imageInfoFile = File(activity.filesDir, "profileImageURI.txt")
             val output = PrintWriter(imageInfoFile)
             output.println(uri.toString())
             output.close()
