@@ -30,20 +30,22 @@ class SplashActivity : AppCompatActivity() {
         val accountDetails = File(filesDir, "accountDetails.txt")
         if(accountDetails.exists()) {
             val sc = Scanner(accountDetails)
-            val nric = sc.nextLine()
-            if(nric != "null") {
-                val fullName = sc.nextLine()
-                val dateOfVaccine = Timestamp(Util.format.parse(sc.nextLine()))
-                val password = sc.nextLine()
-                FirebaseUtil.user = VaccinatedUser(
-                    nric, fullName, dateOfVaccine, password
-                )
-                Handler().postDelayed({
-                    val main = Intent(applicationContext, MainActivity::class.java)
-                    startActivity(main)
-                    finish()
-                }, SPLASH_TIME_OUT.toLong())
-                return
+            if(sc.hasNext()) {
+                val nric = sc.nextLine()
+                if (nric != "null") {
+                    val fullName = sc.nextLine()
+                    val dateOfVaccine = Timestamp(Util.format.parse(sc.nextLine()))
+                    val password = sc.nextLine()
+                    FirebaseUtil.user = VaccinatedUser(
+                        nric, fullName, dateOfVaccine, password
+                    )
+                    Handler().postDelayed({
+                        val main = Intent(applicationContext, MainActivity::class.java)
+                        startActivity(main)
+                        finish()
+                    }, SPLASH_TIME_OUT.toLong())
+                    return
+                }
             }
         }
 
