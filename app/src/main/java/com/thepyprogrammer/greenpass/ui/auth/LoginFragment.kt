@@ -51,11 +51,11 @@ class LoginFragment : Fragment() {
 
         nric.afterTextChanged {
 //            viewModel.NRIC.value = it
-            if(it.isNotEmpty())
+            if(it.trim().isNotEmpty())
                 nricLayout.error = null
-            else if (it.length != 9)
+            else if (it.trim().length != 9)
                 nricLayout.error = "NRIC Length should be ${nricLayout.counterMaxLength}"
-            else if (!Util.checkNRIC(it))
+            else if (!Util.checkNRIC(it.trim().toUpperCase()))
                 nricLayout.error = "NRIC format is inaccurate"
             else
                 nricLayout.error = null
@@ -66,8 +66,8 @@ class LoginFragment : Fragment() {
 //        }
 
         login.setOnClickListener {
-            viewModel.NRIC.value = nric.text.toString()
-            viewModel.password.value = password.text.toString()
+            viewModel.NRIC.value = nric.text.toString().trim().toUpperCase()
+            viewModel.password.value = password.text.toString().trim()
             loading.visibility = View.VISIBLE
             viewModel.login()
 
