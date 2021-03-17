@@ -50,6 +50,10 @@ class LoginFragment : Fragment() {
         loading = root.findViewById(R.id.loading)
         nricLayout = root.findViewById(R.id.nricInputLayout)
 
+
+        /**View Model**/
+        viewModel = activity?.let { ViewModelProvider(it).get(AuthViewModel::class.java) }!!
+
         val nricObserver = Observer<String>{ newNric ->
             nric.setText(newNric)
         }
