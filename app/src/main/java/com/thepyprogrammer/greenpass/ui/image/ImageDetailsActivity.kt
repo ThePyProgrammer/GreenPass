@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
 import com.thepyprogrammer.greenpass.ui.main.MainViewModel
 import java.io.File
@@ -89,6 +90,9 @@ class ImageDetailsActivity : AppCompatActivity() {
             if (resultCode == RESULT_OK) {
                 val uri: Uri? = data?.getParcelableExtra("path")
                 try {
+                    if (uri != null) {
+                        FirebaseUtil.uploadImage(uri)
+                    }
                     // You can update this bitmap to your server
                     MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
 
