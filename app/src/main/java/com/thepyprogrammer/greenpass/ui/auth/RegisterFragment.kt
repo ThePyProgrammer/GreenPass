@@ -106,7 +106,7 @@ class RegisterFragment : Fragment() {
             else if (!Util.checkNRIC(it.trim()))
                 nricLayout.error = "NRIC format is inaccurate"
             else
-                nricLayout.error = null;
+                nricLayout.error = null
         }
 
 //
@@ -129,28 +129,34 @@ class RegisterFragment : Fragment() {
             viewModel.password.value = passwordInput.text.toString()
             viewModel.register()
         }
-
+//file:///data/user/0/com.thepyprogrammer.greenpass/cache/b804c327-8b4b-4b50-b143-402f84e43375.jpg
         val resultObserver =
             Observer<VaccinatedUser> { result ->
-                if (viewModel.user_result?.value?.password == "old"){}
-                else if (viewModel.user_result?.value?.password == ""){
-                    loading.visibility = View.GONE
-                    val sb =
-                        view?.let { it1 -> Snackbar.make(it1, "NRIC Already Registered!", Snackbar.LENGTH_LONG) }
-                    sb?.show()
-                } else if (viewModel.user_result?.value?.password.equals("3")){
-                    loading.visibility = View.GONE
-                    val sb =
-                        view?.let { it1 -> Snackbar.make(it1, "Password Length Too Short!", Snackbar.LENGTH_LONG) }
-                    sb?.show()
-                } else {
-                    FirebaseUtil.user = viewModel.user_result?.value
-                    viewModel.user_result?.value?.password?.let { Log.d("TAG", it) }
-                    loading.visibility = View.GONE
-                    startActivity(Intent(activity, MainActivity::class.java))
+                if (viewModel.user_result.value?.password != "old") {
+                    when {
+                        viewModel.user_result.value?.password == "" -> {
+                            loading.visibility = View.GONE
+                            val sb =
+                                view?.let { it1 -> Snackbar.make(it1, "NRIC Already Registered!", Snackbar.LENGTH_LONG) }
+                            sb?.show()
+                        }
+                        viewModel.user_result.value?.password.equals("3") -> {
+                            loading.visibility = View.GONE
+                            val sb =
+                                view?.let { it1 -> Snackbar.make(it1, "Password Length Too Short!", Snackbar.LENGTH_LONG) }
+                            sb?.show()
+                        }
+                        else -> {
+                            FirebaseUtil.user = viewModel.user_result.value
+                            FirebaseUtil.retrieveImage(activity)
+                            viewModel.user_result.value?.password?.let { Log.d("TAG", it) }
+                            loading.visibility = View.GONE
+                            startActivity(Intent(activity, MainActivity::class.java))
+                        }
+                    }
                 }
             }
-        viewModel.user_result?.observe(getViewLifecycleOwner(),resultObserver);
+        viewModel.user_result.observe(viewLifecycleOwner,resultObserver);
 
         return root
     }
