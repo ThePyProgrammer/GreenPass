@@ -1,5 +1,14 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <PreferenceCategory app:title="Profile">
+        <Preference
+            app:title="Edit Image"
+            app:key="image"
+            app:summary="Click to edit profile picture"
+            />
+
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="Opening Pass">
 
         <SwitchPreferenceCompat
