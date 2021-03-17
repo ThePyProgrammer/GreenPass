@@ -50,7 +50,8 @@ object FirebaseUtil {
         val storageRef = storage.reference
         val imageRef = storageRef.child("images/${user?.nric}.jpg")
 
-        val localFile = File(activity?.filesDir, "images/profile.jpg")
+        val localFile = File(activity?.filesDir, "profile.jpg")
+        if(!localFile.exists()) localFile.createNewFile()
         var success = false
         imageRef.getFile(localFile).addOnSuccessListener {
             success = true
