@@ -50,7 +50,9 @@ class LoginFragment : Fragment() {
 
         nric.afterTextChanged {
 //            viewModel.NRIC.value = it
-            if (it.length != 9)
+            if(it.isNotEmpty())
+                nricLayout.error = null
+            else if (it.length != 9)
                 nricLayout.error = "NRIC Length should be ${nricLayout.counterMaxLength}"
             else if (!Util.checkNRIC(it))
                 nricLayout.error = "NRIC format is inaccurate"
