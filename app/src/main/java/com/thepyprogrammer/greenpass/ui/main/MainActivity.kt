@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
         val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
 
         imageInfoFile = File(filesDir, "profileImageURI.txt")
+        FirebaseUtil.retrieveImage(this)
 
 
 
