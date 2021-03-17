@@ -82,53 +82,7 @@ class ImageDetailsActivity : AppCompatActivity() {
                     .show()
         }
     }
-//
-//    private fun showImagePickerOptions() {
-//        showImagePickerOptions(this, object : PickerOptionListener {
-//            override fun onTakeCameraSelected() {
-//                launchCameraIntent()
-//            }
-//
-//            override fun onChooseGallerySelected() {
-//                launchGalleryIntent()
-//            }
-//        })
-//    }
-//
-//    private fun launchCameraIntent() {
-//        Intent(this, ImagePickerActivity::class.java).apply {
-//            putExtra(
-//                    ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
-//                    ImagePickerActivity.REQUEST_IMAGE_CAPTURE
-//            )
-//
-//            // setting aspect ratio
-//            putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
-//            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
-//            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
-//
-//            // setting maximum bitmap width and height
-//            putExtra(ImagePickerActivity.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, true)
-//            putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_WIDTH, 1000)
-//            putExtra(ImagePickerActivity.INTENT_BITMAP_MAX_HEIGHT, 1000)
-//            startActivityForResult(this, REQUEST_IMAGE)
-//        }
-//    }
-//
-//    private fun launchGalleryIntent() {
-//        Intent(this, ImagePickerActivity::class.java).apply {
-//            putExtra(
-//                    ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION,
-//                    ImagePickerActivity.REQUEST_GALLERY_IMAGE
-//            )
-//
-//            // setting aspect ratio
-//            putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true)
-//            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
-//            putExtra(ImagePickerActivity.INTENT_ASPECT_RATIO_Y, 1)
-//            startActivityForResult(this, REQUEST_IMAGE)
-//        }
-//    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
