@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ImageSpan
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -35,7 +36,7 @@ import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.auth.AuthActivity
-import com.thepyprogrammer.greenpass.ui.auth.AuthViewModel
+import com.thepyprogrammer.greenpass.ui.information.InfromationActivity
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
 import com.thepyprogrammer.greenpass.ui.main.profile.ProfileFragment
@@ -176,6 +177,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         val nameObserver = Observer<String> { newName ->
             nameView.text = newName
+
         }
         val nricObserver = Observer<String> { newNric ->
             nricView.text = newNric
@@ -211,6 +213,17 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             }
         }
 
+        menu.findItem(R.id.information).apply {
+            title = SpannableStringBuilder("* Information").also {
+                it.setSpan( // replace "*" with icon
+                    ImageSpan(this@MainActivity, R.drawable.ic_info),
+                    0,
+                    1,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
+
         true
     }
 
@@ -226,6 +239,13 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
                 R.id.action_logout -> {
                     logout()
+                }
+
+                R.id.information -> {
+                    //thing
+                    InfromationActivity.updateActivity(this)
+                    startActivity(Intent(this, InfromationActivity::class.java))
+                    true
                 }
                 else -> false
             }
