@@ -157,7 +157,7 @@ class AuthViewModel(): ViewModel() {
             FirebaseUtil.userCollection().document(nric).get()
                     .addOnSuccessListener {
                         data = it?.data
-                        Log.d("TAG", "${data}")
+                        Log.d("TAG", "$data")
                     }.addOnFailureListener {
                         success = false
                         e = it
