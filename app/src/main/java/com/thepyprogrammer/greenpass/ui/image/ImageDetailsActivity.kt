@@ -25,7 +25,6 @@ class ImageDetailsActivity : AppCompatActivity() {
     private var REQUEST_IMAGE = 2169
     var imageView: ImageView? = null
     var imageInfoFile: File? = null
-    val profileViewModel: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
