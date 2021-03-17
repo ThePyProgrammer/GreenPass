@@ -140,19 +140,19 @@ class LoginFragment : Fragment() {
             Observer<VaccinatedUser> {
                 when {
                     viewModel.user_result.value?.password == "old" -> {}
-                    viewModel.user_result.value?.password?.length!! >= 8 -> {
-                        FirebaseUtil.user = viewModel.user_result.value
-                        Log.d("TAG", "Data is Correct second!")
-                        loading.visibility = View.GONE
-                        startActivity(Intent(activity, MainActivity::class.java))
-                    }
-                    else -> {
+                    viewModel.user_result.value?.password == "" || viewModel.user_result.value?.password == "3" -> {
                         nric.setText("")
                         password.setText("")
                         loading.visibility = View.GONE
                         val sb =
                             view?.let { it1 -> Snackbar.make(it1, "Invalid ID and Password", Snackbar.LENGTH_LONG) }
                         sb?.show()
+                    }
+                    else -> {
+                        FirebaseUtil.user = viewModel.user_result.value
+                        Log.d("TAG", "Data is Correct second!")
+                        loading.visibility = View.GONE
+                        startActivity(Intent(activity, MainActivity::class.java))
                     }
                 }
             }
