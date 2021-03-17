@@ -88,14 +88,7 @@ class LoginFragment : Fragment() {
 
             // FirebaseUtil.retrieveImage(requireActivity())
 
-            startActivityForResult(Intent(activity, MainActivity::class.java).also {
-                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }, 0)
 
-            activity?.setResult(Activity.RESULT_OK)
-
-            //Complete and destroy login activity once successful
-            activity?.finish()
         }
 
         //esc.setOnClickListener {
@@ -152,7 +145,14 @@ class LoginFragment : Fragment() {
                         FirebaseUtil.user = viewModel.user_result.value
                         Log.d("TAG", "Data is Correct second!")
                         loading.visibility = View.GONE
-                        startActivity(Intent(activity, MainActivity::class.java))
+                        startActivityForResult(Intent(activity, MainActivity::class.java).also {
+                            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        }, 0)
+
+                        activity?.setResult(Activity.RESULT_OK)
+
+                        //Complete and destroy login activity once successful
+                        activity?.finish()
                     }
                 }
             }
