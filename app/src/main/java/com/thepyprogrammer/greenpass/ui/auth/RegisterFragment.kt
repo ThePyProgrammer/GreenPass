@@ -124,7 +124,7 @@ class RegisterFragment : Fragment() {
 
         register.setOnClickListener {
             loading.visibility = View.VISIBLE
-            viewModel.NRIC.value = nricInput.text.toString().trim().toUpperCase()
+            viewModel.NRIC.value = nricInput.text.toString().trim().toUpperCase(Locale.ROOT)
             viewModel.pName.value = fullNameInput.text.toString().trim()
             viewModel.password.value = passwordInput.text.toString()
             viewModel.register()
