@@ -16,11 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenPass"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.information.InfromationActivity"></activity>
+        <activity android:name=".ui.information.InfromationActivity" />
         <activity
             android:name=".ui.auth.AuthActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.GreenPass.NoActionBar"></activity>
+            android:theme="@style/Theme.GreenPass.NoActionBar" />
         <activity android:name=".ui.scanner.QRCodeScanner" />
         <activity
             android:name=".ui.splash.SplashActivity"
@@ -32,9 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.intro.IntroActivity"
-            android:theme="@style/Theme.GreenPass.Intro" />
         <activity
             android:name=".ui.image.ImageDetailsActivity"
             android:label="@string/title_activity_profile_picture"
