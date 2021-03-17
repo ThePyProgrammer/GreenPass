@@ -1,9 +1,12 @@
 package com.thepyprogrammer.greenpass.ui.main.settings
 
 import android.content.Intent
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.Preference
@@ -86,20 +89,5 @@ class SettingsFragment : PreferenceFragmentCompat() {
         output.println(s)
         output.close()
         println(s)
-    }
-
-    private fun readData(): String {
-        if (!imageInfoFile!!.exists()) {
-            return ""
-        }
-        val scanner = Scanner(imageInfoFile)
-        val string = StringBuilder(scanner.nextLine())
-
-        while (scanner.hasNextLine())
-            string.append("\n" + scanner.nextLine())
-
-
-        scanner.close()
-        return string.toString()
     }
 }
