@@ -14,6 +14,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import androidx.transition.TransitionInflater
 import com.thepyprogrammer.greenpass.R
+import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.image.EditImage
 import com.thepyprogrammer.greenpass.ui.image.ImageUtil
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
@@ -72,6 +73,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 val uri: Uri? = data?.getParcelableExtra("path")
                 try {
+                    if (uri != null) {
+                        FirebaseUtil.uploadImage(uri)
+                    }
                     // You can update this bitmap to your server
                     MediaStore.Images.Media.getBitmap(activity?.contentResolver, uri)
 
