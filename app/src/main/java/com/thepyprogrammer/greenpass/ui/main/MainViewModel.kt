@@ -1,8 +1,14 @@
 package com.thepyprogrammer.greenpass.ui.main
 
+import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.thepyprogrammer.greenpass.model.Util
+import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
+import com.thepyprogrammer.greenpass.ui.auth.AuthActivity
+import java.io.File
+import java.io.PrintWriter
 import java.util.*
 
 class MainViewModel : ViewModel() {
@@ -23,6 +29,14 @@ class MainViewModel : ViewModel() {
             this.NRIC.value = NRIC
         }
         return NRIC.matches(Util.nricRegex)
+    }
+
+    fun logout(activity: Activity) {
+        val accountDetails = File(activity.filesDir, "accountDetails.txt")
+        if(accountDetails.exists())
+            PrintWriter(accountDetails).close()
+
+        FirebaseUtil.user = null
     }
 
 
