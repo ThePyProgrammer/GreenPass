@@ -143,6 +143,7 @@ class LoginFragment : Fragment() {
                     }
                     else -> {
                         FirebaseUtil.user = viewModel.user_result.value
+
                         Log.d("TAG", "Data is Correct second!")
                         loading.visibility = View.GONE
                         startActivityForResult(Intent(activity, MainActivity::class.java).also {
