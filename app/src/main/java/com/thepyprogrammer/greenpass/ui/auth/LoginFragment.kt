@@ -16,7 +16,6 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Timestamp
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.Util
-import com.thepyprogrammer.greenpass.model.account.Result
 import com.thepyprogrammer.greenpass.model.account.VaccinatedUser
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
 import com.thepyprogrammer.greenpass.ui.main.MainActivity
@@ -26,11 +25,11 @@ class LoginFragment : Fragment() {
 
     private lateinit var viewModel: AuthViewModel
     lateinit var nric: TextInputEditText
-    lateinit var password: TextInputEditText
-    lateinit var login: Button
-    lateinit var esc: Button
-    lateinit var loading: ProgressBar
-    lateinit var nricLayout: TextInputLayout
+    private lateinit var password: TextInputEditText
+    private lateinit var login: Button
+    private lateinit var esc: Button
+    private lateinit var loading: ProgressBar
+    private lateinit var nricLayout: TextInputLayout
 
 
 
@@ -41,12 +40,12 @@ class LoginFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_login, container, false)
 
 
-        nric = root.findViewById<TextInputEditText>(R.id.nricInput)
-        password = root.findViewById<TextInputEditText>(R.id.passwordInput)
-        login = root.findViewById<Button>(R.id.login)
-        esc = root.findViewById<Button>(R.id.escape)
-        loading = root.findViewById<ProgressBar>(R.id.loading)
-        nricLayout = root.findViewById<TextInputLayout>(R.id.nricInputLayout)
+        nric = root.findViewById(R.id.nricInput)
+        password = root.findViewById(R.id.passwordInput)
+        login = root.findViewById(R.id.login)
+        esc = root.findViewById(R.id.escape)
+        loading = root.findViewById(R.id.loading)
+        nricLayout = root.findViewById(R.id.nricInputLayout)
 
         nric.afterTextChanged {
 //            viewModel.NRIC.value = it
@@ -55,7 +54,7 @@ class LoginFragment : Fragment() {
             else if (!Util.checkNRIC(it))
                 nricLayout.error = "NRIC format is inaccurate"
             else
-                nricLayout.error = null;
+                nricLayout.error = null
         }
 //
 //        password.afterTextChanged {
@@ -100,16 +99,15 @@ class LoginFragment : Fragment() {
         viewModel.password.observe(requireActivity(), passwordObserver)
 
         val resultObserver =
-            Observer<VaccinatedUser> { result ->
-                if (viewModel.user_result?.value?.password == ""){}
-                else {
-                    FirebaseUtil.user = viewModel.user_result?.value
+            Observer<VaccinatedUser> {
+                if (viewModel.user_result.value?.password != "") {
+                    FirebaseUtil.user = viewModel.user_result.value
                     Log.d("TAG", "Data is Correct second!")
                     loading.visibility = View.GONE
                     startActivity(Intent(activity, MainActivity::class.java))
                 }
             }
-        viewModel.user_result?.observe(getViewLifecycleOwner(),resultObserver);
+        viewModel.user_result.observe(viewLifecycleOwner,resultObserver)
     }
 
 }
