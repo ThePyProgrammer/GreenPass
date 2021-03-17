@@ -15,7 +15,7 @@ class AuthViewModel(): ViewModel() {
     var NRIC = MutableLiveData("")
     var date = MutableLiveData(Timestamp.now())
     var password = MutableLiveData("")
-    var user_result = MutableLiveData<VaccinatedUser>(VaccinatedUser("", "", Timestamp(0, 0), ""))
+    var user_result = MutableLiveData<VaccinatedUser>(VaccinatedUser("", "", Timestamp(0, 0), "old"))
 
     fun register(){
         val fullName = pName.value!!
@@ -31,23 +31,42 @@ class AuthViewModel(): ViewModel() {
             "password" to pw
         )
         Log.d("TAG", fullName + " " + nric + " " + pw)
-        if (pw.length >= 8) {
-            FirebaseUtil.userCollection()
-                ?.document(nric)
-                ?.set(data)
-                ?.addOnSuccessListener {
-                    user_result.value = VaccinatedUser(nric, fullName, dateOfVaccine, pw)
-                    Log.d("TAG", "Data is Nice!")
-                }
-                ?.addOnFailureListener {
-                    success = false
-                    Log.d("TAG", "Data is Not Nice!")
-                    e = it
-                }
 
-        } else {
-            Result.Error(Exception("Password is too small!"))
-        }
+        FirebaseUtil.userCollection()?.document(nric)?.get()
+            ?.addOnSuccessListener {
+                var data_ = it?.data
+                if (data_ != null){
+                    val user = VaccinatedUser("", "", Timestamp.now(), "")
+                    user_result?.value = user
+                    Result.Error(Exception("It seems you don't exist."))
+                }
+                else{
+
+                    if (pw.length >= 8) {
+                        FirebaseUtil.userCollection()
+                            ?.document(nric)
+                            ?.set(data)
+                            ?.addOnSuccessListener {
+                                user_result.value = VaccinatedUser(nric, fullName, dateOfVaccine, pw)
+                                Log.d("TAG", "Data is Nice!")
+                            }
+                            ?.addOnFailureListener {
+                                success = false
+                                Log.d("TAG", "Data is Not Nice!")
+                                val user = VaccinatedUser("", "", Timestamp.now(), "")
+                                user_result?.value = user
+                                e = it
+                            }
+
+                    } else {
+                        Result.Error(Exception("Password is too small!"))
+                        val user = VaccinatedUser("", "", Timestamp.now(), "3")
+                        user_result?.value = user
+                        Log.d("TAG", "Password Set to 3")
+                    }
+
+                }
+            }?.addOnFailureListener {}
     }
 
     fun register_old(): Result<VaccinatedUser> {
@@ -97,15 +116,24 @@ class AuthViewModel(): ViewModel() {
         FirebaseUtil.userCollection()?.document(nric)?.get()
             ?.addOnSuccessListener {
                 data = it?.data
-                if ((data!!["password"] as String) == password) {
+                if (data == null){
+                    val user = VaccinatedUser("", "", Timestamp.now(), "")
+                    user_result?.value = user
+                    Result.Error(Exception("It seems you don't exist."))
+                }
+                else if ((data!!["password"] as String) == password) {
                     val fullName = data!!["fullName"] as String
                     val user = VaccinatedUser(nric, fullName, data!!["dateOfVaccine"] as Timestamp, password)
                     user_result?.value = user
                     Log.d("TAG", "Data is Correct!")
                 } else {
+                    val user = VaccinatedUser("", "", Timestamp.now(), "")
+                    user_result?.value = user
+                    Log.d("TAG", "Data is Wrong!")
                     Result.Error(Exception("It seems you don't exist."))
                 }
             }?.addOnFailureListener {
+                val user = VaccinatedUser("", "", Timestamp.now(), "")
                 success = false
             }
     }

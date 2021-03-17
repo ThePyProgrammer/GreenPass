@@ -13,6 +13,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Timestamp
@@ -129,10 +130,20 @@ class RegisterFragment : Fragment() {
 
         val resultObserver =
             Observer<VaccinatedUser> { result ->
-                if (viewModel.user_result?.value?.password == ""){}
-                else {
+                if (viewModel.user_result?.value?.password == "old"){}
+                else if (viewModel.user_result?.value?.password == ""){
+                    loading.visibility = View.GONE
+                    val sb =
+                        view?.let { it1 -> Snackbar.make(it1, "NRIC Already Registered!", Snackbar.LENGTH_LONG) }
+                    sb?.show()
+                } else if (viewModel.user_result?.value?.password.equals("3")){
+                    loading.visibility = View.GONE
+                    val sb =
+                        view?.let { it1 -> Snackbar.make(it1, "Password Length Too Short!", Snackbar.LENGTH_LONG) }
+                    sb?.show()
+                } else {
                     FirebaseUtil.user = viewModel.user_result?.value
-                    Log.d("TAG", "Data is Correct second!")
+                    viewModel.user_result?.value?.password?.let { Log.d("TAG", it) }
                     loading.visibility = View.GONE
                     startActivity(Intent(activity, MainActivity::class.java))
                 }
