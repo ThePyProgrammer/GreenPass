@@ -154,11 +154,11 @@ class AuthViewModel(): ViewModel() {
             //        Log.d("TAG", "Error getting documents.", exception)
             //    }
 
-            FirebaseUtil.userCollection()?.document(nric)?.get()
-                    ?.addOnSuccessListener {
+            FirebaseUtil.userCollection().document(nric).get()
+                    .addOnSuccessListener {
                         data = it?.data
                         Log.d("TAG", "${data}")
-                    }?.addOnFailureListener {
+                    }.addOnFailureListener {
                         success = false
                         e = it
                     Result.Error(e)
