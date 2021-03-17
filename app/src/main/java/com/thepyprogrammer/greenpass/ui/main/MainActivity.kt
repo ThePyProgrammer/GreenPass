@@ -1,5 +1,6 @@
 package com.thepyprogrammer.greenpass.ui.main
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.hardware.SensorManager
@@ -33,6 +34,7 @@ import com.infideap.drawerbehavior.AdvanceDrawerLayout
 import com.squareup.seismic.ShakeDetector
 import com.thepyprogrammer.greenpass.R
 import com.thepyprogrammer.greenpass.model.firebase.FirebaseUtil
+import com.thepyprogrammer.greenpass.ui.auth.AuthActivity
 import com.thepyprogrammer.greenpass.ui.auth.AuthViewModel
 import com.thepyprogrammer.greenpass.ui.image.ImageClickListener
 import com.thepyprogrammer.greenpass.ui.main.pass.PassFragment
@@ -220,6 +222,10 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
                     startActivity(Intent(this, QRCodeScanner::class.java))
                     true
                 }
+
+                R.id.action_logout -> {
+                    logout()
+                }
                 else -> false
             }
 
@@ -295,6 +301,19 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
             imageView?.setImageResource(R.drawable.face)
             imageNavMenuView?.setImageResource(R.drawable.face)
         }
+    }
+
+    fun logout(): Boolean {
+        viewModel.logout(this)
+        startActivityForResult(Intent(this, AuthActivity::class.java).also {
+            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }, 0)
+
+        setResult(Activity.RESULT_OK)
+
+        //Complete and destroy login activity once successful
+        finish()
+        return true
     }
 
 
