@@ -121,7 +121,8 @@ class LoginFragment : Fragment() {
 
         val resultObserver =
             Observer<VaccinatedUser> {
-                if (viewModel.user_result.value?.password?.length!! >= 8) {
+                if (viewModel.user_result.value?.password == "old") {}
+                else if (viewModel.user_result.value?.password?.length!! >= 8) {
                     FirebaseUtil.user = viewModel.user_result.value
                     Log.d("TAG", "Data is Correct second!")
                     loading.visibility = View.GONE
